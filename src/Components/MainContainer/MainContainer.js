@@ -2,11 +2,14 @@ import React from "react";
 
 import "./MainContainer.css";
 
-function MainContainer({header, body}) {
+function MainContainer({header, list, body}) {
 	return (
 		<div className="main-container">
 			{header}
-			<div className={"wrapper-body--mainContainer"}>{body}</div>
+			<div className="centred-container--mainContainer">
+				{list}
+				{/* <div className={"wrapper-body--mainContainer"}>{body}</div> */}
+			</div>
 		</div>
 	);
 }
