@@ -3,6 +3,7 @@
 	background: #ffffff;
 	border: 0.1rem solid #e7e7ed;
 	border-radius: 0 0 0.4rem 0.4rem;
+	transition: 100ms;
 }
 
 .add-task--tasks:hover {
@@ -35,8 +36,12 @@
 	width: 2.4rem;
 }
 
-.add-task-icon {
-	content: url(../../utils/img/eye-icon.png);
+.add-task-icon-inactive {
+	content: url(../../utils/img/add-icon-inactive.png);
+}
+
+.add-task-icon-active {
+	content: url(../../utils/img/add-icon-active.png);
 }
 
 .edit-icon {
