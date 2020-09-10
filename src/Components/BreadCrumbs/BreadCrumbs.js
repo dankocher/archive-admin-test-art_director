@@ -1,4 +1,5 @@
 import React from "react";
+import {useSelector} from "react-redux";
 
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
@@ -15,6 +16,7 @@ import {
 import "./BreadCrumbs.css";
 
 function BreadCrumbs() {
+	const taskName = useSelector((state) => state.taskName);
 	return (
 		<div className="wrapper--breadCrumbs">
 			<Breadcrumbs
@@ -24,12 +26,10 @@ function BreadCrumbs() {
 					Тесты
 				</Link>
 				<RouterLink to="/">
-					<Link color="inherit">
-						Тестовое задание для Арт-директора(реадактирование)
-					</Link>
+					Тестовое задание для Арт-директора(реадактирование)
 				</RouterLink>
 
-				<Typography color="textPrimary">Breadcrumb</Typography>
+				<Typography color="textPrimary">{taskName}</Typography>
 			</Breadcrumbs>
 		</div>
 	);

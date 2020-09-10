@@ -12,5 +12,10 @@
 }
 
 .wrapper--breadCrumbs a {
+	text-decoration: none;
 	color: #bdbdc1;
+}
+
+.wrapper--breadCrumbs a:hover {
+	text-decoration: underline;
 }

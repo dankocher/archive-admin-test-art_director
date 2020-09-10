@@ -24,11 +24,13 @@ function MainContainer({header, list, body}) {
 					<BreadCrumbs />
 
 					<Switch>
-						<Route path="/" exact component={TasksComponent} />
+						<>
+							<Route path="/" exact component={TasksComponent} />
 
-						<div className={"wrapper-body--mainContainer"}>
-							<Route path="/welcome-screen/:id" component={WelcomeScreen} />
-						</div>
+							<div className={"wrapper-body--mainContainer"}>
+								<Route path="/welcome-screen/:id" component={WelcomeScreen} />
+							</div>
+						</>
 					</Switch>
 				</div>
 			</div>
