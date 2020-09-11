@@ -23,7 +23,7 @@
 	align-items: center;
 }
 
-.task-number--task span {
+.countNumber-font {
 	margin-left: 2.5rem;
 	font-style: normal;
 	font-weight: normal;

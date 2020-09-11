@@ -2,9 +2,10 @@ import React from "react";
 
 import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 
-import Header from "../../Components/Header/Header";
-import WelcomeScreen from "../../Components/WelcomeScreen/WelcomeScreen";
-import TasksComponent from "../../Components/TasksComponent/TasksComponent";
+import Header from "../Header/Header";
+import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
+import TasksComponent from "../TasksComponent/TasksComponent";
+import SplitScreen from "../SplitScreen/SplitScreen";
 
 import {
 	BrowserRouter as Router,
@@ -29,6 +30,10 @@ function MainContainer({header, list, body}) {
 
 							<div className={"wrapper-body--mainContainer"}>
 								<Route path="/welcome-screen/:id" component={WelcomeScreen} />
+								<Route
+									path="/illustrations-radioButtons/:id"
+									component={SplitScreen}
+								/>
 							</div>
 						</>
 					</Switch>

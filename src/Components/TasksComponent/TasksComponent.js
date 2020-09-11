@@ -4,14 +4,7 @@ import "./TasksComponent.css";
 
 import Task from "../Task/Task";
 
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
-	useParams,
-	useRouteMatch,
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import arr from "../../utils/data/data";
 
@@ -19,8 +12,6 @@ const classNames = require("classnames");
 
 function TasksComponent() {
 	const [addBtnHovered, setAddBtnHovered] = useState(false);
-
-	let match = useRouteMatch();
 
 	const addIconClasses = classNames({
 		"add-task-icon-inactive": !addBtnHovered,
@@ -37,8 +28,8 @@ function TasksComponent() {
 					<i className="edit-icon"></i>
 				</button>
 			</div>
-			{arr.taskList.map((element) => {
-				return <Task />;
+			{arr.taskList.map((element, key) => {
+				return <Task key={key} index={key} task={element} />;
 			})}
 			<div
 				onMouseEnter={() => setAddBtnHovered(true)}

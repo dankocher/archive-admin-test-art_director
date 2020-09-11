@@ -1,0 +1,33 @@
+input[type="checkbox"] {
+	display: none;
+}
+
+.checkbox-field--checkbox {
+	display: flex;
+	align-items: center;
+}
+
+.checkbox-field--checkbox > :first-child {
+	margin-right: 1.2rem;
+}
+
+.checkbox-container--checkbox {
+	display: flex;
+	height: 2rem;
+	width: 2rem;
+	border: 0.1rem solid #484848;
+	border-radius: 0.2rem;
+}
+
+.wrapper-icon {
+	margin: auto;
+	display: inline-flex;
+}
+
+.checked-icon {
+	content: url(../../utils/img/checked-icon.png);
+}
+
+.checked-icon::selection {
+	background: transparent;
+}

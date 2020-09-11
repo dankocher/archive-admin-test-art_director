@@ -2,6 +2,7 @@ export const SET_TASK_NAME = "SET_IMAGE_LENGTH";
 export const SET_TASK_DESCRIPTION = "SET_TASK_DESCRIPTION";
 export const SET_TASK_TYPE = "SET_TASK_TYPE";
 export const SET_IS_TIME_CONSIDERED = "IS_TIME_CONSIDERED";
+export const SET_IS_TIME_DISPLAY_FOR_USER = "SET_IS_TIME_DISPLAY_FOR_USER";
 
 export const setTaskName = (name) => ({
 	type: SET_TASK_NAME,
@@ -20,4 +21,8 @@ export const setTaskType = (type) => ({
 
 export const setIsTimeConsidered = () => ({
 	type: SET_IS_TIME_CONSIDERED,
+});
+
+export const setIsTimeDisplayForUser = () => ({
+	type: SET_IS_TIME_DISPLAY_FOR_USER,
 });

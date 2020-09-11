@@ -3,7 +3,6 @@
 	flex-direction: column;
 	height: 100%;
 	width: 100%;
-	background-color: #f6f6f6;
 }
 
 .centred-container--mainContainer {
@@ -11,6 +10,7 @@
 }
 
 .wrapper-body--mainContainer {
+	position: relative;
 	width: calc(93.2rem - 10.8rem);
 	padding: 0 5.4rem;
 	background-color: #ffffff;
