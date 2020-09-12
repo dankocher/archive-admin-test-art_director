@@ -14,9 +14,11 @@ function Checkbox(props) {
 				htmlFor={props.id}
 				className="checkbox-container--checkbox"
 			>
-				<div className="wrapper-icon">
-					<i className="checked-icon"></i>
-				</div>
+				{props.value ? (
+					<div className="wrapper-icon">
+						<i className="checked-icon"></i>
+					</div>
+				) : null}
 			</label>
 			<label htmlFor={props.id} className="base-font-small">
 				{props.label}
