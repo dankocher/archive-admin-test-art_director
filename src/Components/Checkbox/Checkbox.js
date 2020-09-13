@@ -16,7 +16,7 @@ function Checkbox(props) {
 			>
 				{props.value ? (
 					<div className="wrapper-icon">
-						<i className="checked-icon"></i>
+						<i className="checked-icon--checkbox"></i>
 					</div>
 				) : null}
 			</label>

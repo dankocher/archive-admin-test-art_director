@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 //import Checkbox from "@material-ui/core/Checkbox";
 import Checkbox from "../Checkbox/Checkbox";
+import RadioButton from "../RadioButton/RadioButton";
 
 import {
 	setTaskDescription as setStateTaskDescription,
@@ -10,6 +11,7 @@ import {
 	setTaskType,
 	setIsTimeConsidered,
 	setIsTimeDisplayForUser,
+	setIsOneGradeForAllSubTasks,
 } from "../../actions";
 
 import taskTypeEnum from "../../utils/taskTypeEnum";
@@ -35,6 +37,9 @@ function TopContainer() {
 	const isTimeConsidered = useSelector((state) => state.isTimeConsidered);
 	const isTimeDisplayForUser = useSelector(
 		(state) => state.isTimeDisplayForUser
+	);
+	const isOneGradeForAllSubTasks = useSelector(
+		(state) => state.isOneGradeForAllSubTasks
 	);
 	const taskType = useSelector((state) => state.taskType);
 
@@ -62,8 +67,12 @@ function TopContainer() {
 		dispatch(setIsTimeConsidered());
 	};
 
-	const handleChangeStateTaskisTimeDisplayForUser = () => {
+	const handleChangeStateTaskIsTimeDisplayForUser = () => {
 		dispatch(setIsTimeDisplayForUser());
+	};
+
+	const handleChangeStateTaskIsOneGradeForAllSubTasks = () => {
+		dispatch(setIsOneGradeForAllSubTasks());
 	};
 
 	return (
@@ -113,12 +122,18 @@ function TopContainer() {
 							value={isTimeConsidered}
 							onChange={() => handleChangeStateTaskIsTimeConsidered()}
 						/>
+						<RadioButton
+							id={"isOneGradeForAllSubTasks"}
+							label={"Одна оценка для всех подзаданий"}
+							value={isOneGradeForAllSubTasks}
+							onChange={() => handleChangeStateTaskIsOneGradeForAllSubTasks()}
+						/>
 						{taskType === Object.keys(taskTypeEnum)[0] ? null : (
 							<Checkbox
 								id={"isTimeDisplayForUser"}
 								label={"Отображать время пользователю"}
 								value={isTimeDisplayForUser}
-								onChange={() => handleChangeStateTaskisTimeDisplayForUser()}
+								onChange={() => handleChangeStateTaskIsTimeDisplayForUser()}
 							/>
 						)}
 					</div>

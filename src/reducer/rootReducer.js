@@ -4,6 +4,7 @@ import {
 	SET_TASK_TYPE,
 	SET_IS_TIME_CONSIDERED,
 	SET_IS_TIME_DISPLAY_FOR_USER,
+	SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
 } from "../actions";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
 	taskDescription: "",
 	isTimeConsidered: false,
 	isTimeDisplayForUser: false,
+	isOneGradeForAllSubTasks: false,
 };
 
 function rootReducer(state = initialState, action) {
@@ -26,6 +28,11 @@ function rootReducer(state = initialState, action) {
 			return {...state, isTimeConsidered: !state.isTimeConsidered};
 		case SET_IS_TIME_DISPLAY_FOR_USER:
 			return {...state, isTimeDisplayForUser: !state.isTimeDisplayForUser};
+		case SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS:
+			return {
+				...state,
+				isOneGradeForAllSubTasks: !state.isOneGradeForAllSubTasks,
+			};
 		default:
 			return state;
 	}

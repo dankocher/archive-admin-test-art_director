@@ -13,8 +13,8 @@ input[type="checkbox"] {
 
 .checkbox-container--checkbox {
 	display: flex;
-	height: 2rem;
-	width: 2rem;
+	height: 1.8rem;
+	width: 1.8rem;
 	border: 0.1rem solid #484848;
 	border-radius: 0.2rem;
 }
@@ -24,10 +24,10 @@ input[type="checkbox"] {
 	display: inline-flex;
 }
 
-.checked-icon {
+.checked-icon--checkbox {
 	content: url(../../utils/img/checked-icon.png);
 }
 
-.checked-icon::selection {
+.checked-icon--checkbox::selection {
 	background: transparent;
 }
