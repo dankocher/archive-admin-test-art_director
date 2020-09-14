@@ -4,6 +4,10 @@
   font-size: 10px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #root {
   height: 100%;
   width: 100%;
@@ -56,17 +60,25 @@ body * {
 
 .input:focus {
   outline: none !important;
-  border: 0.2rem solid #017aff;
+  border: 0.1rem solid #017aff;
 }
 
 input[type="file"] {
   display: none;
 }
 
+.bold-big-font {
+  font-family: Roboto-Medium, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 22px;
+  color: #323232;
+}
+
 .base-font-small {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
+  font-family: Roboto-Regular;
+  /* font-style: normal;
+  font-weight: normal; */
   font-size: 14px;
   line-height: 16px;
   color: #323232;

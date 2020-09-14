@@ -47,13 +47,6 @@
 	margin-bottom: 0.7rem;
 }
 
-.bold-big-font {
-	font-weight: 500;
-	font-size: 20px;
-	line-height: 22px;
-	color: #323232;
-}
-
 .taskType-text--task {
 	position: relative;
 }

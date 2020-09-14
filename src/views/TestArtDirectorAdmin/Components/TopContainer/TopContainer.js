@@ -11,7 +11,7 @@ import {
   setIsTimeConsidered,
   setIsTimeDisplayForUser,
   setIsOneGradeForAllSubTasks,
-} from "../../actions";
+} from "../../../../redux/actions";
 
 import taskTypeEnum from "../../utils/taskTypeEnum";
 

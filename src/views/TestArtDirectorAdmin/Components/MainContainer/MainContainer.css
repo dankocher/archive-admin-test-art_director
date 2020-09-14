@@ -1,0 +1,17 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.centred-container--mainContainer {
+  margin: 0 auto;
+}
+
+.wrapper-body--mainContainer {
+  position: relative;
+  width: 93.2rem;
+  padding: 0 5.4rem;
+  background-color: #ffffff;
+}

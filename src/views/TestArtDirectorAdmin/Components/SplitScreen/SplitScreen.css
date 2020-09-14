@@ -1,0 +1,16 @@
+.body-container--splitScreen {
+  display: grid;
+  grid-template-columns: 47.572815534% 3.2rem 1fr;
+}
+
+.leftSide-bodyContainer--splitScreen {
+  background-color: aqua;
+  height: 20rem;
+  grid-area: 1/1/2/2;
+}
+
+.rightSide-bodyContainer--splitScreen {
+  grid-area: 1/3/2/4;
+  background-color: cadetblue;
+  height: 20rem;
+}
