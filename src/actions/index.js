@@ -4,31 +4,31 @@ export const SET_TASK_TYPE = "SET_TASK_TYPE";
 export const SET_IS_TIME_CONSIDERED = "IS_TIME_CONSIDERED";
 export const SET_IS_TIME_DISPLAY_FOR_USER = "SET_IS_TIME_DISPLAY_FOR_USER";
 export const SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS =
-	"SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS";
+  "SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS";
 
 export const setTaskName = (name) => ({
-	type: SET_TASK_NAME,
-	payload: name,
+  type: SET_TASK_NAME,
+  payload: name,
 });
 
 export const setTaskDescription = (description) => ({
-	type: SET_TASK_DESCRIPTION,
-	payload: description,
+  type: SET_TASK_DESCRIPTION,
+  payload: description,
 });
 
 export const setTaskType = (type) => ({
-	type: SET_TASK_TYPE,
-	payload: type,
+  type: SET_TASK_TYPE,
+  payload: type,
 });
 
 export const setIsTimeConsidered = () => ({
-	type: SET_IS_TIME_CONSIDERED,
+  type: SET_IS_TIME_CONSIDERED,
 });
 
 export const setIsTimeDisplayForUser = () => ({
-	type: SET_IS_TIME_DISPLAY_FOR_USER,
+  type: SET_IS_TIME_DISPLAY_FOR_USER,
 });
 
 export const setIsOneGradeForAllSubTasks = () => ({
-	type: SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
+  type: SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
 });
