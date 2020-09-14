@@ -1,26 +1,16 @@
 import React from "react";
 
-import "./WelcomeScreen.css";
-
+import TopContainer from "../TopContainer/TopContainer";
 import DragAndDropZone from "../DragAndDropZone/DragAndDropZone";
 
-function WelcomeScreen(props) {
+import "./WelcomeScreen.css";
+
+function WelcomeScreen() {
 	return (
-		<div className="">
-			<div className="header--welcomeScreen">
-				<div className="leftSide-header-welcomeScreen">
-					<input className="input" />
-					<textarea className="input" />
-				</div>
-				<div className="rightSide-header-welcomeScreen">
-					<select className="input">
-						<option>Экран приветствия</option>
-						<option>Экран приветствия</option>
-					</select>
-				</div>
-			</div>
+		<div className="wrapper-inline-block">
+			<TopContainer />
 			<div className="body--welcomeScreen">
-				<h2>Контент</h2>
+				<h2 className="bold-big-font">Контент</h2>
 				<div className="wrapper-dragAndDropZone--welcomeScreen">
 					<DragAndDropZone />
 				</div>

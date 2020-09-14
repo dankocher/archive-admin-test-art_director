@@ -1,0 +1,57 @@
+.header--topContainer {
+	height: 5rem;
+	margin-top: 3.2rem;
+	margin-bottom: 2.4rem;
+	padding: 0 1.4rem;
+}
+
+.header--topContainer p {
+	margin-top: 0.4rem;
+	line-height: 24px;
+}
+
+.countNumber-position--topContainer {
+	position: absolute;
+	top: 4.5rem;
+}
+
+.main-container--topContainer {
+	display: flex;
+	height: 21rem;
+	width: 100%;
+	margin-top: 1rem;
+}
+
+.main-container--topContainer input {
+	width: calc(100% - 2.8rem - 0.2rem);
+}
+
+.main-container--topContainer textarea {
+	width: calc(100% - 2.8rem - 0.2rem);
+	resize: none;
+}
+
+.main-container--topContainer select {
+	width: calc(100%);
+	height: 4.8rem;
+	resize: none;
+}
+
+.leftSide-topContainer {
+	height: 100%;
+	width: 39.2rem;
+	margin-right: 3.2rem;
+}
+
+.leftSide-topContainer > :first-child,
+.rightSide-topContainer > :first-child {
+	margin-bottom: 2rem;
+}
+
+.rightSide-topContainer {
+	width: 40rem;
+}
+
+.rightSide-checkboxes--topContainer > :not(:last-child) {
+	margin-bottom: 0.8rem;
+}

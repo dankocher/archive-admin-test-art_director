@@ -1,0 +1,21 @@
+.wrapper--breadCrumbs {
+	margin: 3.5rem 0;
+}
+
+.wrapper--breadCrumbs p,
+.wrapper--breadCrumbs a {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 16px;
+	color: #484848;
+}
+
+.wrapper--breadCrumbs a {
+	text-decoration: none;
+	color: #bdbdc1;
+}
+
+.wrapper--breadCrumbs a:hover {
+	text-decoration: underline;
+}

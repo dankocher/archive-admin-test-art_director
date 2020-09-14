@@ -1,0 +1,49 @@
+.add-task--tasks {
+	height: 6.6rem;
+	background: #ffffff;
+	border: 0.1rem solid #e7e7ed;
+	border-radius: 0 0 0.4rem 0.4rem;
+	transition: 100ms;
+}
+
+.add-task--tasks:hover {
+	height: 7rem;
+	box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.addTusk-button--tasks {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+
+.globalTask-label--tasks {
+	display: flex;
+
+	margin-bottom: 2rem;
+}
+.globalTask-label--tasks h2 {
+	margin-right: 1rem;
+}
+
+.edit-button-tasks {
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	height: 2.4rem;
+	width: 2.4rem;
+}
+
+.add-task-icon-inactive {
+	content: url(../../utils/img/add-icon-inactive.png);
+}
+
+.add-task-icon-active {
+	content: url(../../utils/img/add-icon-active.png);
+}
+
+.edit-icon {
+	content: url(../../utils/img/edit-icon.png);
+}
