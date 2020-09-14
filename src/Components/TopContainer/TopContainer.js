@@ -124,20 +124,6 @@ function TopContainer() {
               value={isTimeConsidered}
               onChange={() => handleChangeStateTaskIsTimeConsidered()}
             />
-            <RadioButton
-              id={"isOneGradeForAllSubTasks"}
-              name={"GradeForSubTasks"}
-              label={"Одна оценка для всех подзаданий"}
-              value={isOneGradeForAllSubTasks}
-              onChange={() => handleChangeStateTaskIsOneGradeForAllSubTasks()}
-            />
-            <RadioButton
-              id={"isEachSubTaskHasOwnGrade"}
-              name={"GradeForSubTasks"}
-              label={"На каждое подзадание своя оценка"}
-              value={!isOneGradeForAllSubTasks}
-              onChange={() => handleChangeStateTaskIsOneGradeForAllSubTasks()}
-            />
             {taskType === Object.keys(taskTypeEnum)[0] ? null : (
               <>
                 <Checkbox
