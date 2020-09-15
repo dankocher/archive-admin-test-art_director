@@ -25,7 +25,7 @@ function DragAndDropZone() {
 				</label>
 				<input id="file-uploader" {...getInputProps()} type="file" />
 			</span>
-			{console.log(acceptedFiles)}
+			{/* {console.log(acceptedFiles)} */}
 		</div>
 	);
 }

@@ -1,4 +1,5 @@
 import {
+  SET_TASK_STATE,
   SET_TASK_NAME,
   SET_TASK_DESCRIPTION,
   SET_TASK_TYPE,
@@ -8,22 +9,29 @@ import {
 } from "../actions";
 
 const initialState = {
-  taskName: "",
-  taskType: "",
-  taskDescription: "",
+  _id: "",
+  name: "",
+  description: "",
+  type: "",
   isTimeConsidered: false,
   isTimeDisplayForUser: false,
   isOneGradeForAllSubTasks: true,
+  enabled: true,
+  position: "",
+  date: "",
+  updated: "",
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_TASK_STATE:
+      return { ...state, ...action.payload };
     case SET_TASK_NAME:
-      return { ...state, taskName: action.payload };
+      return { ...state, name: action.payload };
     case SET_TASK_DESCRIPTION:
-      return { ...state, taskDescription: action.payload };
+      return { ...state, description: action.payload };
     case SET_TASK_TYPE:
-      return { ...state, taskType: action.payload };
+      return { ...state, type: action.payload };
     case SET_IS_TIME_CONSIDERED:
       return { ...state, isTimeConsidered: !state.isTimeConsidered };
     case SET_IS_TIME_DISPLAY_FOR_USER:

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import Checkbox from "../Checkbox/Checkbox";
-import RadioButton from "../RadioButton/RadioButton";
+import "./TopContainer.scss";
 
 import {
   setTaskDescription as setStateTaskDescription,
@@ -13,26 +11,19 @@ import {
   setIsOneGradeForAllSubTasks,
 } from "../../../../redux/actions";
 
-import taskTypeEnum from "../../utils/taskTypeEnum";
+import { taskTypeEnum, isWelcomeScreen } from "../../utils/taskTypeEnum";
 
-import "./TopContainer.scss";
+import Checkbox from "../Checkbox/Checkbox";
+import RadioButton from "../RadioButton/RadioButton";
 
 function TopContainer() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log("otkrito");
-    dispatch(setTaskType(Object.keys(taskTypeEnum)[0]));
-    dispatch(setStateTaskName(Object.values(taskTypeEnum)[0]));
+  const [localTaskName, setLocalTaskName] = useState("");
+  const [localTaskDescription, setLocalTaskDescription] = useState("");
 
-    return () => {
-      console.log("Zakrito");
-    };
-  }, []);
-
-  const [taskName, setTaskName] = useState(Object.values(taskTypeEnum)[0]);
-  const [taskDescription, setTaskDescription] = useState("");
-
+  const taskName = useSelector((state) => state.name);
+  const taskDescription = useSelector((state) => state.description);
   const isTimeConsidered = useSelector((state) => state.isTimeConsidered);
   const isTimeDisplayForUser = useSelector(
     (state) => state.isTimeDisplayForUser
@@ -40,25 +31,37 @@ function TopContainer() {
   const isOneGradeForAllSubTasks = useSelector(
     (state) => state.isOneGradeForAllSubTasks
   );
-  const isEachSubTaskHasOwnGrade = useSelector(
-    (state) => state.isEachSubTaskHasOwnGrade
-  );
-  const taskType = useSelector((state) => state.taskType);
 
-  const handleChangeName = (event) => {
-    setTaskName(event.target.value);
+  const taskType = useSelector((state) => state.type);
+
+  useEffect(() => {
+    return () => {
+      console.log("Zakrito");
+    };
+  }, []);
+
+  useEffect(() => {
+    setLocalTaskName(taskName);
+  }, [taskName]);
+
+  useEffect(() => {
+    setLocalTaskDescription(taskDescription);
+  }, [taskDescription]);
+
+  const handleChangeLocalTaskName = (event) => {
+    setLocalTaskName(event.target.value);
   };
 
-  const handleChangeStateTaskName = () => {
-    dispatch(setStateTaskName(taskName));
+  const handleChangeGlobalTaskName = () => {
+    dispatch(setStateTaskName(localTaskName));
   };
 
   const handleChangeDescripton = (event) => {
-    setTaskDescription(event.target.value);
+    setLocalTaskDescription(event.target.value);
   };
 
   const handleChangeStateTaskDescripton = (event) => {
-    dispatch(setStateTaskDescription(taskDescription));
+    dispatch(setStateTaskDescription(localTaskDescription));
   };
 
   const handleChangeType = (event) => {
@@ -80,27 +83,27 @@ function TopContainer() {
   return (
     <>
       <div className="header--topContainer">
-        {taskType === Object.keys(taskTypeEnum)[0] ? null : (
+        {isWelcomeScreen ? null : (
           <span className="countNumber-font countNumber-position--topContainer">
             10
           </span>
         )}
 
-        <h1 className="bold-big-font">{taskName}</h1>
+        <h1 className="bold-big-font">{localTaskName}</h1>
         <p className="small-grey-font">{taskTypeEnum[taskType]}</p>
       </div>
       <div className="main-container--topContainer">
         <div className="leftSide-topContainer">
           <input
             className="input"
-            value={taskName}
-            onChange={handleChangeName}
-            onBlur={handleChangeStateTaskName}
+            value={localTaskName}
+            onChange={handleChangeLocalTaskName}
+            onBlur={handleChangeGlobalTaskName}
           />
           <textarea
             className="input"
             rows={7}
-            value={taskDescription}
+            value={localTaskDescription}
             onChange={handleChangeDescripton}
             onBlur={handleChangeStateTaskDescripton}
           />

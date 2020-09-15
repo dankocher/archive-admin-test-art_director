@@ -1,13 +1,21 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setTaskState } from "../../../../redux/actions";
+
+import { getTaskFromServer } from "../../utils/workWithApi";
 
 import TopContainer from "../TopContainer/TopContainer";
 
 import "./SplitScreen.scss";
 
 function SplitScreen() {
-  const taskName = useSelector((state) => state.taskName);
-  const taskType = useSelector((state) => state.taskType);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getTaskFromServer().then((res) => {
+      dispatch(setTaskState(res));
+    });
+  }, []);
 
   return (
     <div className="wrapper-inline-block">

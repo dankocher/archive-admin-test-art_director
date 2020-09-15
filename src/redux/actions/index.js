@@ -1,3 +1,4 @@
+export const SET_TASK_STATE = "SET_TASK_STATE";
 export const SET_TASK_NAME = "SET_IMAGE_LENGTH";
 export const SET_TASK_DESCRIPTION = "SET_TASK_DESCRIPTION";
 export const SET_TASK_TYPE = "SET_TASK_TYPE";
@@ -31,4 +32,9 @@ export const setIsTimeDisplayForUser = () => ({
 
 export const setIsOneGradeForAllSubTasks = () => ({
   type: SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
+});
+
+export const setTaskState = (task) => ({
+  type: SET_TASK_STATE,
+  payload: task,
 });
