@@ -40,16 +40,16 @@ function BreadCrumbs() {
     getTasks();
   }, [routLocation]);
 
-//   const render=()=>{
-// 	  switch (key) {
-// 		  case value:
-			  
-// 			  break;
-	  
-// 		  default:
-// 			  break;
-// 	  }
-//   }
+  // const render=()=>{
+  //   switch (key) {
+  // 	  case value:
+
+  // 		  break;
+
+  // 	  default:
+  // 		  break;
+  //   }
+  // }
 
   console.log(routeMatch);
 
@@ -59,26 +59,24 @@ function BreadCrumbs() {
   console.log(routLocation);
   const taskName = useSelector((state) => state.taskName);
   return (
-    <div className="wrapper--breadCrumbs">
-      <Breadcrumbs
-        separator={<NavigateNextIcon color="disabled" fontSize="large" />}
-      >
-        <Link color="inherit" href="/">
-          Тесты
-        </Link>
-        {routLocation.pathname === "/" ? (
-          <>
+    <>
+      <div className="wrapper--breadCrumbs">
+        <Breadcrumbs
+          separator={<NavigateNextIcon color="disabled" fontSize="large" />}
+        >
+          <Link color="inherit" href="/">
+            Тесты
+          </Link>
+          {routLocation.pathname === "/" ? (
             <Typography color="textPrimary">{task.ttask?.name}</Typography>
-          </>
-        ) : (
-          <>
-            <Typography color="textPrimary">{task.ttask?.name}</Typography>
-          </>
-		  
-        )
-		}
-      </Breadcrumbs>
-    </div>
+          ) : (
+            <RouterLink to={"/"} color="textPrimary">
+              {task.ttask?.name}
+            </RouterLink>
+          )}
+        </Breadcrumbs>
+      </div>
+    </>
   );
 }
 
