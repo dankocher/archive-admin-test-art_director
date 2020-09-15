@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./DragAndDropZone.css";
+import "./DragAndDropZone.scss";
 
 import Dropzone, {useDropzone} from "react-dropzone";
 

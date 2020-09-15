@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import "./TasksComponent.css";
+import "./TasksComponent.scss";
 
 import Task from "../Task/Task";
 

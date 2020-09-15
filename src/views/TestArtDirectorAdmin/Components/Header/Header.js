@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Header.css";
+import "./Header.scss";
 
 function Header() {
 	return <div className="header-main-container"></div>;

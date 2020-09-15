@@ -16,7 +16,7 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import "./BreadCrumbs.css";
+import "./BreadCrumbs.scss";
 
 function BreadCrumbs() {
   const routeMatch = useRouteMatch();
@@ -40,16 +40,19 @@ function BreadCrumbs() {
     getTasks();
   }, [routLocation]);
 
-  // const render=()=>{
-  //   switch (key) {
-  // 	  case value:
+  const renderBreadcrumbs = (path) => {
+    switch (path) {
+      case "/":
+        return <Typography color="textPrimary">{task.ttask?.name}</Typography>;
 
-  // 		  break;
-
-  // 	  default:
-  // 		  break;
-  //   }
-  // }
+      default:
+        return (
+          <Link color="inherit" href="/">
+            Тесты
+          </Link>
+        );
+    }
+  };
 
   console.log(routeMatch);
 

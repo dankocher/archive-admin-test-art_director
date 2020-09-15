@@ -3,7 +3,7 @@ import React from "react";
 import TopContainer from "../TopContainer/TopContainer";
 import DragAndDropZone from "../DragAndDropZone/DragAndDropZone";
 
-import "./WelcomeScreen.css";
+import "./WelcomeScreen.scss";
 
 function WelcomeScreen() {
 	return (

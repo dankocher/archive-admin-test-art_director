@@ -14,7 +14,7 @@ import {
 	Link as RouterLink,
 } from "react-router-dom";
 
-import "./MainContainer.css";
+import "./MainContainer.scss";
 
 function MainContainer({header, list, body}) {
 	return (

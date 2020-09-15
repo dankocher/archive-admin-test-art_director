@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import TopContainer from "../TopContainer/TopContainer";
 
-import "./SplitScreen.css";
+import "./SplitScreen.scss";
 
 function SplitScreen() {
   const taskName = useSelector((state) => state.taskName);

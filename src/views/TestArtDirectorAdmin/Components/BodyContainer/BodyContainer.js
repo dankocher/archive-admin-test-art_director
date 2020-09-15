@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./BodyContainer.css";
+import "./BodyContainer.scss";
 
 function BodyContainer() {
   return <div className="header-main-container"></div>;

@@ -15,7 +15,7 @@ import {
 
 import taskTypeEnum from "../../utils/taskTypeEnum";
 
-import "./TopContainer.css";
+import "./TopContainer.scss";
 
 function TopContainer() {
   const dispatch = useDispatch();

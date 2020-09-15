@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import {Link} from "react-router-dom";
 
-import "./Task.css";
+import "./Task.scss";
 import taskTypeEnum from "../../utils/taskTypeEnum";
 
 function Task({task, index}) {

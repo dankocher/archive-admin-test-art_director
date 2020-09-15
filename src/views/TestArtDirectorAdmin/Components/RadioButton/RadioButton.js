@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./RadioButton.css";
+import "./RadioButton.scss";
 
 function RadioButton(props) {
   return (
