@@ -16,6 +16,9 @@ import { taskTypeEnum, isWelcomeScreen } from "../../utils/taskTypeEnum";
 import Checkbox from "../Checkbox/Checkbox";
 import RadioButton from "../RadioButton/RadioButton";
 
+const MAX_TASK_NAME_LENGTH = 240;
+const MAX_TASK_DESCRIPTION_LENGTH = 500;
+
 function TopContainer() {
   const dispatch = useDispatch();
 
@@ -49,7 +52,11 @@ function TopContainer() {
   }, [taskDescription]);
 
   const handleChangeLocalTaskName = (event) => {
-    setLocalTaskName(event.target.value);
+    const text = event.target.value;
+    if (text.length >= MAX_TASK_NAME_LENGTH) {
+      return;
+    }
+    setLocalTaskName(text);
   };
 
   const handleChangeGlobalTaskName = () => {
@@ -57,7 +64,11 @@ function TopContainer() {
   };
 
   const handleChangeDescripton = (event) => {
-    setLocalTaskDescription(event.target.value);
+    const text = event.target.value;
+    if (text.length >= MAX_TASK_DESCRIPTION_LENGTH) {
+      return;
+    }
+    setLocalTaskDescription(text);
   };
 
   const handleChangeStateTaskDescripton = (event) => {

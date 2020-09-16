@@ -8,6 +8,7 @@ import { isWelcomeScreen } from "../../utils/taskTypeEnum";
 import {
   getTasksFromServer,
   getNewTaskFromServer,
+  deleteTaskById,
 } from "../../utils/workWithApi";
 
 import Task from "../Task/Task";
@@ -44,6 +45,14 @@ function TasksComponent() {
     });
   };
 
+  const handlerDeleteSelectedTask = (index) => {
+    deleteTaskById(index).then(() => {
+      getTasksFromServer().then((res) => {
+        setTaskList(res.tasks);
+      });
+    });
+  };
+
   return (
     <>
       <div className="globalTask-label--tasks">
@@ -67,6 +76,7 @@ function TasksComponent() {
                 number={taskNumber}
                 index={element._id}
                 task={element}
+                handlerDeleteSelectedTask={handlerDeleteSelectedTask}
               />
             );
           })}

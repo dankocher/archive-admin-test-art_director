@@ -40,3 +40,14 @@ export const getNewTaskFromServer = async () => {
   }
   return res.task;
 };
+
+export const deleteTaskById = async (id) => {
+  const res = await ajax(api.td_delete_task, {
+    _id: id,
+  });
+  if (!res.ok) {
+    console.log("Bad response");
+    return;
+  }
+  return res;
+};

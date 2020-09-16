@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Task.scss";
+
 import { taskTypeEnum, isWelcomeScreen } from "../../utils/taskTypeEnum";
 
-function Task({ task, index, number }) {
+function Task({ task, index, number, ...props }) {
   const [isHoveredTask, setIsHoveredTask] = useState(false);
 
   //   const [taskNumber, setTaskNumber] = useState(0);
@@ -60,7 +61,10 @@ function Task({ task, index, number }) {
               <button className="hidden-button eye-button">
                 <i className="eye-icon"></i>
               </button>
-              <button className="hidden-button trash-button">
+              <button
+                onClick={() => props.handlerDeleteSelectedTask(index)}
+                className="hidden-button trash-button"
+              >
                 <i className="trash-icon"></i>
               </button>
             </>
