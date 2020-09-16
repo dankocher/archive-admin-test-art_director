@@ -2,36 +2,27 @@ import React, { useState, useEffect } from "react";
 
 import "./TasksComponent.scss";
 
-import Task from "../Task/Task";
-
-import { Link } from "react-router-dom";
-
-import ajax from "../../../../utils/ajax";
-import { api } from "../../../../constants/api";
+import { useHistory } from "react-router-dom";
 
 import { isWelcomeScreen } from "../../utils/taskTypeEnum";
+import { getTasksFromServer } from "../../utils/workWithApi";
+
+import Task from "../Task/Task";
 
 const classNames = require("classnames");
 
 function TasksComponent() {
+  const history = useHistory();
+
   const [addBtnHovered, setAddBtnHovered] = useState(false);
   const [taskList, setTaskList] = useState([]);
   //const [taskNumber, setTaskNumber] = useState(0);???
   let taskNumber = 0;
 
-  let res = {};
-  const getTasks = async () => {
-    res = await ajax(api.td_get_tasks, {});
-    if (!res.ok) {
-      console.log("Bad response");
-      return;
-    }
-    setTaskList(res.tasks);
-  };
-
   useEffect(() => {
-    console.log("asd");
-    getTasks();
+    getTasksFromServer().then((res) => {
+      setTaskList(res.tasks);
+    });
   }, []);
 
   const addIconClasses = classNames({
@@ -42,6 +33,8 @@ function TasksComponent() {
   const SetTaskNumber = (value) => {
     taskNumber = value;
   };
+
+  const handleOpenNewTask = () => {};
 
   return (
     <>
@@ -75,11 +68,14 @@ function TasksComponent() {
           onMouseLeave={() => setAddBtnHovered(false)}
           className="add-task--tasks"
         >
-          <Link to={`/welcome-screen/${""}`}>
-            <button className="hidden-button addTusk-button--tasks">
-              <i className={addIconClasses}></i>
-            </button>
-          </Link>
+          {/* <Link to={`/welcome-screen/${""}`}> */}
+          <button
+            onClick={handleOpenNewTask}
+            className="hidden-button addTusk-button--tasks"
+          >
+            <i className={addIconClasses}></i>
+          </button>
+          {/* </Link> */}
         </div>
       </div>
     </>
