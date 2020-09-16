@@ -6,6 +6,12 @@ export const getUrlId = () => {
   return urlPath[urlPath.length - 1];
 };
 
+export const getNewTaskId = () => {
+  getNewTaskFromServer().then((res) => {
+    return res._id;
+  });
+};
+
 export const getTasksFromServer = async () => {
   const res = await ajax(api.td_get_tasks, {});
   if (!res.ok) {

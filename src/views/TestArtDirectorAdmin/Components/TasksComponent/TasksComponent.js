@@ -5,7 +5,10 @@ import "./TasksComponent.scss";
 import { useHistory } from "react-router-dom";
 
 import { isWelcomeScreen } from "../../utils/taskTypeEnum";
-import { getTasksFromServer } from "../../utils/workWithApi";
+import {
+  getTasksFromServer,
+  getNewTaskFromServer,
+} from "../../utils/workWithApi";
 
 import Task from "../Task/Task";
 
@@ -34,7 +37,12 @@ function TasksComponent() {
     taskNumber = value;
   };
 
-  const handleOpenNewTask = () => {};
+  const handleOpenNewTask = () => {
+    getNewTaskFromServer().then((res) => {
+      const path = `/welcome-screen/${res._id}`;
+      history.push(path);
+    });
+  };
 
   return (
     <>
@@ -68,14 +76,12 @@ function TasksComponent() {
           onMouseLeave={() => setAddBtnHovered(false)}
           className="add-task--tasks"
         >
-          {/* <Link to={`/welcome-screen/${""}`}> */}
           <button
             onClick={handleOpenNewTask}
             className="hidden-button addTusk-button--tasks"
           >
             <i className={addIconClasses}></i>
           </button>
-          {/* </Link> */}
         </div>
       </div>
     </>
