@@ -1,21 +1,33 @@
+.field--breadCrumbs {
+  height: 5.6rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+
+  border-top: 0.1rem solid;
+  border-bottom: 0.1rem solid;
+  border-color: #d1d1d9;
+  background-color: #ffffff;
+}
+
 .wrapper--breadCrumbs {
-	margin: 3.5rem 0;
+  margin-left: 31.4rem;
 }
 
 .wrapper--breadCrumbs p,
 .wrapper--breadCrumbs a {
-	font-style: normal;
-	font-weight: normal;
-	font-size: 14px;
-	line-height: 16px;
-	color: #484848;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #484848;
 }
 
 .wrapper--breadCrumbs a {
-	text-decoration: none;
-	color: #bdbdc1;
+  text-decoration: none;
+  color: #bdbdc1;
 }
 
 .wrapper--breadCrumbs a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }

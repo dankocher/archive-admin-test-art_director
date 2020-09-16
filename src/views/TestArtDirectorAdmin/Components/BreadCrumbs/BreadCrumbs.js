@@ -33,24 +33,26 @@ function BreadCrumbs() {
 
   return (
     <>
-      <div className="wrapper--breadCrumbs">
-        <Breadcrumbs
-          separator={<NavigateNextIcon color="disabled" fontSize="large" />}
-        >
-          <Link color="inherit" href="/">
-            Тесты
-          </Link>
-          {routLocation.pathname === "/" ? (
-            <Typography color="textPrimary">{task.ttask?.name}</Typography>
-          ) : (
-            [
-              <RouterLink to={"/"} color="textPrimary">
-                {task.ttask?.name}
-              </RouterLink>,
-              <Typography color="textPrimary">{taskName}</Typography>,
-            ]
-          )}
-        </Breadcrumbs>
+      <div className="field--breadCrumbs">
+        <div className="wrapper--breadCrumbs">
+          <Breadcrumbs
+            separator={<NavigateNextIcon color="disabled" fontSize="large" />}
+          >
+            <Link color="inherit" href="/">
+              Тесты
+            </Link>
+            {routLocation.pathname === "/" ? (
+              <Typography color="textPrimary">{task.ttask?.name}</Typography>
+            ) : (
+              [
+                <RouterLink to={"/"} color="textPrimary">
+                  {task.ttask?.name}
+                </RouterLink>,
+                <Typography color="textPrimary">{taskName}</Typography>,
+              ]
+            )}
+          </Breadcrumbs>
+        </div>
       </div>
     </>
   );

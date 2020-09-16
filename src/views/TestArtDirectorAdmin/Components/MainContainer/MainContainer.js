@@ -21,9 +21,8 @@ function MainContainer({ header, list, body }) {
     <Router>
       <div className="main-container">
         <Header />
+        <BreadCrumbs />
         <div className="centred-container--mainContainer">
-          <BreadCrumbs />
-
           <Switch>
             <>
               <Route path="/" exact component={TasksComponent} />
