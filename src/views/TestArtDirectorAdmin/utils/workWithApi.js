@@ -51,3 +51,14 @@ export const deleteTaskById = async (id) => {
   }
   return res;
 };
+
+export const saveTaskListHeader = async (name) => {
+  const res = await ajax(api.td_tsave, {
+    name: name,
+  });
+  if (!res.ok) {
+    console.log("Bad response");
+    return;
+  }
+  return res;
+};

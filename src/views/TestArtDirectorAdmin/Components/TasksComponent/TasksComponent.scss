@@ -35,13 +35,22 @@
   width: 100%;
 }
 
-.globalTask-label--tasks {
+.header--tasks {
   display: flex;
-
-  margin-bottom: 2rem;
+  height: 4.8rem;
+  align-items: center;
+  margin-bottom: 0.8rem;
 }
-.globalTask-label--tasks h2 {
+
+.header--tasks > :first-child {
   margin-right: 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.header--tasks input {
+  width: 67.2rem;
 }
 
 .edit-button-tasks {
