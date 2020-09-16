@@ -54,20 +54,22 @@ function TasksComponent() {
         </button>
       </div>
       <div className={"wrapper-shadow--tasks"}>
-        {taskList.map((element, key) => {
-          if (!isWelcomeScreen(element.type)) {
-            SetTaskNumber(taskNumber + 1);
-          }
+        <div className="taskList-border--tasks">
+          {taskList.map((element, key) => {
+            if (!isWelcomeScreen(element.type)) {
+              SetTaskNumber(taskNumber + 1);
+            }
 
-          return (
-            <Task
-              key={key}
-              number={taskNumber}
-              index={element._id}
-              task={element}
-            />
-          );
-        })}
+            return (
+              <Task
+                key={key}
+                number={taskNumber}
+                index={element._id}
+                task={element}
+              />
+            );
+          })}
+        </div>
         <div
           onMouseEnter={() => setAddBtnHovered(true)}
           onMouseLeave={() => setAddBtnHovered(false)}

@@ -1,7 +1,17 @@
 .wrapper-shadow--tasks {
   box-shadow: 0rem 0.3rem 1rem 0.2rem rgba(0, 0, 0, 0.1);
-  border: 0.1rem solid #e7e7ed;
   border-radius: 0.4rem;
+}
+
+.taskList-border--tasks > div {
+  border-top: 0.1rem solid;
+  border-right: 0.1rem solid;
+  border-left: 0.1rem solid;
+  border-color: #e7e7ed;
+}
+
+.taskList-border--tasks > :first-child {
+  border-radius: 0.4rem 0.4rem 0 0;
 }
 
 .add-task--tasks {
