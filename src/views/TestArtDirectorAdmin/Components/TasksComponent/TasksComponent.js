@@ -53,30 +53,32 @@ function TasksComponent() {
           <i className="edit-icon"></i>
         </button>
       </div>
-      {taskList.map((element, key) => {
-        if (!isWelcomeScreen(element.type)) {
-          SetTaskNumber(taskNumber + 1);
-        }
+      <div className={"wrapper-shadow--tasks"}>
+        {taskList.map((element, key) => {
+          if (!isWelcomeScreen(element.type)) {
+            SetTaskNumber(taskNumber + 1);
+          }
 
-        return (
-          <Task
-            key={key}
-            number={taskNumber}
-            index={element._id}
-            task={element}
-          />
-        );
-      })}
-      <div
-        onMouseEnter={() => setAddBtnHovered(true)}
-        onMouseLeave={() => setAddBtnHovered(false)}
-        className="add-task--tasks"
-      >
-        <Link to={`/welcome-screen/${""}`}>
-          <button className="hidden-button addTusk-button--tasks">
-            <i className={addIconClasses}></i>
-          </button>
-        </Link>
+          return (
+            <Task
+              key={key}
+              number={taskNumber}
+              index={element._id}
+              task={element}
+            />
+          );
+        })}
+        <div
+          onMouseEnter={() => setAddBtnHovered(true)}
+          onMouseLeave={() => setAddBtnHovered(false)}
+          className="add-task--tasks"
+        >
+          <Link to={`/welcome-screen/${""}`}>
+            <button className="hidden-button addTusk-button--tasks">
+              <i className={addIconClasses}></i>
+            </button>
+          </Link>
+        </div>
       </div>
     </>
   );
