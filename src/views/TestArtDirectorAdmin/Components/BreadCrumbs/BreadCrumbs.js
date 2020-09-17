@@ -16,7 +16,7 @@ import "./BreadCrumbs.scss";
 function BreadCrumbs() {
   const routLocation = useLocation();
   const [task, setTask] = useState([]);
-  const taskName = useSelector((state) => state.name);
+  const taskName = useSelector((state) => state.task.name);
 
   const getTasks = async () => {
     const res = await ajax(api.td_get_tasks, {});

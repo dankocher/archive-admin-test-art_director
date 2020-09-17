@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+//import connect from "react-redux/es/connect/connect";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { setTaskState } from "../../../../redux/actions";
 
-import { getTaskFromServer } from "../../utils/workWithApi";
+import { getTaskFromServer, saveTask } from "../../utils/workWithApi";
 
 import TopContainer from "../TopContainer/TopContainer";
 import DragAndDropZone from "../DragAndDropZone/DragAndDropZone";
@@ -11,9 +12,31 @@ import "./WelcomeScreen.scss";
 
 function WelcomeScreen() {
   const dispatch = useDispatch();
+  const task = useSelector((state) => state);
+  // const isUpdatedLocally = useSelector((state) => state.isUpdatedLocally);
+
+  const handlerSaveTaskToDB = () => {
+    // console.log(`ieto ono samoe = ${isUpdatedLocally}`);
+
+    console.log("aaaa");
+
+    if (!task.isUpdatedLocally) {
+      console.log("net");
+      return;
+    }
+    console.log("ieto tesk");
+    console.log(task);
+    console.log("ieto tesk");
+    console.log("da ia sohranilsia");
+    saveTask(task.task);
+  };
+  useEffect(() => {
+    return handlerSaveTaskToDB;
+  }, [task]);
 
   useEffect(() => {
     getTaskFromServer().then((res) => {
+      console.log("delau krasivo");
       dispatch(setTaskState(res));
     });
   }, []);
@@ -30,5 +53,14 @@ function WelcomeScreen() {
     </div>
   );
 }
+
+// // const mapStateToProps = (state) => ({
+// //   state: state,
+// //   isUpdatedLocally: state.isUpdatedLocally,
+// // });
+
+// // const mapDispatchToProps = (dispatch) => ({});
+
+// export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen);
 
 export default WelcomeScreen;

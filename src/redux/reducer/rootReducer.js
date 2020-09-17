@@ -9,37 +9,74 @@ import {
 } from "../actions";
 
 const initialState = {
-  _id: "",
-  name: "",
-  description: "",
-  type: "",
-  isTimeConsidered: false,
-  isTimeDisplayForUser: false,
-  isOneGradeForAllSubTasks: true,
-  enabled: true,
-  position: "",
-  date: "",
-  updated: "",
+  isUpdatedLocally: false,
+  task: {
+    _id: "",
+    name: "",
+    description: "",
+    type: "",
+    isTimeConsidered: false,
+    isTimeDisplayForUser: false,
+    isOneGradeForAllSubTasks: true,
+    enabled: true,
+    position: "",
+    date: "",
+    updated: "",
+  },
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case SET_TASK_STATE:
-      return { ...state, ...action.payload };
+      return {
+        ...state,
+        isUpdatedLocally: false,
+        task: { ...state.task, ...action.payload },
+      };
     case SET_TASK_NAME:
-      return { ...state, name: action.payload };
+      return {
+        ...state,
+        isUpdatedLocally: true,
+        task: {
+          ...state.task,
+          name: action.payload,
+        },
+      };
     case SET_TASK_DESCRIPTION:
-      return { ...state, description: action.payload };
+      return {
+        ...state,
+        isUpdatedLocally: true,
+        task: { ...state.task, description: action.payload },
+      };
     case SET_TASK_TYPE:
-      return { ...state, type: action.payload };
+      return {
+        ...state,
+        isUpdatedLocally: true,
+        task: { ...state.task, type: action.payload },
+      };
     case SET_IS_TIME_CONSIDERED:
-      return { ...state, isTimeConsidered: !state.isTimeConsidered };
+      return {
+        ...state,
+        isUpdatedLocally: true,
+        task: { ...state.task, isTimeConsidered: !state.isTimeConsidered },
+      };
     case SET_IS_TIME_DISPLAY_FOR_USER:
-      return { ...state, isTimeDisplayForUser: !state.isTimeDisplayForUser };
+      return {
+        ...state,
+        isUpdatedLocally: true,
+        task: {
+          ...state.task,
+          isTimeDisplayForUser: !state.isTimeDisplayForUser,
+        },
+      };
     case SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS:
       return {
         ...state,
-        isOneGradeForAllSubTasks: !state.isOneGradeForAllSubTasks,
+        isUpdatedLocally: true,
+        task: {
+          ...state.task,
+          isOneGradeForAllSubTasks: !state.isOneGradeForAllSubTasks,
+        },
       };
     default:
       return state;

@@ -25,23 +25,16 @@ function TopContainer() {
   const [localTaskName, setLocalTaskName] = useState("");
   const [localTaskDescription, setLocalTaskDescription] = useState("");
 
-  const taskName = useSelector((state) => state.name);
-  const taskDescription = useSelector((state) => state.description);
-  const isTimeConsidered = useSelector((state) => state.isTimeConsidered);
+  const taskName = useSelector((state) => state.task.name);
+  const taskDescription = useSelector((state) => state.task.description);
+  const taskType = useSelector((state) => state.task.type);
+  const isTimeConsidered = useSelector((state) => state.task.isTimeConsidered);
   const isTimeDisplayForUser = useSelector(
-    (state) => state.isTimeDisplayForUser
+    (state) => state.task.isTimeDisplayForUser
   );
   const isOneGradeForAllSubTasks = useSelector(
-    (state) => state.isOneGradeForAllSubTasks
+    (state) => state.task.isOneGradeForAllSubTasks
   );
-
-  const taskType = useSelector((state) => state.type);
-
-  useEffect(() => {
-    return () => {
-      console.log("Zakrito");
-    };
-  }, []);
 
   useEffect(() => {
     setLocalTaskName(taskName);

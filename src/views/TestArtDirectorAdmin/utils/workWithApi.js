@@ -62,3 +62,15 @@ export const saveTaskListHeader = async (name) => {
   }
   return res;
 };
+
+export const saveTask = async (task) => {
+  const res = await ajax(api.td_save_task, {
+    task: task,
+  });
+  if (!res.ok) {
+    console.log("Bad response");
+    return;
+  }
+  return res;
+};
+
