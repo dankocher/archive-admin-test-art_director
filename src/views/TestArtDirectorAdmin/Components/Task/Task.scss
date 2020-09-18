@@ -41,8 +41,8 @@
 }
 
 .link--task {
-	display: flex;
-	text-decoration: none;
+  display: flex;
+  text-decoration: none;
 }
 
 .link-container--task {
@@ -127,12 +127,20 @@
   margin-top: 1.6rem;
 }
 
-.eye-icon {
-  content: url(../../utils/img/eye-icon.png);
+.enable-icon-inactive {
+  content: url(../../utils/img/enablet-inactive.png);
 }
 
-.trash-icon {
-  content: url(../../utils/img/trash-icon.png);
+.enable-icon-active {
+  content: url(../../utils/img/enablet-active.png);
+}
+
+.trash-icon-inactive {
+  content: url(../../utils/img/trash-icon-inactive.png);
+}
+
+.trash-icon-active {
+  content: url(../../utils/img/trash-icon-active.png);
 }
 
 .dots-icon {

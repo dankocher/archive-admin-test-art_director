@@ -74,3 +74,16 @@ export const saveTask = async (task) => {
   return res;
 };
 
+export const handlerSaveTaskToDB = (state) => {
+  // console.log("aaaa");
+
+  if (!state.isUpdatedLocally) {
+    console.log("net");
+    return;
+  }
+  // console.log("ieto tesk");
+  // console.log(state);
+  // console.log("ieto tesk");
+  // console.log("da ia sohranilsia");
+  saveTask(state.task);
+};
