@@ -58,7 +58,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         isUpdatedLocally: true,
-        task: { ...state.task, isTimeConsidered: !state.isTimeConsidered },
+        task: { ...state.task, isTimeConsidered: !state.task.isTimeConsidered },
       };
     case SET_IS_TIME_DISPLAY_FOR_USER:
       return {
@@ -66,7 +66,7 @@ function rootReducer(state = initialState, action) {
         isUpdatedLocally: true,
         task: {
           ...state.task,
-          isTimeDisplayForUser: !state.isTimeDisplayForUser,
+          isTimeDisplayForUser: !state.task.isTimeDisplayForUser,
         },
       };
     case SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS:
@@ -75,7 +75,7 @@ function rootReducer(state = initialState, action) {
         isUpdatedLocally: true,
         task: {
           ...state.task,
-          isOneGradeForAllSubTasks: !state.isOneGradeForAllSubTasks,
+          isOneGradeForAllSubTasks: !state.task.isOneGradeForAllSubTasks,
         },
       };
     default:
