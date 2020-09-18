@@ -1,0 +1,74 @@
+.wrapper-shadow--tasks {
+  box-shadow: 0rem 0.3rem 1rem 0.2rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.4rem;
+}
+
+.taskList-border--tasks > div {
+  border-top: 0.1rem solid;
+  border-right: 0.1rem solid;
+  border-left: 0.1rem solid;
+  border-color: #e7e7ed;
+}
+
+.taskList-border--tasks > :first-child {
+  border-radius: 0.4rem 0.4rem 0 0;
+}
+
+.add-task--tasks {
+  height: 6.6rem;
+  background: #ffffff;
+  border: 0.1rem solid #e7e7ed;
+  border-radius: 0 0 0.4rem 0.4rem;
+  transition: 100ms;
+}
+
+.add-task--tasks:hover {
+  height: 7rem;
+  box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.addTusk-button--tasks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.header--tasks {
+  display: flex;
+  height: 4.8rem;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.header--tasks > :first-child {
+  margin-right: 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.header--tasks input {
+  width: 67.2rem;
+}
+
+.edit-button-tasks {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.add-task-icon-inactive {
+  content: url(../../utils/img/add-icon-inactive.png);
+}
+
+.add-task-icon-active {
+  content: url(../../utils/img/add-icon-active.png);
+}
+
+.edit-icon {
+  content: url(../../utils/img/edit-icon.png);
+}
