@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTaskState } from "../../../../redux/actions";
 
-import { getTaskFromServer } from "../../utils/workWithApi";
+import {
+  getTaskFromServer,
+  handlerSaveTaskToDB,
+} from "../../utils/workWithApi";
 
 import TopContainer from "../TopContainer/TopContainer";
 
@@ -10,6 +13,11 @@ import "./SplitScreen.scss";
 
 function SplitScreen() {
   const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+
+  useEffect(() => {
+    return () => handlerSaveTaskToDB(state);
+  }, [state]);
 
   useEffect(() => {
     getTaskFromServer().then((res) => {
