@@ -67,6 +67,12 @@ input[type="file"] {
   display: none;
 }
 
+textarea {
+  width: 100%;
+  resize: none;
+  vertical-align: top;
+}
+
 .bold-big-font {
   font-family: Roboto-Medium, sans-serif;
   font-weight: 500;

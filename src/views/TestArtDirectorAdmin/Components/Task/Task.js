@@ -5,17 +5,13 @@ import { Link } from "react-router-dom";
 
 import { taskTypeEnum, isWelcomeScreen } from "../../utils/taskTypeEnum";
 
+import DeleteButton from "../DeleteButton/DeleteButton";
+
 const classNames = require("classnames");
 
 function Task({ task, index, number, ...props }) {
   const [isHoveredTask, setIsHoveredTask] = useState(false);
-  const [isHoveredTrashButton, setIsHoveredTrashButton] = useState(false);
   const [isHoveredEnableButton, setIsHoveredEnableButton] = useState(false);
-
-  const trashIconClasses = classNames({
-    "trash-icon-active": isHoveredTrashButton,
-    "trash-icon-inactive": !isHoveredTrashButton,
-  });
 
   const enableIconClasses = classNames({
     "enable-icon-active": isHoveredEnableButton,
@@ -72,20 +68,16 @@ function Task({ task, index, number, ...props }) {
           {isHoveredTask ? (
             <>
               <button
+                className="hidden-button eye-button"
                 onMouseEnter={() => setIsHoveredEnableButton(true)}
                 onMouseLeave={() => setIsHoveredEnableButton(false)}
-                className="hidden-button eye-button"
               >
                 <i className={enableIconClasses}></i>
               </button>
-              <button
+              <DeleteButton
+                className={"trash-button--task"}
                 onClick={() => props.handlerDeleteSelectedTask(index)}
-                onMouseEnter={() => setIsHoveredTrashButton(true)}
-                onMouseLeave={() => setIsHoveredTrashButton(false)}
-                className="hidden-button trash-button"
-              >
-                <i className={trashIconClasses}></i>
-              </button>
+              />
             </>
           ) : null}
         </div>

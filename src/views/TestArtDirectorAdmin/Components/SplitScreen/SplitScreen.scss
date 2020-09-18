@@ -5,12 +5,10 @@
 
 .leftSide-bodyContainer--splitScreen {
   background-color: aqua;
-  height: 20rem;
   grid-area: 1/1/2/2;
 }
 
 .rightSide-bodyContainer--splitScreen {
   grid-area: 1/3/2/4;
   background-color: cadetblue;
-  height: 20rem;
 }

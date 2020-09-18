@@ -8,6 +8,7 @@ import {
 } from "../../utils/workWithApi";
 
 import TopContainer from "../TopContainer/TopContainer";
+import RadioButtonsTask from "./RadioButtonsTask/RadioButtonsTask";
 
 import "./SplitScreen.scss";
 
@@ -31,7 +32,9 @@ function SplitScreen() {
       <div className="body--welcomeScreen">
         <h2 className="bold-big-font">Контент</h2>
         <div className="body-container--splitScreen">
-          <div className="leftSide-bodyContainer--splitScreen"></div>
+          <div className="leftSide-bodyContainer--splitScreen">
+            <RadioButtonsTask />
+          </div>
           <div className="rightSide-bodyContainer--splitScreen"></div>
         </div>
       </div>

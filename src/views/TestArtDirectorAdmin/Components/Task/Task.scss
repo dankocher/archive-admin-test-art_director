@@ -123,7 +123,7 @@
   margin-top: 2.3rem;
 }
 
-.trash-button {
+.trash-button--task {
   margin-top: 1.6rem;
 }
 
@@ -133,14 +133,6 @@
 
 .enable-icon-active {
   content: url(../../utils/img/enablet-active.png);
-}
-
-.trash-icon-inactive {
-  content: url(../../utils/img/trash-icon-inactive.png);
-}
-
-.trash-icon-active {
-  content: url(../../utils/img/trash-icon-active.png);
 }
 
 .dots-icon {
