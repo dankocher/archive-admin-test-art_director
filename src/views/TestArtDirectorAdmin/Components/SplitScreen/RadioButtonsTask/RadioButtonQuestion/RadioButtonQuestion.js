@@ -1,12 +1,13 @@
 import "./RadioButtonQuestion.scss";
 
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import DeleteButton from "../../../DeleteButton/DeleteButton";
 import TextArea from "../../../TextArea/TextArea";
-import RadioButtonAnswers from "./RadioButtonAnswers/RadioButtonAnswers";
+import RadioButtonOptions from "./RadioButtonOptions/RadioButtonOptions";
 
-function RadioButtonQuestion() {
+function RadioButtonQuestion({ question, radioButtonList }) {
   const [isHoveredQuestion, setIsHoveredQuestion] = useState(false);
 
   return (
@@ -16,12 +17,14 @@ function RadioButtonQuestion() {
       onMouseLeave={() => setIsHoveredQuestion(false)}
     >
       <div className="container-question-radioButtonQuestion">
-        <TextArea className="input" />
+        <TextArea className="input" value={question} />
         <div className={"trash-button--radioButtonQuestion"}>
           {isHoveredQuestion ? <DeleteButton /> : null}
         </div>
       </div>
-      <RadioButtonAnswers />
+
+      <RadioButtonOptions radioButtonList={radioButtonList} />
+
       <button className="hidden-button input add-question--RadioButtonQuestion">
         Добавить группу радиобаттанов
       </button>

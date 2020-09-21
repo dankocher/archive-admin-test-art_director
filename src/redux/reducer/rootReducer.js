@@ -6,6 +6,7 @@ import {
   SET_IS_TIME_CONSIDERED,
   SET_IS_TIME_DISPLAY_FOR_USER,
   SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
+  SET_RADIO_BUTTON_QUESTION,
 } from "../actions";
 
 const initialState = {
@@ -22,6 +23,17 @@ const initialState = {
     position: "",
     date: "",
     updated: "",
+    data: {
+      radioButtonQuestions: [
+        {
+          question: "qwe",
+          radioButtonAnswer: [
+            { option: "123", mark: "-10" },
+            { option: "456", mark: "10" },
+          ],
+        },
+      ],
+    },
   },
 };
 

@@ -1,13 +1,25 @@
-import React from "react";
 import "./RadioButtonsTask.scss";
+
+import React from "react";
+import { useSelector } from "react-redux";
 
 import RadioButtonQuestion from "./RadioButtonQuestion/RadioButtonQuestion";
 
 function RadioButtonsTask() {
+  const radioButtonsList = useSelector(
+    (state) => state.task.data.radioButtonQuestions
+  );
+
   return (
-    <div className="a">
-      <RadioButtonQuestion />
-    </div>
+    <>
+      {radioButtonsList.map((element, key) => (
+        <RadioButtonQuestion
+          key={key}
+          question={element.question}
+          radioButtonList={element.radioButtonAnswer}
+        />
+      ))}
+    </>
   );
 }
 

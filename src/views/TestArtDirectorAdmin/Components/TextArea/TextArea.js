@@ -44,7 +44,7 @@ function TextArea(props) {
           height: textAreaHeight,
           overflow: "hidden",
         }}
-        value={text}
+        value={text === "" ? props.value : text}
         className={props.className ? props.className : ""}
         onChange={onChangeHandler}
       />
