@@ -110,29 +110,8 @@
   width: 6.8rem;
 }
 
-.eye-button,
-.trash-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2.4rem;
-  width: 2.4rem;
-}
-
-.eye-button {
-  margin-top: 2.3rem;
-}
-
 .trash-button--task {
   margin-top: 1.6rem;
-}
-
-.enable-icon-inactive {
-  content: url(../../utils/img/enablet-inactive.png);
-}
-
-.enable-icon-active {
-  content: url(../../utils/img/enablet-active.png);
 }
 
 .dots-icon {

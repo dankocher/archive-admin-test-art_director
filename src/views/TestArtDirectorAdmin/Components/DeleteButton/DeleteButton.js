@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import "./DeleteButton.scss";
 
+import deleteIcon from "../../utils/icons/delete-icon";
+
 const classNames = require("classnames");
 
 function DeleteButton(props) {
   const [isHoveredTrashButton, setIsHoveredTrashButton] = useState(false);
 
-  const trashIconClasses = classNames({
-    "trash-icon-active": isHoveredTrashButton,
-    "trash-icon-inactive": !isHoveredTrashButton,
-  });
+  // const trashIconClasses = classNames({
+  //   "trash-icon-active": isHoveredTrashButton,
+  //   "trash-icon-inactive": !isHoveredTrashButton,
+  // });
 
   return (
     <button
@@ -20,7 +22,7 @@ function DeleteButton(props) {
       onMouseEnter={() => setIsHoveredTrashButton(true)}
       onMouseLeave={() => setIsHoveredTrashButton(false)}
     >
-      <i className={trashIconClasses}></i>
+      <i>{deleteIcon}</i>
     </button>
   );
 }

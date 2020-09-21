@@ -1,7 +1,12 @@
-.trash-icon-inactive {
-  content: url(../../utils/img/trash-icon-inactive.png);
-}
-
-.trash-icon-active {
-  content: url(../../utils/img/trash-icon-active.png);
+.trash-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.4rem;
+  width: 2.4rem;
+  &:hover {
+    path {
+      fill: #6b6b6c;
+    }
+  }
 }

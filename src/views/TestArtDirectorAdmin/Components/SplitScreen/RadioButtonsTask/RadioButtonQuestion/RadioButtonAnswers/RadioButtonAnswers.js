@@ -12,7 +12,7 @@ function RadioButtonAnswers() {
     const number = event.target.validity.valid
       ? event.target.value
       : answerScore;
-    if (number > 99 || number < -99 || number === "00") {
+    if (number > 99 || number < -99 || number === "00" || /^0\d/.test(number)) {
       return;
     }
     setAnswerScore(number);
@@ -30,7 +30,7 @@ function RadioButtonAnswers() {
           <input
             type="tel"
             // pattern="/^-?\d*\.?\d+$/"
-            pattern="^-?\d*\.?\d+$"
+            pattern="^[-\d]\d?\d?"
             className="input"
             value={answerScore}
             onChange={handlerAnswerScoreOnChange}

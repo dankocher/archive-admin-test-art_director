@@ -13,8 +13,8 @@ import {
 } from "../../utils/workWithApi";
 
 import Task from "../Task/Task";
-
-const classNames = require("classnames");
+import addIcon from "../../utils/icons/add-icon";
+import editIcon from "../../utils/icons/edit-icon";
 
 const MAX_HEADER_LENGTH = 240;
 
@@ -35,11 +35,6 @@ function TasksComponent() {
       console.log(res);
     });
   }, []);
-
-  const addIconClasses = classNames({
-    "add-task-icon-inactive": !addBtnHovered,
-    "add-task-icon-active": addBtnHovered,
-  });
 
   const SetTaskNumber = (value) => {
     taskNumber = value;
@@ -94,7 +89,7 @@ function TasksComponent() {
               onClick={handlerEditButton}
               className="hidden-button edit-button-tasks"
             >
-              <i className="edit-icon"></i>
+              <i>{editIcon}</i>
             </button>
           </React.Fragment>
         )}
@@ -126,7 +121,7 @@ function TasksComponent() {
             onClick={handleOpenNewTask}
             className="hidden-button addTusk-button--tasks"
           >
-            <i className={addIconClasses}></i>
+            <i>{addIcon}</i>
           </button>
         </div>
       </div>
