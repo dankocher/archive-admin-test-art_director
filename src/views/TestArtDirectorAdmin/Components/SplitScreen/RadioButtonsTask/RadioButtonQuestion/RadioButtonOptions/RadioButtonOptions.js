@@ -4,17 +4,10 @@ import React, { useState } from "react";
 import RadioButtonOption from "./RadioButtonOption/RadioButtonOptions";
 
 function RadioButtonOptions({ radioButtonList }) {
-  const [isHoveredOption, setIsHoveredOption] = useState(false);
-
   return (
-    <div
-      className="container--RadioButtonAnswers"
-      onMouseEnter={() => setIsHoveredOption(true)}
-      onMouseLeave={() => setIsHoveredOption(false)}
-    >
+    <div className="container--RadioButtonAnswers">
       {radioButtonList.map((element, key) => (
         <RadioButtonOption
-          isHoveredOption={isHoveredOption}
           key={key}
           option={element.option}
           mark={element.mark}

@@ -1,7 +1,7 @@
 .task-container {
   display: grid;
   grid-template-columns: 6.8rem 1fr 6.8rem;
-  height: 10.6rem;
+  height: 9.6rem;
   width: 93.2rem;
   background-color: #ffffff;
   transition: 100ms;
@@ -11,16 +11,16 @@
   background-color: #fcfcfd;
 }
 
-.arrow-icon--task {
-  width: 0.864rem;
-  height: 1.728rem;
-  content: url(../../utils/img/arrow.png);
-}
-
 .task-number--task {
   grid-area: 1/1/2/2;
   display: flex;
   align-items: center;
+  span {
+    margin-left: 2.4rem;
+  }
+  button {
+    margin-left: 2rem;
+  }
 }
 
 .link-container--task {
@@ -28,16 +28,11 @@
 }
 
 .countNumber-font {
-  margin-left: 2.5rem;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
-  line-height: 14px;
+  font-size: 16px;
+  line-height: 22px;
   color: #bdbdc1;
-}
-
-.task-number--task button {
-  margin-left: 3.4rem;
 }
 
 .link--task {
@@ -55,6 +50,7 @@
   flex-direction: column;
   justify-content: center;
   width: 49.6rem;
+  padding-top: 0.3rem;
 }
 
 .task-name--task > :first-child {
@@ -105,15 +101,10 @@
 .option-buttons-task {
   grid-area: 1/3/2/4;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  width: 6.8rem;
+  justify-content: center;
 }
 
-.trash-button--task {
-  margin-top: 1.6rem;
-}
-
-.dots-icon {
-  content: url(../../utils/img/dots.png);
-}
+// .dots-icon {
+//   content: url(../../utils/img/dots.png);
+// }

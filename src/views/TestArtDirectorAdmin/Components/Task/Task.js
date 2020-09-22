@@ -6,17 +6,19 @@ import { Link } from "react-router-dom";
 import { taskTypeEnum, isWelcomeScreen } from "../../utils/taskTypeEnum";
 
 import DeleteButton from "../DeleteButton/DeleteButton";
+import arrowIcon from "../../utils/icons/arrow-icon";
+import dotsIcon from "../../utils/icons/dots-icon";
 
 const classNames = require("classnames");
 
 function Task({ task, index, number, ...props }) {
   const [isHoveredTask, setIsHoveredTask] = useState(false);
-  const [isHoveredEnableButton, setIsHoveredEnableButton] = useState(false);
+  // const [isHoveredEnableButton, setIsHoveredEnableButton] = useState(false);
 
-  const enableIconClasses = classNames({
-    "enable-icon-active": isHoveredEnableButton,
-    "enable-icon-inactive": !isHoveredEnableButton,
-  });
+  // const enableIconClasses = classNames({
+  //   "enable-icon-active": isHoveredEnableButton,
+  //   "enable-icon-inactive": !isHoveredEnableButton,
+  // });
 
   //   const [taskNumber, setTaskNumber] = useState(0);
 
@@ -35,7 +37,7 @@ function Task({ task, index, number, ...props }) {
         <div className="task-number--task">
           {isHoveredTask ? (
             <button className="hidden-button">
-              <i className="dots-icon"></i>
+              <i className="dots-icon">{dotsIcon}</i>
             </button>
           ) : isWelcomeScreen(task.type) ? (
             <span></span>
@@ -59,7 +61,7 @@ function Task({ task, index, number, ...props }) {
             </div>
             <div className="arrow-button-task">
               <button className="hidden-button">
-                <i className="arrow-icon--task"></i>
+                <i>{arrowIcon}</i>
               </button>
             </div>
           </div>
@@ -67,15 +69,14 @@ function Task({ task, index, number, ...props }) {
         <div className="option-buttons-task">
           {isHoveredTask ? (
             <>
-              <button
+              {/* <button
                 className="hidden-button eye-button"
                 onMouseEnter={() => setIsHoveredEnableButton(true)}
                 onMouseLeave={() => setIsHoveredEnableButton(false)}
               >
                 <i className={enableIconClasses}></i>
-              </button>
+              </button> */}
               <DeleteButton
-                className={"trash-button--task"}
                 onClick={() => props.handlerDeleteSelectedTask(index)}
               />
             </>

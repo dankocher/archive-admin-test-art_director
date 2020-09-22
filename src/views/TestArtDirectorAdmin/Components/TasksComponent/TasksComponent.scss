@@ -15,14 +15,13 @@
 }
 
 .add-task--tasks {
-  height: 6.6rem;
+  height: 6rem;
   background: #ffffff;
   border: 0.1rem solid #e7e7ed;
   border-radius: 0 0 0.4rem 0.4rem;
   transition: 100ms;
   &:hover {
-    height: 7rem;
-    box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.1);
+    background-color: #fcfcfd;
     i path {
       fill: #484848;
     }
@@ -42,6 +41,11 @@
   height: 4.8rem;
   align-items: center;
   margin-bottom: 0.8rem;
+  &:hover {
+    path {
+      fill: #6b6b6c;
+    }
+  }
 }
 
 .header--tasks > :first-child {
@@ -61,8 +65,4 @@
   justify-items: center;
   height: 2.4rem;
   width: 2.4rem;
-}
-
-.edit-icon {
-  content: url(../../utils/img/edit-icon.png);
 }

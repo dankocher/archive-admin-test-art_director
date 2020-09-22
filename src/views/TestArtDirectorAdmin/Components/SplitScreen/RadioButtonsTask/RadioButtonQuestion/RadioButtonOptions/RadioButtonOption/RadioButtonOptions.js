@@ -5,7 +5,8 @@ import React, { useState } from "react";
 import TextArea from "../../../../../TextArea/TextArea";
 import DeleteButton from "../../../../../DeleteButton/DeleteButton";
 
-function RadioButtonOption({ isHoveredOption, option, mark }) {
+function RadioButtonOption({ option, mark }) {
+  const [isHoveredOption, setIsHoveredOption] = useState(false);
   const [answerScore, setAnswerScore] = useState("");
 
   const handlerAnswerScoreOnChange = (event) => {
@@ -19,7 +20,11 @@ function RadioButtonOption({ isHoveredOption, option, mark }) {
   };
 
   return (
-    <div className="container-answer--RadioButtonAnswers">
+    <div
+      className="container-answer--RadioButtonAnswers"
+      onMouseEnter={() => setIsHoveredOption(true)}
+      onMouseLeave={() => setIsHoveredOption(false)}
+    >
       <TextArea className="input" value={option} />
       <div className="wrapper-centred--RadioButtonAnswers">
         <input

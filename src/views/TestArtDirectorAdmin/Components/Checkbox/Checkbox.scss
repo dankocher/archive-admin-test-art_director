@@ -24,10 +24,6 @@ input[type="checkbox"] {
   display: inline-flex;
 }
 
-.checked-icon--checkbox {
-  content: url(../../utils/img/checked-icon.png);
-}
-
 .checked-icon--checkbox::selection {
   background: transparent;
 }
