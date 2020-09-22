@@ -7,6 +7,8 @@ export const SET_IS_TIME_DISPLAY_FOR_USER = "SET_IS_TIME_DISPLAY_FOR_USER";
 export const SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS =
   "SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS";
 export const SET_RADIO_BUTTON_QUESTION = "SET_RADIO_BUTTON_QUESTION";
+export const ADD_GROUP_RADIO_BUTTONS = "ADD_GROUP_RADIO_BUTTONS";
+export const ADD_RADIO_BUTTON_OPTION = "ADD_RADIO_BUTTON_OPTION";
 
 export const setTaskName = (name) => ({
   type: SET_TASK_NAME,
@@ -38,6 +40,15 @@ export const setIsOneGradeForAllSubTasks = () => ({
 export const setTaskState = (task) => ({
   type: SET_TASK_STATE,
   payload: task,
+});
+
+export const addGroupRadioButtons = () => ({
+  type: ADD_GROUP_RADIO_BUTTONS,
+});
+
+export const addRadioButtonOption = (index) => ({
+  type: ADD_RADIO_BUTTON_OPTION,
+  payload: index,
 });
 
 export const setRadioButtonQuestion = (question) => ({

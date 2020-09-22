@@ -11,6 +11,10 @@ function TextArea(props) {
   const maxLength = props.maxLength ? props.maxLength : 240;
 
   useEffect(() => {
+    setText(props.value);
+  }, [props.value]);
+
+  useEffect(() => {
     setParentHeight(`${textAreaRef.current.scrollHeight}px`);
     setTextAreaHeight(`${textAreaRef.current.scrollHeight}px`);
   }, [text]);
@@ -23,11 +27,6 @@ function TextArea(props) {
     setTextAreaHeight("auto");
     setParentHeight(`${textAreaRef.current.scrollHeight}px`);
     setText(event.target.value);
-
-    if (!props.onChange) {
-      return;
-    }
-    props.onChange(event);
   };
 
   return (
@@ -44,9 +43,10 @@ function TextArea(props) {
           height: textAreaHeight,
           overflow: "hidden",
         }}
-        value={text === "" ? props.value : text}
+        value={text}
         className={props.className ? props.className : ""}
         onChange={onChangeHandler}
+        onBlur={props.onBlur}
       />
     </div>
   );

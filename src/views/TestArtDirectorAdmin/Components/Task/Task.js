@@ -9,7 +9,7 @@ import DeleteButton from "../DeleteButton/DeleteButton";
 import arrowIcon from "../../utils/icons/arrow-icon";
 import dotsIcon from "../../utils/icons/dots-icon";
 
-const classNames = require("classnames");
+// const classNames = require("classnames");
 
 function Task({ task, index, number, ...props }) {
   const [isHoveredTask, setIsHoveredTask] = useState(false);

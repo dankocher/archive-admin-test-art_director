@@ -1,6 +1,7 @@
 //import "./RadioButtonOption.scss";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+//import { useEffect } from "react-redux";
 
 import TextArea from "../../../../../TextArea/TextArea";
 import DeleteButton from "../../../../../DeleteButton/DeleteButton";
@@ -9,11 +10,21 @@ function RadioButtonOption({ option, mark }) {
   const [isHoveredOption, setIsHoveredOption] = useState(false);
   const [answerScore, setAnswerScore] = useState("");
 
+  useEffect(() => {
+    setAnswerScore(mark);
+  }, [mark]);
+
   const handlerAnswerScoreOnChange = (event) => {
     const number = event.target.validity.valid
       ? event.target.value
       : answerScore;
-    if (number > 99 || number < -99 || number === "00" || /^0\d/.test(number)) {
+    if (
+      number > 99 ||
+      number < -99 ||
+      number === "00" ||
+      /^0\d/.test(number) ||
+      number === "-0"
+    ) {
       return;
     }
     setAnswerScore(number);
@@ -31,7 +42,7 @@ function RadioButtonOption({ option, mark }) {
           type="tel"
           pattern="^[-\d]\d?\d?"
           className="input"
-          value={mark}
+          value={answerScore}
           onChange={handlerAnswerScoreOnChange}
         />
       </div>

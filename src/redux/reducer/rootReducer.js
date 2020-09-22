@@ -1,3 +1,5 @@
+import update from "react-addons-update";
+
 import {
   SET_TASK_STATE,
   SET_TASK_NAME,
@@ -7,7 +9,16 @@ import {
   SET_IS_TIME_DISPLAY_FOR_USER,
   SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
   SET_RADIO_BUTTON_QUESTION,
+  ADD_GROUP_RADIO_BUTTONS,
+  ADD_RADIO_BUTTON_OPTION,
 } from "../actions";
+
+const radioButtonOption = { option: "asd", mark: "12" };
+
+const radioButtonTask = {
+  question: "",
+  radioButtonOptionList: [radioButtonOption],
+};
 
 const initialState = {
   isUpdatedLocally: false,
@@ -24,15 +35,7 @@ const initialState = {
     date: "",
     updated: "",
     data: {
-      radioButtonQuestions: [
-        {
-          question: "qwe",
-          radioButtonAnswer: [
-            { option: "123", mark: "-10" },
-            { option: "456", mark: "10" },
-          ],
-        },
-      ],
+      radioButtonTaskList: [radioButtonTask],
     },
   },
 };
@@ -90,6 +93,43 @@ function rootReducer(state = initialState, action) {
           isOneGradeForAllSubTasks: !state.task.isOneGradeForAllSubTasks,
         },
       };
+    case ADD_GROUP_RADIO_BUTTONS:
+      return update(state, {
+        task: {
+          data: {
+            radioButtonTaskList: { $push: [radioButtonTask] },
+          },
+        },
+      });
+
+    // return {
+    //   ...state,
+    //   task: {
+    //     ...state.task,
+    //     data: {
+    //       ...state.task.data,
+    //       radioButtonQuestions: [
+    //         ...state.task.data.radioButtonQuestions,
+    //         {
+    //           question: "new",
+    //           radioButtonAnswer: [{ option: "123", mark: "-10" }],
+    //         },
+    //       ],
+    //     },
+    //   },
+    // };
+    case ADD_RADIO_BUTTON_OPTION:
+      return update(state, {
+        task: {
+          data: {
+            radioButtonTaskList: {
+              [action.payload]: {
+                radioButtonOptionList: { $push: [radioButtonOption] },
+              },
+            },
+          },
+        },
+      });
     default:
       return state;
   }
