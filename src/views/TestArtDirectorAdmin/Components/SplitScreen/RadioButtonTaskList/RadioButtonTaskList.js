@@ -3,7 +3,7 @@ import "./RadioButtonTaskList.scss";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { addGroupRadioButtons } from "../../../../../redux/actions";
+import { addRadioButtonTask } from "../../../../../redux/actions";
 
 import RadioButtonTask from "./RadioButtonTask/RadioButtonTask";
 
@@ -14,7 +14,7 @@ function RadioButtonTaskList() {
     (state) => state.task.data.radioButtonTaskList
   );
   const handlerAddGroupRadioButtons = () => {
-    dispatch(addGroupRadioButtons());
+    dispatch(addRadioButtonTask());
   };
 
   return (
@@ -25,6 +25,8 @@ function RadioButtonTaskList() {
           index={key}
           question={element.question}
           radioButtonOptionList={element.radioButtonOptionList}
+          radioButtonTaskListLength={radioButtonTaskList.length}
+          addNewTask={handlerAddGroupRadioButtons}
         />
       ))}
       <button

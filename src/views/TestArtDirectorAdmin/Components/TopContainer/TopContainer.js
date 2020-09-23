@@ -11,7 +11,7 @@ import {
   setIsOneGradeForAllSubTasks,
 } from "../../../../redux/actions";
 
-import { taskTypeEnum, isWelcomeScreen } from "../../utils/taskTypeEnum";
+import { taskTypeEnum, isWelcomeScreen } from "../../helpers/taskTypeEnum";
 
 import Checkbox from "../Checkbox/Checkbox";
 import RadioButton from "../RadioButton/RadioButton";

@@ -89,3 +89,7 @@ textarea {
   line-height: 16px;
   color: #323232;
 }
+
+.border-error {
+  border: 0.1rem solid #eb5757;
+}

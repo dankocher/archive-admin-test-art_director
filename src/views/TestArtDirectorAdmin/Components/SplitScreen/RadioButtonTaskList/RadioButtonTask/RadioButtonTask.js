@@ -1,13 +1,37 @@
 import "./RadioButtonTask.scss";
 
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import {
+  setRadioButtonTaskQuestion,
+  removeRadioButtonTask,
+} from "../../../../../../redux/actions";
 
 import DeleteButton from "../../../DeleteButton/DeleteButton";
 import TextArea from "../../../TextArea/TextArea";
 import RadioButtonOptionList from "./RadioButtonOptionList/RadioButtonOptionList";
 
-function RadioButtonTask({ question, radioButtonOptionList, index }) {
+function RadioButtonTask({
+  question,
+  radioButtonOptionList,
+  index,
+  radioButtonTaskListLength,
+  addNewTask,
+}) {
+  const dispatch = useDispatch();
   const [isHoveredQuestion, setIsHoveredQuestion] = useState(false);
+
+  const handlerOnBlurQuestion = (text) => {
+    dispatch(setRadioButtonTaskQuestion(text, index));
+  };
+
+  const handlerOnClickRemoveBtn = () => {
+    if (radioButtonTaskListLength === 1) {
+      addNewTask();
+    }
+    dispatch(removeRadioButtonTask(index));
+  };
 
   return (
     <>
@@ -17,9 +41,15 @@ function RadioButtonTask({ question, radioButtonOptionList, index }) {
         onMouseLeave={() => setIsHoveredQuestion(false)}
       >
         <div className="container-question-radioButtonQuestion">
-          <TextArea className="input" value={question} />
+          <TextArea
+            className="input"
+            value={question}
+            onBlur={handlerOnBlurQuestion}
+          />
           <div className={"trash-button--radioButtonQuestion"}>
-            {isHoveredQuestion ? <DeleteButton /> : null}
+            {isHoveredQuestion ? (
+              <DeleteButton onClick={() => handlerOnClickRemoveBtn()} />
+            ) : null}
           </div>
         </div>
 

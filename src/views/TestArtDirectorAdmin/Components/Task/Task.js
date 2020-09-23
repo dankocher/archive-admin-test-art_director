@@ -1,9 +1,10 @@
-import React, { useState } from "react";
 import "./Task.scss";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 
-import { taskTypeEnum, isWelcomeScreen } from "../../utils/taskTypeEnum";
+import { taskTypeEnum, isWelcomeScreen } from "../../helpers/taskTypeEnum";
 
 import DeleteButton from "../DeleteButton/DeleteButton";
 import arrowIcon from "../../utils/icons/arrow-icon";
@@ -11,8 +12,11 @@ import dotsIcon from "../../utils/icons/dots-icon";
 
 // const classNames = require("classnames");
 
-function Task({ task, index, number, ...props }) {
+function Task({ task, id, index, number, ...props }) {
   const [isHoveredTask, setIsHoveredTask] = useState(false);
+  const isHaveMarks = task.data?.radioButtonTaskList[index]?.isHaveMarks;
+
+  console.log(isHaveMarks);
   // const [isHoveredEnableButton, setIsHoveredEnableButton] = useState(false);
 
   // const enableIconClasses = classNames({
@@ -45,7 +49,7 @@ function Task({ task, index, number, ...props }) {
             <span className="countNumber-font">{number}</span>
           )}
         </div>
-        <Link className={"link--task"} to={`/${task.type}/${index}`}>
+        <Link className={"link--task"} to={`/${task.type}/${id}`}>
           <div className="link-container--task">
             <div className="task-name--task">
               <h3 className="bold-big-font">{task.name}</h3>
@@ -57,7 +61,7 @@ function Task({ task, index, number, ...props }) {
               </div>
             </div>
             <div className="notAllMarks--task small-grey-font">
-              {isHoveredTask ? <span>Не все оценки расставлены</span> : null}
+              {isHaveMarks ? <span>Не все оценки расставлены</span> : null}
             </div>
             <div className="arrow-button-task">
               <button className="hidden-button">
@@ -77,7 +81,7 @@ function Task({ task, index, number, ...props }) {
                 <i className={enableIconClasses}></i>
               </button> */}
               <DeleteButton
-                onClick={() => props.handlerDeleteSelectedTask(index)}
+                onClick={() => props.handlerDeleteSelectedTask(id)}
               />
             </>
           ) : null}

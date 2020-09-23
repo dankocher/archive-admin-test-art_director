@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 
 import "./TextArea.scss";
 
+import { isFunction } from "../../helpers/isFunction";
+
 function TextArea(props) {
   const textAreaRef = useRef(null);
   const [text, setText] = useState("");
@@ -9,6 +11,7 @@ function TextArea(props) {
   const [parentHeight, setParentHeight] = useState("auto");
 
   const maxLength = props.maxLength ? props.maxLength : 240;
+  const onBlur = isFunction(props.onBlur) ? props.onBlur : () => {};
 
   useEffect(() => {
     setText(props.value);
@@ -46,7 +49,7 @@ function TextArea(props) {
         value={text}
         className={props.className ? props.className : ""}
         onChange={onChangeHandler}
-        onBlur={props.onBlur}
+        onBlur={() => onBlur(text)}
       />
     </div>
   );

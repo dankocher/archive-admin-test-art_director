@@ -1,8 +1,11 @@
 import "./RadioButtonOptionList.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addRadioButtonOption } from "../../../../../../../redux/actions";
+import {
+  addRadioButtonOption,
+  setIsHaveMarks,
+} from "../../../../../../../redux/actions";
 
 import RadioButtonOption from "./RadioButtonOption/RadioButtonOption";
 
@@ -13,15 +16,44 @@ function RadioButtonOptionList({ radioButtonOptionList, index }) {
     dispatch(addRadioButtonOption(index));
   };
 
+  const getIsHaveMark = (optionIndex) => {
+    if (radioButtonOptionList.length === 1) return true;
+    return radioButtonOptionList[optionIndex].mark !== "";
+  };
+
+  const getIsHaveMarks = () => {
+    let isHaveMarks = true;
+    if (radioButtonOptionList.length === 1) return isHaveMarks;
+    radioButtonOptionList.forEach((element) => {
+      if (element.mark === "") isHaveMarks = false;
+    });
+    return isHaveMarks;
+  };
+
+  useEffect(() => {
+    const asd = getIsHaveMarks();
+    console.log(asd);
+    //dispatch(setIsHaveMarks(index, getIsHaveMarks()));
+  }, [radioButtonOptionList]);
+
   return (
     <div className="container--RadioButtonAnswers">
-      {radioButtonOptionList.map((element, key) => (
-        <RadioButtonOption
-          key={key}
-          option={element.option}
-          mark={element.mark}
-        />
-      ))}
+      {radioButtonOptionList.map((element, key) => {
+        const isHaveMark = getIsHaveMark(key);
+
+        return (
+          <RadioButtonOption
+            key={key}
+            optionIndex={key}
+            radioButtonTaskIndex={index}
+            option={element.option}
+            mark={element.mark}
+            isHaveMark={isHaveMark}
+            optionListLength={radioButtonOptionList.length}
+            addNewOption={handlerAddOptionBtn}
+          />
+        );
+      })}
       <div className="container-answer--RadioButtonAnswers">
         <button
           onClick={handlerAddOptionBtn}

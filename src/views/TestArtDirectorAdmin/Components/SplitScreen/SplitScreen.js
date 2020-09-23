@@ -5,7 +5,7 @@ import { setTaskState } from "../../../../redux/actions";
 import {
   getTaskFromServer,
   handlerSaveTaskToDB,
-} from "../../utils/workWithApi";
+} from "../../helpers/workWithApi";
 
 import TopContainer from "../TopContainer/TopContainer";
 import RadioButtonTaskList from "./RadioButtonTaskList/RadioButtonTaskList";

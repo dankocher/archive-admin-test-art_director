@@ -4,13 +4,13 @@ import "./TasksComponent.scss";
 
 import { useHistory } from "react-router-dom";
 
-import { isWelcomeScreen } from "../../utils/taskTypeEnum";
+import { isWelcomeScreen } from "../../helpers/taskTypeEnum";
 import {
   getTasksFromServer,
   getNewTaskFromServer,
   deleteTaskById,
   saveTaskListHeader,
-} from "../../utils/workWithApi";
+} from "../../helpers/workWithApi";
 
 import Task from "../Task/Task";
 import addIcon from "../../utils/icons/add-icon";
@@ -105,7 +105,8 @@ function TasksComponent() {
               <Task
                 key={key}
                 number={taskNumber}
-                index={element._id}
+                id={element._id}
+                index={key}
                 task={element}
                 handlerDeleteSelectedTask={handlerDeleteSelectedTask}
               />

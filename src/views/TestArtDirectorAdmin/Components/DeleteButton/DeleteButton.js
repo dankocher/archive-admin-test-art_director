@@ -3,6 +3,8 @@ import "./DeleteButton.scss";
 
 import deleteIcon from "../../utils/icons/delete-icon";
 
+import {isFunction} from "../../helpers/isFunction";
+
 const classNames = require("classnames");
 
 function DeleteButton(props) {
@@ -12,10 +14,11 @@ function DeleteButton(props) {
   //   "trash-icon-active": isHoveredTrashButton,
   //   "trash-icon-inactive": !isHoveredTrashButton,
   // });
+  const onClick = isFunction(props.onClick) ? props.onClick : () => {};
 
   return (
     <button
-      onClick={() => props.onClick()}
+      onClick={() => onClick()}
       className={`hidden-button trash-button ${
         props.className ? props.className : ""
       }`}
