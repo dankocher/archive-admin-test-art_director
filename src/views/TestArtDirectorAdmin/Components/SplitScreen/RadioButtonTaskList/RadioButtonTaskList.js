@@ -19,7 +19,7 @@ function RadioButtonTaskList() {
 
   return (
     <>
-      {radioButtonTaskList.map((element, key) => (
+      {radioButtonTaskList?.map((element, key) => (
         <RadioButtonTask
           key={key}
           index={key}

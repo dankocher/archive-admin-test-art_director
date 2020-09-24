@@ -1,4 +1,5 @@
 import update from "react-addons-update";
+import { taskTypeEnum } from "../../views/TestArtDirectorAdmin/helpers/taskTypeEnum";
 
 import {
   SET_TASK_STATE,
@@ -41,18 +42,29 @@ const initialState = {
     date: "",
     updated: "",
     data: {
-      radioButtonTaskList: [radioButtonTask],
+      //radioButtonTaskList: [radioButtonTask],
     },
   },
+};
+
+const setDataOfType = (type) => {
+  switch (type) {
+    case Object.keys(taskTypeEnum)[0]:
+      return {};
+    case Object.keys(taskTypeEnum)[1]:
+      return { radioButtonTaskList: [radioButtonTask] };
+    default:
+      return {};
+  }
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case SET_TASK_STATE:
       return {
-        ...state,
+        ...initialState,
         isUpdatedLocally: false,
-        task: { ...state.task, ...action.payload },
+        task: { ...initialState.task, ...action.payload },
       };
     case SET_TASK_NAME:
       return {
@@ -70,11 +82,25 @@ function rootReducer(state = initialState, action) {
         task: { ...state.task, description: action.payload },
       };
     case SET_TASK_TYPE:
-      return {
-        ...state,
-        isUpdatedLocally: true,
-        task: { ...state.task, type: action.payload },
-      };
+      const data = setDataOfType(action.payload);
+      const _state = { ...state };
+      return update(_state, {
+        task: {
+          type: {
+            $set: action.payload,
+          },
+          data: {
+            $set: data,
+          },
+        },
+      });
+    // return {
+    //   ...state,
+    //   isUpdatedLocally: true,
+    //   task: { ...state.task, type: action.payload, data:{
+    //     {$set: }
+    //   } },
+    // };
     case SET_IS_TIME_CONSIDERED:
       return {
         ...state,

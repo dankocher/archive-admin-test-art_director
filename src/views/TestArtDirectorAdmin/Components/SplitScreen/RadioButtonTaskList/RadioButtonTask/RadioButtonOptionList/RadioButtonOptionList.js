@@ -31,9 +31,10 @@ function RadioButtonOptionList({ radioButtonOptionList, index }) {
   };
 
   useEffect(() => {
-    const asd = getIsHaveMarks();
-    console.log(asd);
-    //dispatch(setIsHaveMarks(index, getIsHaveMarks()));
+    if (radioButtonOptionList !== "undefined") {
+      const asd = getIsHaveMarks();
+      dispatch(setIsHaveMarks(index, getIsHaveMarks()));
+    }
   }, [radioButtonOptionList]);
 
   return (

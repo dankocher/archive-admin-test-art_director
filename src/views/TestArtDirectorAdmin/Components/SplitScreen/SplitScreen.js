@@ -17,11 +17,19 @@ function SplitScreen() {
   const state = useSelector((state) => state);
 
   useEffect(() => {
-    return () => handlerSaveTaskToDB(state);
+    return () =>{
+      if (state.task._id === "") return;
+      console.log("ia STATE");
+  
+      console.log(state);
+      handlerSaveTaskToDB(state);
+    }
+
   }, [state]);
 
   useEffect(() => {
     getTaskFromServer().then((res) => {
+      console.log("delau krasivo v split screen");
       dispatch(setTaskState(res));
     });
   }, []);

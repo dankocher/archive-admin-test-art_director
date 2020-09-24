@@ -16,7 +16,7 @@ function Task({ task, id, index, number, ...props }) {
   const [isHoveredTask, setIsHoveredTask] = useState(false);
   const isHaveMarks = task.data?.radioButtonTaskList[index]?.isHaveMarks;
 
-  console.log(isHaveMarks);
+  console.log(isHaveMarks === undefined);
   // const [isHoveredEnableButton, setIsHoveredEnableButton] = useState(false);
 
   // const enableIconClasses = classNames({
@@ -61,7 +61,9 @@ function Task({ task, id, index, number, ...props }) {
               </div>
             </div>
             <div className="notAllMarks--task small-grey-font">
-              {isHaveMarks ? <span>Не все оценки расставлены</span> : null}
+              {isHaveMarks === undefined ? null : isHaveMarks ? null : (
+                <span>Не все оценки расставлены</span>
+              )}
             </div>
             <div className="arrow-button-task">
               <button className="hidden-button">

@@ -1,6 +1,6 @@
+import "./TopContainer.scss";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./TopContainer.scss";
 
 import {
   setTaskDescription as setStateTaskDescription,
@@ -11,20 +11,37 @@ import {
   setIsOneGradeForAllSubTasks,
 } from "../../../../redux/actions";
 
+import { useHistory } from "react-router-dom";
+
 import { taskTypeEnum, isWelcomeScreen } from "../../helpers/taskTypeEnum";
+import { getUrlId } from "../../helpers/workWithApi";
 
 import Checkbox from "../Checkbox/Checkbox";
 import RadioButton from "../RadioButton/RadioButton";
+import DropDown from "../DropDown/DropDown";
 
 const MAX_TASK_NAME_LENGTH = 240;
 const MAX_TASK_DESCRIPTION_LENGTH = 500;
 
+export const useTest = () => {
+  const taskType = useSelector((state) => state.task.type);
+
+  return () => {
+    const path = `\\${taskType}\\${getUrlId()}`;
+    debugger;
+    window.location.replace(path);
+  };
+};
+
 function TopContainer() {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const test = useTest();
 
   const [localTaskName, setLocalTaskName] = useState("");
   const [localTaskDescription, setLocalTaskDescription] = useState("");
 
+  const state = useSelector((state) => state);
   const taskName = useSelector((state) => state.task.name);
   const taskDescription = useSelector((state) => state.task.description);
   const taskType = useSelector((state) => state.task.type);
@@ -35,6 +52,14 @@ function TopContainer() {
   const isOneGradeForAllSubTasks = useSelector(
     (state) => state.task.isOneGradeForAllSubTasks
   );
+  useEffect(() => {
+    if (taskType !== "") {
+      console.log("IA USE EFFECT");
+      console.log(taskType);
+      const path = `\\${taskType}\\${getUrlId()}`;
+      // window.location.replace(path);
+    }
+  }, [taskType]);
 
   useEffect(() => {
     setLocalTaskName(taskName);
@@ -68,8 +93,35 @@ function TopContainer() {
     dispatch(setStateTaskDescription(localTaskDescription));
   };
 
+  const promiseDispatch = (item, dispatch) =>
+    new Promise((resolve, reject) => {
+      dispatch();
+      resolve();
+    });
+
+  const asyncDispatchSetTaskType = async (taskType) => {
+    console.log("DO TOGO KA IETO STALO MEINSTIMOM");
+
+    console.log(state);
+    await dispatch(setTaskType(taskType));
+    return { isOk: true };
+  };
+
   const handleChangeType = (event) => {
-    dispatch(setTaskType(event.target.value));
+    const taskType = event.target.value;
+    // dispatch(setTaskType(taskType));
+    // dispatch(setTaskType(taskType)).then(() => {
+    //   console.log(path);
+    // asyncDispatchSetTaskType(taskType).then(() => {
+    //   console.log("POSLE TOGO KA IETO STALO MEINSTIMOM");
+    //   test();
+    // });
+    // window.location.replace(path)
+
+    // console.log(history.location.pathname);
+    // history
+    //history.replace()
+    //  window.location.replace(path);
   };
 
   const handleChangeStateTaskIsTimeConsidered = () => {
@@ -113,7 +165,12 @@ function TopContainer() {
           />
         </div>
         <div className="rightSide-topContainer">
-          <select
+          <DropDown
+            onChange={handleChangeType}
+            value={taskType}
+            taskTypeEnum={taskTypeEnum}
+          />
+          {/* <select
             className="input"
             onChange={handleChangeType}
             value={taskType}
@@ -123,7 +180,7 @@ function TopContainer() {
                 {taskTypeEnum[key]}
               </option>
             ))}
-          </select>
+          </select> */}
           <div className="rightSide-checkboxes--topContainer">
             <Checkbox
               id={"isTimeConsidered"}

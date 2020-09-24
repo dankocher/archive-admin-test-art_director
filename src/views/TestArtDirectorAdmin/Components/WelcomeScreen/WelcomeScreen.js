@@ -19,7 +19,14 @@ function WelcomeScreen() {
   // const isUpdatedLocally = useSelector((state) => state.isUpdatedLocally);
 
   useEffect(() => {
-    return () => handlerSaveTaskToDB(state);
+    return () => {
+      if (state.task._id === "") return;
+
+      console.log("ia STATE sohranilsia v WP");
+
+      console.log(state);
+      handlerSaveTaskToDB(state);
+    };
   }, [state]);
 
   useEffect(() => {
