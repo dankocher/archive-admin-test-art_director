@@ -4,7 +4,7 @@ import "./TasksComponent.scss";
 
 import { useHistory } from "react-router-dom";
 
-import { isWelcomeScreen } from "../../helpers/taskTypeEnum";
+import { isWelcomeScreen } from "../../helpers/taskTypes/taskTypeEnum";
 import {
   getTasksFromServer,
   getNewTaskFromServer,
@@ -21,7 +21,6 @@ const MAX_HEADER_LENGTH = 240;
 function TasksComponent() {
   const history = useHistory();
 
-  const [addBtnHovered, setAddBtnHovered] = useState(false);
   const [header, setHeader] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [isEditedHeader, setIsEditedHeader] = useState(false);
@@ -42,7 +41,7 @@ function TasksComponent() {
 
   const handleOpenNewTask = () => {
     getNewTaskFromServer().then((res) => {
-      const path = `/welcome-screen/${res._id}`;
+      const path = `/${res._id}`;
       history.push(path);
     });
   };
@@ -113,11 +112,7 @@ function TasksComponent() {
             );
           })}
         </div>
-        <div
-          onMouseEnter={() => setAddBtnHovered(true)}
-          onMouseLeave={() => setAddBtnHovered(false)}
-          className="add-task--tasks"
-        >
+        <div className="add-task--tasks">
           <button
             onClick={handleOpenNewTask}
             className="hidden-button addTusk-button--tasks"

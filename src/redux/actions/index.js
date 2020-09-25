@@ -1,5 +1,6 @@
+export const SET_INITIAL_STATE = "SET_INITIAL_STATE";
 export const SET_TASK_STATE = "SET_TASK_STATE";
-export const SET_TASK_NAME = "SET_IMAGE_LENGTH";
+export const SET_TASK_NAME = "SET_TASK_NAME";
 export const SET_TASK_DESCRIPTION = "SET_TASK_DESCRIPTION";
 export const SET_TASK_TYPE = "SET_TASK_TYPE";
 export const SET_IS_TIME_CONSIDERED = "IS_TIME_CONSIDERED";
@@ -16,6 +17,10 @@ export const REMOVE_RADIO_BUTTON_TASK_OPTION =
   "REMOVE_RADIO_BUTTON_TASK_OPTION";
 export const REMOVE_RADIO_BUTTON_TASK = "REMOVE_RADIO_BUTTON_TASK";
 export const SET_IS_HAVE_MARKS = "SET_IS_HAVE_MARKS";
+
+export const setInitialState = () => ({
+  type: SET_INITIAL_STATE,
+});
 
 export const setTaskName = (name) => ({
   type: SET_TASK_NAME,

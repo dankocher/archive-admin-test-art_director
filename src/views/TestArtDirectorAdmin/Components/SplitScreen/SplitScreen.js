@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setTaskState } from "../../../../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
 
-import {
-  getTaskFromServer,
-  handlerSaveTaskToDB,
-} from "../../helpers/workWithApi";
+import { handlerSaveTaskToDB } from "../../helpers/workWithApi";
+
+import { setInitialState } from "../../../../redux/actions";
 
 import TopContainer from "../TopContainer/TopContainer";
 import RadioButtonTaskList from "./RadioButtonTaskList/RadioButtonTaskList";
@@ -13,26 +11,19 @@ import RadioButtonTaskList from "./RadioButtonTaskList/RadioButtonTaskList";
 import "./SplitScreen.scss";
 
 function SplitScreen() {
-  const dispatch = useDispatch();
   const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    return () =>{
+    return () => {
       if (state.task._id === "") return;
-      console.log("ia STATE");
-  
+      console.log("ia STATE sohranilsia v SS");
+
       console.log(state);
       handlerSaveTaskToDB(state);
-    }
-
+      // dispatch(setInitialState());
+    };
   }, [state]);
-
-  useEffect(() => {
-    getTaskFromServer().then((res) => {
-      console.log("delau krasivo v split screen");
-      dispatch(setTaskState(res));
-    });
-  }, []);
 
   return (
     <div className="wrapper-inline-block">

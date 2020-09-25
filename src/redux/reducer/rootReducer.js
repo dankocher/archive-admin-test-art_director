@@ -1,5 +1,8 @@
 import update from "react-addons-update";
-import { taskTypeEnum } from "../../views/TestArtDirectorAdmin/helpers/taskTypeEnum";
+import {
+  WELCOME_SCREEN,
+  ILLUSTRATION_RADIO_BUTTONS,
+} from "../../views/TestArtDirectorAdmin/helpers/taskTypes/taskTypes";
 
 import {
   SET_TASK_STATE,
@@ -17,6 +20,7 @@ import {
   REMOVE_RADIO_BUTTON_TASK_OPTION,
   REMOVE_RADIO_BUTTON_TASK,
   SET_IS_HAVE_MARKS,
+  SET_INITIAL_STATE,
 } from "../actions";
 
 const radioButtonOption = { option: "", mark: "" };
@@ -49,9 +53,9 @@ const initialState = {
 
 const setDataOfType = (type) => {
   switch (type) {
-    case Object.keys(taskTypeEnum)[0]:
+    case WELCOME_SCREEN:
       return {};
-    case Object.keys(taskTypeEnum)[1]:
+    case ILLUSTRATION_RADIO_BUTTONS:
       return { radioButtonTaskList: [radioButtonTask] };
     default:
       return {};
@@ -66,6 +70,8 @@ function rootReducer(state = initialState, action) {
         isUpdatedLocally: false,
         task: { ...initialState.task, ...action.payload },
       };
+    case SET_INITIAL_STATE:
+      return { ...state, ...initialState };
     case SET_TASK_NAME:
       return {
         ...state,
@@ -83,8 +89,8 @@ function rootReducer(state = initialState, action) {
       };
     case SET_TASK_TYPE:
       const data = setDataOfType(action.payload);
-      const _state = { ...state };
-      return update(_state, {
+      // const _state = { ...state };
+      return update(state, {
         task: {
           type: {
             $set: action.payload,

@@ -1,35 +1,22 @@
 import "./Task.scss";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+
+import { useGetIsHaveMarks } from "../../helpers/customHooks";
 
 import { Link } from "react-router-dom";
 
-import { taskTypeEnum, isWelcomeScreen } from "../../helpers/taskTypeEnum";
+import {
+  taskTypeEnum,
+  isWelcomeScreen,
+} from "../../helpers/taskTypes/taskTypeEnum";
 
 import DeleteButton from "../DeleteButton/DeleteButton";
 import arrowIcon from "../../utils/icons/arrow-icon";
 import dotsIcon from "../../utils/icons/dots-icon";
 
-// const classNames = require("classnames");
-
 function Task({ task, id, index, number, ...props }) {
   const [isHoveredTask, setIsHoveredTask] = useState(false);
-  const isHaveMarks = task.data?.radioButtonTaskList[index]?.isHaveMarks;
-
-  console.log(isHaveMarks === undefined);
-  // const [isHoveredEnableButton, setIsHoveredEnableButton] = useState(false);
-
-  // const enableIconClasses = classNames({
-  //   "enable-icon-active": isHoveredEnableButton,
-  //   "enable-icon-inactive": !isHoveredEnableButton,
-  // });
-
-  //   const [taskNumber, setTaskNumber] = useState(0);
-
-  //   const getTaskNumber = () => {
-  //     setTaskNumber(taskNumber + 1);
-  //     return taskNumber;
-  //   };
+  const isHaveMarks = useGetIsHaveMarks(task.data?.radioButtonTaskList);
 
   return (
     <>
@@ -49,7 +36,7 @@ function Task({ task, id, index, number, ...props }) {
             <span className="countNumber-font">{number}</span>
           )}
         </div>
-        <Link className={"link--task"} to={`/${task.type}/${id}`}>
+        <Link className={"link--task"} to={`/${id}`}>
           <div className="link-container--task">
             <div className="task-name--task">
               <h3 className="bold-big-font">{task.name}</h3>
@@ -61,7 +48,7 @@ function Task({ task, id, index, number, ...props }) {
               </div>
             </div>
             <div className="notAllMarks--task small-grey-font">
-              {isHaveMarks === undefined ? null : isHaveMarks ? null : (
+              {isHaveMarks === undefined || isHaveMarks ? null : (
                 <span>Не все оценки расставлены</span>
               )}
             </div>
@@ -74,18 +61,7 @@ function Task({ task, id, index, number, ...props }) {
         </Link>
         <div className="option-buttons-task">
           {isHoveredTask ? (
-            <>
-              {/* <button
-                className="hidden-button eye-button"
-                onMouseEnter={() => setIsHoveredEnableButton(true)}
-                onMouseLeave={() => setIsHoveredEnableButton(false)}
-              >
-                <i className={enableIconClasses}></i>
-              </button> */}
-              <DeleteButton
-                onClick={() => props.handlerDeleteSelectedTask(id)}
-              />
-            </>
+            <DeleteButton onClick={() => props.handlerDeleteSelectedTask(id)} />
           ) : null}
         </div>
       </div>

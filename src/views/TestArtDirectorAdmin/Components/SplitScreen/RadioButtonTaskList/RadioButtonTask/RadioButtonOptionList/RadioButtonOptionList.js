@@ -1,5 +1,5 @@
 import "./RadioButtonOptionList.scss";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -31,8 +31,7 @@ function RadioButtonOptionList({ radioButtonOptionList, index }) {
   };
 
   useEffect(() => {
-    if (radioButtonOptionList !== "undefined") {
-      const asd = getIsHaveMarks();
+    if (radioButtonOptionList !== undefined) {
       dispatch(setIsHaveMarks(index, getIsHaveMarks()));
     }
   }, [radioButtonOptionList]);

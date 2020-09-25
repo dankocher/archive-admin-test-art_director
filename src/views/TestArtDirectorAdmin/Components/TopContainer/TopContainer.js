@@ -1,6 +1,7 @@
 import "./TopContainer.scss";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useGetIsHaveMarks } from "../../helpers/customHooks";
 
 import {
   setTaskDescription as setStateTaskDescription,
@@ -11,10 +12,10 @@ import {
   setIsOneGradeForAllSubTasks,
 } from "../../../../redux/actions";
 
-import { useHistory } from "react-router-dom";
-
-import { taskTypeEnum, isWelcomeScreen } from "../../helpers/taskTypeEnum";
-import { getUrlId } from "../../helpers/workWithApi";
+import {
+  taskTypeEnum,
+  isWelcomeScreen,
+} from "../../helpers/taskTypes/taskTypeEnum";
 
 import Checkbox from "../Checkbox/Checkbox";
 import RadioButton from "../RadioButton/RadioButton";
@@ -23,25 +24,13 @@ import DropDown from "../DropDown/DropDown";
 const MAX_TASK_NAME_LENGTH = 240;
 const MAX_TASK_DESCRIPTION_LENGTH = 500;
 
-export const useTest = () => {
-  const taskType = useSelector((state) => state.task.type);
-
-  return () => {
-    const path = `\\${taskType}\\${getUrlId()}`;
-    debugger;
-    window.location.replace(path);
-  };
-};
-
 function TopContainer() {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const test = useTest();
 
   const [localTaskName, setLocalTaskName] = useState("");
   const [localTaskDescription, setLocalTaskDescription] = useState("");
 
-  const state = useSelector((state) => state);
+  const isHaveMarks = useGetIsHaveMarks();
   const taskName = useSelector((state) => state.task.name);
   const taskDescription = useSelector((state) => state.task.description);
   const taskType = useSelector((state) => state.task.type);
@@ -52,14 +41,6 @@ function TopContainer() {
   const isOneGradeForAllSubTasks = useSelector(
     (state) => state.task.isOneGradeForAllSubTasks
   );
-  useEffect(() => {
-    if (taskType !== "") {
-      console.log("IA USE EFFECT");
-      console.log(taskType);
-      const path = `\\${taskType}\\${getUrlId()}`;
-      // window.location.replace(path);
-    }
-  }, [taskType]);
 
   useEffect(() => {
     setLocalTaskName(taskName);
@@ -89,39 +70,12 @@ function TopContainer() {
     setLocalTaskDescription(text);
   };
 
-  const handleChangeStateTaskDescripton = (event) => {
+  const handleChangeStateTaskDescripton = () => {
     dispatch(setStateTaskDescription(localTaskDescription));
   };
 
-  const promiseDispatch = (item, dispatch) =>
-    new Promise((resolve, reject) => {
-      dispatch();
-      resolve();
-    });
-
-  const asyncDispatchSetTaskType = async (taskType) => {
-    console.log("DO TOGO KA IETO STALO MEINSTIMOM");
-
-    console.log(state);
-    await dispatch(setTaskType(taskType));
-    return { isOk: true };
-  };
-
   const handleChangeType = (event) => {
-    const taskType = event.target.value;
-    // dispatch(setTaskType(taskType));
-    // dispatch(setTaskType(taskType)).then(() => {
-    //   console.log(path);
-    // asyncDispatchSetTaskType(taskType).then(() => {
-    //   console.log("POSLE TOGO KA IETO STALO MEINSTIMOM");
-    //   test();
-    // });
-    // window.location.replace(path)
-
-    // console.log(history.location.pathname);
-    // history
-    //history.replace()
-    //  window.location.replace(path);
+    dispatch(setTaskType(event.target.value));
   };
 
   const handleChangeStateTaskIsTimeConsidered = () => {
@@ -139,14 +93,21 @@ function TopContainer() {
   return (
     <>
       <div className="header--topContainer">
-        {isWelcomeScreen ? null : (
-          <span className="countNumber-font countNumber-position--topContainer">
-            10
-          </span>
-        )}
+        <div className="grid-header--topContainer">
+          <div>
+            {isWelcomeScreen(taskType) ? null : (
+              <span className="countNumber-font countNumber-position--topContainer">
+                10
+              </span>
+            )}
 
-        <h1 className="bold-big-font">{localTaskName}</h1>
-        <p className="small-grey-font">{taskTypeEnum[taskType]}</p>
+            <h1 className="bold-big-font">{localTaskName}</h1>
+            <p className="small-grey-font">{taskTypeEnum[taskType]}</p>
+          </div>
+          {isHaveMarks === undefined || isHaveMarks ? null : (
+            <span className="small-grey-font">Не все оценки расставлены</span>
+          )}
+        </div>
       </div>
       <div className="main-container--topContainer">
         <div className="leftSide-topContainer">
@@ -170,17 +131,6 @@ function TopContainer() {
             value={taskType}
             taskTypeEnum={taskTypeEnum}
           />
-          {/* <select
-            className="input"
-            onChange={handleChangeType}
-            value={taskType}
-          >
-            {Object.keys(taskTypeEnum).map((key) => (
-              <option key={key} value={key}>
-                {taskTypeEnum[key]}
-              </option>
-            ))}
-          </select> */}
           <div className="rightSide-checkboxes--topContainer">
             <Checkbox
               id={"isTimeConsidered"}
@@ -188,7 +138,7 @@ function TopContainer() {
               value={isTimeConsidered}
               onChange={() => handleChangeStateTaskIsTimeConsidered()}
             />
-            {taskType === Object.keys(taskTypeEnum)[0] ? null : (
+            {isWelcomeScreen(taskType) ? null : (
               <>
                 <Checkbox
                   id={"isTimeDisplayForUser"}
