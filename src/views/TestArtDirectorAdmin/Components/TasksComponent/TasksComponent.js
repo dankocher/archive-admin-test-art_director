@@ -4,24 +4,23 @@ import "./TasksComponent.scss";
 
 import { useHistory } from "react-router-dom";
 
-import { isWelcomeScreen } from "../../utils/taskTypeEnum";
+import { isWelcomeScreen } from "../../helpers/taskTypes/taskTypeEnum";
 import {
   getTasksFromServer,
   getNewTaskFromServer,
   deleteTaskById,
   saveTaskListHeader,
-} from "../../utils/workWithApi";
+} from "../../helpers/workWithApi";
 
 import Task from "../Task/Task";
-
-const classNames = require("classnames");
+import addIcon from "../../utils/icons/add-icon";
+import editIcon from "../../utils/icons/edit-icon";
 
 const MAX_HEADER_LENGTH = 240;
 
 function TasksComponent() {
   const history = useHistory();
 
-  const [addBtnHovered, setAddBtnHovered] = useState(false);
   const [header, setHeader] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [isEditedHeader, setIsEditedHeader] = useState(false);
@@ -36,18 +35,13 @@ function TasksComponent() {
     });
   }, []);
 
-  const addIconClasses = classNames({
-    "add-task-icon-inactive": !addBtnHovered,
-    "add-task-icon-active": addBtnHovered,
-  });
-
   const SetTaskNumber = (value) => {
     taskNumber = value;
   };
 
   const handleOpenNewTask = () => {
     getNewTaskFromServer().then((res) => {
-      const path = `/welcome-screen/${res._id}`;
+      const path = `/${res._id}`;
       history.push(path);
     });
   };
@@ -94,7 +88,7 @@ function TasksComponent() {
               onClick={handlerEditButton}
               className="hidden-button edit-button-tasks"
             >
-              <i className="edit-icon"></i>
+              <i>{editIcon}</i>
             </button>
           </React.Fragment>
         )}
@@ -110,23 +104,20 @@ function TasksComponent() {
               <Task
                 key={key}
                 number={taskNumber}
-                index={element._id}
+                id={element._id}
+                index={key}
                 task={element}
                 handlerDeleteSelectedTask={handlerDeleteSelectedTask}
               />
             );
           })}
         </div>
-        <div
-          onMouseEnter={() => setAddBtnHovered(true)}
-          onMouseLeave={() => setAddBtnHovered(false)}
-          className="add-task--tasks"
-        >
+        <div className="add-task--tasks">
           <button
             onClick={handleOpenNewTask}
             className="hidden-button addTusk-button--tasks"
           >
-            <i className={addIconClasses}></i>
+            <i>{addIcon}</i>
           </button>
         </div>
       </div>

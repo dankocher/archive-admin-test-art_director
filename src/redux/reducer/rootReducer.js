@@ -1,3 +1,9 @@
+import update from "react-addons-update";
+import {
+  WELCOME_SCREEN,
+  ILLUSTRATION_RADIO_BUTTONS,
+} from "../../views/TestArtDirectorAdmin/helpers/taskTypes/taskTypes";
+
 import {
   SET_TASK_STATE,
   SET_TASK_NAME,
@@ -6,7 +12,24 @@ import {
   SET_IS_TIME_CONSIDERED,
   SET_IS_TIME_DISPLAY_FOR_USER,
   SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
+  ADD_RADIO_BUTTON_TASK,
+  ADD_RADIO_BUTTON_OPTION,
+  SET_RADIO_BUTTON_TASK_QUESTION,
+  SET_RADIO_BUTTON_TASK_OPTION,
+  SET_RADIO_BUTTON_TASK_OPTION_MARK,
+  REMOVE_RADIO_BUTTON_TASK_OPTION,
+  REMOVE_RADIO_BUTTON_TASK,
+  SET_IS_HAVE_MARKS,
+  SET_INITIAL_STATE,
 } from "../actions";
+
+const radioButtonOption = { option: "", mark: "" };
+
+const radioButtonTask = {
+  question: "",
+  isHaveMarks: true,
+  radioButtonOptionList: [radioButtonOption],
+};
 
 const initialState = {
   isUpdatedLocally: false,
@@ -22,17 +45,33 @@ const initialState = {
     position: "",
     date: "",
     updated: "",
+    data: {
+      //radioButtonTaskList: [radioButtonTask],
+    },
   },
+};
+
+const setDataOfType = (type) => {
+  switch (type) {
+    case WELCOME_SCREEN:
+      return {};
+    case ILLUSTRATION_RADIO_BUTTONS:
+      return { radioButtonTaskList: [radioButtonTask] };
+    default:
+      return {};
+  }
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case SET_TASK_STATE:
       return {
-        ...state,
+        ...initialState,
         isUpdatedLocally: false,
-        task: { ...state.task, ...action.payload },
+        task: { ...initialState.task, ...action.payload },
       };
+    case SET_INITIAL_STATE:
+      return { ...state, ...initialState };
     case SET_TASK_NAME:
       return {
         ...state,
@@ -49,11 +88,25 @@ function rootReducer(state = initialState, action) {
         task: { ...state.task, description: action.payload },
       };
     case SET_TASK_TYPE:
-      return {
-        ...state,
-        isUpdatedLocally: true,
-        task: { ...state.task, type: action.payload },
-      };
+      const data = setDataOfType(action.payload);
+      // const _state = { ...state };
+      return update(state, {
+        task: {
+          type: {
+            $set: action.payload,
+          },
+          data: {
+            $set: data,
+          },
+        },
+      });
+    // return {
+    //   ...state,
+    //   isUpdatedLocally: true,
+    //   task: { ...state.task, type: action.payload, data:{
+    //     {$set: }
+    //   } },
+    // };
     case SET_IS_TIME_CONSIDERED:
       return {
         ...state,
@@ -78,6 +131,105 @@ function rootReducer(state = initialState, action) {
           isOneGradeForAllSubTasks: !state.task.isOneGradeForAllSubTasks,
         },
       };
+    case ADD_RADIO_BUTTON_TASK:
+      return update(state, {
+        task: {
+          data: {
+            radioButtonTaskList: { $push: [radioButtonTask] },
+          },
+        },
+      });
+    case ADD_RADIO_BUTTON_OPTION:
+      return update(state, {
+        task: {
+          data: {
+            radioButtonTaskList: {
+              [action.payload]: {
+                radioButtonOptionList: { $push: [radioButtonOption] },
+              },
+            },
+          },
+        },
+      });
+    case SET_RADIO_BUTTON_TASK_QUESTION:
+      return update(state, {
+        task: {
+          data: {
+            radioButtonTaskList: {
+              [action.index]: { question: { $set: action.payload } },
+            },
+          },
+        },
+      });
+
+    case SET_RADIO_BUTTON_TASK_OPTION:
+      return update(state, {
+        task: {
+          data: {
+            radioButtonTaskList: {
+              [action.radioButtonTaskIndex]: {
+                radioButtonOptionList: {
+                  [action.radioButtonTaskOptionIndex]: {
+                    option: { $set: action.payload },
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
+    case SET_RADIO_BUTTON_TASK_OPTION_MARK:
+      return update(state, {
+        task: {
+          data: {
+            radioButtonTaskList: {
+              [action.radioButtonTaskIndex]: {
+                radioButtonOptionList: {
+                  [action.radioButtonTaskOptionIndex]: {
+                    mark: { $set: action.payload },
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
+    case REMOVE_RADIO_BUTTON_TASK_OPTION:
+      return update(state, {
+        task: {
+          data: {
+            radioButtonTaskList: {
+              [action.radioButtonTaskIndex]: {
+                radioButtonOptionList: {
+                  $splice: [[action.radioButtonTaskOptionIndex, 1]],
+                },
+              },
+            },
+          },
+        },
+      });
+    case REMOVE_RADIO_BUTTON_TASK:
+      return update(state, {
+        task: {
+          data: {
+            radioButtonTaskList: {
+              $splice: [[action.radioButtonTaskIndex, 1]],
+            },
+          },
+        },
+      });
+    case SET_IS_HAVE_MARKS:
+      return update(state, {
+        task: {
+          data: {
+            radioButtonTaskList: {
+              [action.radioButtonTaskIndex]: {
+                isHaveMarks: { $set: action.payload },
+              },
+            },
+          },
+        },
+      });
     default:
       return state;
   }

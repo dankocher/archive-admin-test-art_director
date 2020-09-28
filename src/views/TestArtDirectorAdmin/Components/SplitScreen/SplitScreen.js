@@ -1,29 +1,29 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setTaskState } from "../../../../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
 
-import {
-  getTaskFromServer,
-  handlerSaveTaskToDB,
-} from "../../utils/workWithApi";
+import { handlerSaveTaskToDB } from "../../helpers/workWithApi";
+
+import { setInitialState } from "../../../../redux/actions";
 
 import TopContainer from "../TopContainer/TopContainer";
+import RadioButtonTaskList from "./RadioButtonTaskList/RadioButtonTaskList";
 
 import "./SplitScreen.scss";
 
 function SplitScreen() {
-  const dispatch = useDispatch();
   const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    return () => handlerSaveTaskToDB(state);
+    return () => {
+      if (state.task._id === "") return;
+      console.log("ia STATE sohranilsia v SS");
+
+      console.log(state);
+      handlerSaveTaskToDB(state);
+      // dispatch(setInitialState());
+    };
   }, [state]);
-
-  useEffect(() => {
-    getTaskFromServer().then((res) => {
-      dispatch(setTaskState(res));
-    });
-  }, []);
 
   return (
     <div className="wrapper-inline-block">
@@ -31,7 +31,9 @@ function SplitScreen() {
       <div className="body--welcomeScreen">
         <h2 className="bold-big-font">Контент</h2>
         <div className="body-container--splitScreen">
-          <div className="leftSide-bodyContainer--splitScreen"></div>
+          <div className="leftSide-bodyContainer--splitScreen">
+            <RadioButtonTaskList />
+          </div>
           <div className="rightSide-bodyContainer--splitScreen"></div>
         </div>
       </div>

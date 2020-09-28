@@ -1,0 +1,12 @@
+.trash-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.4rem;
+  width: 2.4rem;
+  &:hover {
+    path {
+      fill: #6b6b6c;
+    }
+  }
+}

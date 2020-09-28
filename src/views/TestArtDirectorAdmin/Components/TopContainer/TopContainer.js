@@ -1,6 +1,7 @@
+import "./TopContainer.scss";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./TopContainer.scss";
+import { useGetIsHaveMarks } from "../../helpers/customHooks";
 
 import {
   setTaskDescription as setStateTaskDescription,
@@ -11,10 +12,14 @@ import {
   setIsOneGradeForAllSubTasks,
 } from "../../../../redux/actions";
 
-import { taskTypeEnum, isWelcomeScreen } from "../../utils/taskTypeEnum";
+import {
+  taskTypeEnum,
+  isWelcomeScreen,
+} from "../../helpers/taskTypes/taskTypeEnum";
 
 import Checkbox from "../Checkbox/Checkbox";
 import RadioButton from "../RadioButton/RadioButton";
+import DropDown from "../DropDown/DropDown";
 
 const MAX_TASK_NAME_LENGTH = 240;
 const MAX_TASK_DESCRIPTION_LENGTH = 500;
@@ -25,6 +30,7 @@ function TopContainer() {
   const [localTaskName, setLocalTaskName] = useState("");
   const [localTaskDescription, setLocalTaskDescription] = useState("");
 
+  const isHaveMarks = useGetIsHaveMarks();
   const taskName = useSelector((state) => state.task.name);
   const taskDescription = useSelector((state) => state.task.description);
   const taskType = useSelector((state) => state.task.type);
@@ -64,7 +70,7 @@ function TopContainer() {
     setLocalTaskDescription(text);
   };
 
-  const handleChangeStateTaskDescripton = (event) => {
+  const handleChangeStateTaskDescripton = () => {
     dispatch(setStateTaskDescription(localTaskDescription));
   };
 
@@ -87,14 +93,21 @@ function TopContainer() {
   return (
     <>
       <div className="header--topContainer">
-        {isWelcomeScreen ? null : (
-          <span className="countNumber-font countNumber-position--topContainer">
-            10
-          </span>
-        )}
+        <div className="grid-header--topContainer">
+          <div>
+            {isWelcomeScreen(taskType) ? null : (
+              <span className="countNumber-font countNumber-position--topContainer">
+                10
+              </span>
+            )}
 
-        <h1 className="bold-big-font">{localTaskName}</h1>
-        <p className="small-grey-font">{taskTypeEnum[taskType]}</p>
+            <h1 className="bold-big-font">{localTaskName}</h1>
+            <p className="small-grey-font">{taskTypeEnum[taskType]}</p>
+          </div>
+          {isHaveMarks === undefined || isHaveMarks ? null : (
+            <span className="small-grey-font">Не все оценки расставлены</span>
+          )}
+        </div>
       </div>
       <div className="main-container--topContainer">
         <div className="leftSide-topContainer">
@@ -113,17 +126,11 @@ function TopContainer() {
           />
         </div>
         <div className="rightSide-topContainer">
-          <select
-            className="input"
+          <DropDown
             onChange={handleChangeType}
             value={taskType}
-          >
-            {Object.keys(taskTypeEnum).map((key) => (
-              <option key={key} value={key}>
-                {taskTypeEnum[key]}
-              </option>
-            ))}
-          </select>
+            taskTypeEnum={taskTypeEnum}
+          />
           <div className="rightSide-checkboxes--topContainer">
             <Checkbox
               id={"isTimeConsidered"}
@@ -131,7 +138,7 @@ function TopContainer() {
               value={isTimeConsidered}
               onChange={() => handleChangeStateTaskIsTimeConsidered()}
             />
-            {taskType === Object.keys(taskTypeEnum)[0] ? null : (
+            {isWelcomeScreen(taskType) ? null : (
               <>
                 <Checkbox
                   id={"isTimeDisplayForUser"}

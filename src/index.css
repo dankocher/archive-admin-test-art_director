@@ -67,6 +67,12 @@ input[type="file"] {
   display: none;
 }
 
+textarea {
+  width: 100%;
+  resize: none;
+  vertical-align: top;
+}
+
 .bold-big-font {
   font-family: Roboto-Medium, sans-serif;
   font-weight: 500;
@@ -82,4 +88,8 @@ input[type="file"] {
   font-size: 14px;
   line-height: 16px;
   color: #323232;
+}
+
+.border-error {
+  border: 0.1rem solid #eb5757;
 }
