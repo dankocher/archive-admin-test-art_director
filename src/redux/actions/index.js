@@ -1,3 +1,5 @@
+export const SET_TEST_PROPS = "SET_TEST_PROPS";
+export const SET_TEST_NAME = "SET_TEST_NAME";
 export const SET_INITIAL_STATE = "SET_INITIAL_STATE";
 export const SET_TASK_STATE = "SET_TASK_STATE";
 export const SET_TASK_NAME = "SET_TASK_NAME";
@@ -20,6 +22,16 @@ export const SET_IS_HAVE_MARKS = "SET_IS_HAVE_MARKS";
 
 export const setInitialState = () => ({
   type: SET_INITIAL_STATE,
+});
+
+export const setTestProps = (_id, name) => ({
+  type: SET_TEST_PROPS,
+  payload: { _id, name },
+});
+
+export const setTestName = (name) => ({
+  type: SET_TEST_NAME,
+  payload: name,
 });
 
 export const setTaskName = (name) => ({
@@ -75,38 +87,42 @@ export const setRadioButtonTaskOption = (
   radioButtonTaskOptionIndex
 ) => ({
   type: SET_RADIO_BUTTON_TASK_OPTION,
-  radioButtonTaskIndex: radioButtonTaskIndex,
-  radioButtonTaskOptionIndex: radioButtonTaskOptionIndex,
+  radioButtonTaskIndex,
+  radioButtonTaskOptionIndex,
   payload: option,
 });
 
 export const setRadioButtonTaskOptionMark = (
   mark,
   radioButtonTaskIndex,
-  radioButtonTaskOptionIndex
+  radioButtonTaskOptionIndex,
+  isHaveMarks
 ) => ({
   type: SET_RADIO_BUTTON_TASK_OPTION_MARK,
-  radioButtonTaskIndex: radioButtonTaskIndex,
-  radioButtonTaskOptionIndex: radioButtonTaskOptionIndex,
+  radioButtonTaskIndex,
+  radioButtonTaskOptionIndex,
   payload: mark,
+  isHaveMarks,
 });
 
 export const removeRadioButtonTaskOption = (
   radioButtonTaskIndex,
-  radioButtonTaskOptionIndex
+  radioButtonTaskOptionIndex,
+  isHaveMarks
 ) => ({
   type: REMOVE_RADIO_BUTTON_TASK_OPTION,
-  radioButtonTaskIndex: radioButtonTaskIndex,
-  radioButtonTaskOptionIndex: radioButtonTaskOptionIndex,
+  radioButtonTaskIndex,
+  radioButtonTaskOptionIndex,
+  isHaveMarks,
 });
 
 export const removeRadioButtonTask = (radioButtonTaskIndex) => ({
   type: REMOVE_RADIO_BUTTON_TASK,
-  radioButtonTaskIndex: radioButtonTaskIndex,
+  radioButtonTaskIndex,
 });
 
-export const setIsHaveMarks = (radioButtonTaskIndex, isHaveMarks) => ({
-  type: SET_IS_HAVE_MARKS,
-  radioButtonTaskIndex: radioButtonTaskIndex,
-  payload: isHaveMarks,
-});
+// export const setIsHaveMarks = (radioButtonTaskIndex, isHaveMarks) => ({
+//   type: SET_IS_HAVE_MARKS,
+//   radioButtonTaskIndex,
+//   payload: isHaveMarks,
+// });

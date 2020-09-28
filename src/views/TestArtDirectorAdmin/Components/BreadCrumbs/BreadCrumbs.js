@@ -16,20 +16,21 @@ import "./BreadCrumbs.scss";
 function BreadCrumbs() {
   const routLocation = useLocation();
   const [task, setTask] = useState([]);
+  const testName = useSelector((state) => state.name);
   const taskName = useSelector((state) => state.task.name);
 
-  const getTasks = async () => {
-    const res = await ajax(api.td_get_tasks, {});
-    if (!res.ok) {
-      console.log("Bad response");
-      return;
-    }
-    setTask(res);
-  };
+  // const getTasks = async () => {
+  //   const res = await ajax(api.td_get_tasks, {});
+  //   if (!res.ok) {
+  //     console.log("Bad response");
+  //     return;
+  //   }
+  //   setTask(res);
+  // };
 
-  useEffect(() => {
-    getTasks();
-  }, [routLocation]);
+  // useEffect(() => {
+  //   getTasks();
+  // }, [routLocation]);
 
   return (
     <>
@@ -42,11 +43,11 @@ function BreadCrumbs() {
               Тесты
             </Link>
             {routLocation.pathname === "/" ? (
-              <Typography color="textPrimary">{task.ttask?.name}</Typography>
+              <Typography color="textPrimary">{testName}</Typography>
             ) : (
               [
                 <RouterLink to={"/"} color="textPrimary">
-                  {task.ttask?.name}
+                  {testName}
                 </RouterLink>,
                 <Typography color="textPrimary">{taskName}</Typography>,
               ]

@@ -7,6 +7,8 @@ import {
   setIsHaveMarks,
 } from "../../../../../../../redux/actions";
 
+import { getIsHaveMarks } from "../../../../../helpers/getIsHaveMarks";
+
 import RadioButtonOption from "./RadioButtonOption/RadioButtonOption";
 
 function RadioButtonOptionList({ radioButtonOptionList, index }) {
@@ -15,26 +17,17 @@ function RadioButtonOptionList({ radioButtonOptionList, index }) {
   const handlerAddOptionBtn = () => {
     dispatch(addRadioButtonOption(index));
   };
-
+  // , getIsHaveMarks(radioButtonOptionList)
   const getIsHaveMark = (optionIndex) => {
     if (radioButtonOptionList.length === 1) return true;
     return radioButtonOptionList[optionIndex].mark !== "";
   };
 
-  const getIsHaveMarks = () => {
-    let isHaveMarks = true;
-    if (radioButtonOptionList.length === 1) return isHaveMarks;
-    radioButtonOptionList.forEach((element) => {
-      if (element.mark === "") isHaveMarks = false;
-    });
-    return isHaveMarks;
-  };
-
-  useEffect(() => {
-    if (radioButtonOptionList !== undefined) {
-      dispatch(setIsHaveMarks(index, getIsHaveMarks()));
-    }
-  }, [radioButtonOptionList]);
+  // useEffect(() => {
+  //   if (radioButtonOptionList !== undefined) {
+  //     dispatch(setIsHaveMarks(index, getIsHaveMarks()));
+  //   }
+  // }, [radioButtonOptionList]);
 
   return (
     <div className="container--RadioButtonAnswers">
@@ -51,6 +44,7 @@ function RadioButtonOptionList({ radioButtonOptionList, index }) {
             isHaveMark={isHaveMark}
             optionListLength={radioButtonOptionList.length}
             addNewOption={handlerAddOptionBtn}
+            radioButtonOptionList={radioButtonOptionList}
           />
         );
       })}

@@ -8,19 +8,6 @@ import TopContainer from "../TopContainer/TopContainer";
 import DragAndDropZone from "../DragAndDropZone/DragAndDropZone";
 
 function WelcomeScreen() {
-  const state = useSelector((state) => state);
-
-  useEffect(() => {
-    return () => {
-      if (state.task._id === "") return;
-
-      console.log("ia STATE sohranilsia v WP");
-      console.log(state);
-
-      handlerSaveTaskToDB(state);
-    };
-  }, [state]);
-
   return (
     <div className="wrapper-inline-block">
       <TopContainer />

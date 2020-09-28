@@ -14,16 +14,16 @@ function SplitScreen() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    return () => {
-      if (state.task._id === "") return;
-      console.log("ia STATE sohranilsia v SS");
+  // useEffect(() => {
+  //   return () => {
+  //     if (state.task._id === "") return;
+  //     console.log("ia STATE sohranilsia v SS");
 
-      console.log(state);
-      handlerSaveTaskToDB(state);
-      // dispatch(setInitialState());
-    };
-  }, [state]);
+  //     console.log(state);
+  //     handlerSaveTaskToDB({ task: { ...state.task } });
+  //     // dispatch(setInitialState());
+  //   };
+  // }, [state]);
 
   return (
     <div className="wrapper-inline-block">

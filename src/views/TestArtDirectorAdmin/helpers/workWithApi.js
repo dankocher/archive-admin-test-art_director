@@ -1,5 +1,6 @@
 import ajax from "../../../utils/ajax";
 import { api } from "../../../constants/api";
+import { WELCOME_SCREEN } from "../helpers/taskTypes/taskTypes";
 
 export const getUrlId = () => {
   const urlPath = window.location.pathname.split("/");
@@ -12,8 +13,8 @@ export const getNewTaskId = () => {
   });
 };
 
-export const getTasksFromServer = async () => {
-  const res = await ajax(api.td_get_tasks, {});
+export const getTasksFromServer = async (_id) => {
+  const res = await ajax(api.td_get_tasks, { tt_id: _id });
   if (!res.ok) {
     console.log("Bad response");
     return;
@@ -21,9 +22,10 @@ export const getTasksFromServer = async () => {
   return res;
 };
 
-export const getTaskFromServer = async () => {
+export const getTaskFromServer = async (testId) => {
   const res = await ajax(api.td_get_task, {
     _id: getUrlId(),
+    tt_id: testId,
   });
   if (!res.ok) {
     console.log("Bad response");
@@ -32,8 +34,14 @@ export const getTaskFromServer = async () => {
   return res.task;
 };
 
-export const getNewTaskFromServer = async () => {
-  const res = await ajax(api.td_save_task, {});
+export const getNewTaskFromServer = async (
+  tt_id,
+  task_number,
+  type = WELCOME_SCREEN
+) => {
+  const res = await ajax(api.td_save_task, {
+    task: { tt_id, task_number, type },
+  });
   if (!res.ok) {
     console.log("Bad response");
     return;
@@ -41,20 +49,23 @@ export const getNewTaskFromServer = async () => {
   return res.task;
 };
 
-export const deleteTaskById = async (id) => {
+export const deleteTaskById = async (id, testId) => {
   const res = await ajax(api.td_delete_task, {
     _id: id,
+    tt_id: testId,
   });
   if (!res.ok) {
     console.log("Bad response");
     return;
   }
+  console.log(res);
   return res;
 };
 
-export const saveTaskListHeader = async (name) => {
+export const saveTaskListHeader = async (_id, name) => {
   const res = await ajax(api.td_tsave, {
-    name: name,
+    _id,
+    name,
   });
   if (!res.ok) {
     console.log("Bad response");

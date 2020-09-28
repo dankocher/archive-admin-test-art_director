@@ -7,6 +7,8 @@ import {
   removeRadioButtonTaskOption,
 } from "../../../../../../../../redux/actions";
 
+import { getIsHaveMarks } from "../../../../../../helpers/getIsHaveMarks";
+
 import TextArea from "../../../../../TextArea/TextArea";
 import DeleteButton from "../../../../../DeleteButton/DeleteButton";
 
@@ -18,6 +20,7 @@ function RadioButtonOption({
   isHaveMark,
   optionListLength,
   addNewOption,
+  radioButtonOptionList,
 }) {
   const dispatch = useDispatch();
   const [isHoveredOption, setIsHoveredOption] = useState(false);
@@ -48,11 +51,17 @@ function RadioButtonOption({
   };
 
   const handlerOnBlureMark = () => {
+    const isHaveMarks =
+      answerScore !== "" && getIsHaveMarks(radioButtonOptionList, optionIndex);
+
+    console.log(isHaveMarks);
+
     dispatch(
       setRadioButtonTaskOptionMark(
         answerScore,
         radioButtonTaskIndex,
-        optionIndex
+        optionIndex,
+        isHaveMarks
       )
     );
   };
@@ -61,7 +70,17 @@ function RadioButtonOption({
     if (optionListLength === 1) {
       addNewOption();
     }
-    dispatch(removeRadioButtonTaskOption(radioButtonTaskIndex, optionIndex));
+    const isHaveMarks =
+      optionListLength === 2
+        ? true
+        : getIsHaveMarks(radioButtonOptionList, optionIndex);
+    dispatch(
+      removeRadioButtonTaskOption(
+        radioButtonTaskIndex,
+        optionIndex,
+        isHaveMarks
+      )
+    );
   };
 
   return (

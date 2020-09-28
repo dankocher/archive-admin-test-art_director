@@ -5,6 +5,8 @@ import {
 } from "../../views/TestArtDirectorAdmin/helpers/taskTypes/taskTypes";
 
 import {
+  SET_TEST_PROPS,
+  SET_TEST_NAME,
   SET_TASK_STATE,
   SET_TASK_NAME,
   SET_TASK_DESCRIPTION,
@@ -32,9 +34,12 @@ const radioButtonTask = {
 };
 
 const initialState = {
+  _id: "",
+  name: "",
   isUpdatedLocally: false,
   task: {
     _id: "",
+    tt_id: "",
     name: "",
     description: "",
     type: "",
@@ -64,14 +69,24 @@ const setDataOfType = (type) => {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_TEST_PROPS:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    case SET_TEST_NAME:
+      return {
+        ...state,
+        name: action.payload,
+      };
     case SET_TASK_STATE:
       return {
-        ...initialState,
+        ...state,
         isUpdatedLocally: false,
         task: { ...initialState.task, ...action.payload },
       };
     case SET_INITIAL_STATE:
-      return { ...state, ...initialState };
+      return { ...state, task: { ...initialState.task } };
     case SET_TASK_NAME:
       return {
         ...state,
@@ -89,7 +104,6 @@ function rootReducer(state = initialState, action) {
       };
     case SET_TASK_TYPE:
       const data = setDataOfType(action.payload);
-      // const _state = { ...state };
       return update(state, {
         task: {
           type: {
@@ -100,13 +114,6 @@ function rootReducer(state = initialState, action) {
           },
         },
       });
-    // return {
-    //   ...state,
-    //   isUpdatedLocally: true,
-    //   task: { ...state.task, type: action.payload, data:{
-    //     {$set: }
-    //   } },
-    // };
     case SET_IS_TIME_CONSIDERED:
       return {
         ...state,
@@ -145,6 +152,7 @@ function rootReducer(state = initialState, action) {
           data: {
             radioButtonTaskList: {
               [action.payload]: {
+                isHaveMarks: { $set: false },
                 radioButtonOptionList: { $push: [radioButtonOption] },
               },
             },
@@ -184,6 +192,7 @@ function rootReducer(state = initialState, action) {
           data: {
             radioButtonTaskList: {
               [action.radioButtonTaskIndex]: {
+                isHaveMarks: { $set: action.isHaveMarks },
                 radioButtonOptionList: {
                   [action.radioButtonTaskOptionIndex]: {
                     mark: { $set: action.payload },
@@ -200,6 +209,7 @@ function rootReducer(state = initialState, action) {
           data: {
             radioButtonTaskList: {
               [action.radioButtonTaskIndex]: {
+                isHaveMarks: { $set: action.isHaveMarks },
                 radioButtonOptionList: {
                   $splice: [[action.radioButtonTaskOptionIndex, 1]],
                 },
@@ -218,18 +228,18 @@ function rootReducer(state = initialState, action) {
           },
         },
       });
-    case SET_IS_HAVE_MARKS:
-      return update(state, {
-        task: {
-          data: {
-            radioButtonTaskList: {
-              [action.radioButtonTaskIndex]: {
-                isHaveMarks: { $set: action.payload },
-              },
-            },
-          },
-        },
-      });
+    // case SET_IS_HAVE_MARKS:
+    //   return update(state, {
+    //     task: {
+    //       data: {
+    //         radioButtonTaskList: {
+    //           [action.radioButtonTaskIndex]: {
+    //             isHaveMarks: { $set: action.payload },
+    //           },
+    //         },
+    //       },
+    //     },
+    //   });
     default:
       return state;
   }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./TasksComponent.scss";
 
@@ -12,25 +13,45 @@ import {
   saveTaskListHeader,
 } from "../../helpers/workWithApi";
 
+import { setTestProps, setTestName } from "../../../../redux/actions";
+
 import Task from "../Task/Task";
 import addIcon from "../../utils/icons/add-icon";
 import editIcon from "../../utils/icons/edit-icon";
 
+const _ID = "5f5f6162de1af368a21e299a";
 const MAX_HEADER_LENGTH = 240;
 
 function TasksComponent() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
+  const testId = useSelector((state) => state._id);
   const [header, setHeader] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [isEditedHeader, setIsEditedHeader] = useState(false);
+
+  const getNewTaskNumber = () => {
+    console.log("taskList");
+    console.log(taskList);
+    let count = 0;
+    if (taskList.length === 0) return 1;
+    taskList.forEach((index) => {
+      if (isWelcomeScreen(index.type)) return;
+      count++;
+    });
+    return count + 1;
+  };
   //const [taskNumber, setTaskNumber] = useState(0);???
   let taskNumber = 0;
 
   useEffect(() => {
-    getTasksFromServer().then((res) => {
-      setTaskList(res.tasks);
+    getTasksFromServer(_ID).then((res) => {
+      dispatch(setTestProps(res.ttask._id, res.ttask.name));
       setHeader(res.ttask.name);
+      setTaskList(res.tasks);
+
+      console.log("LIST");
       console.log(res);
     });
   }, []);
@@ -40,17 +61,18 @@ function TasksComponent() {
   };
 
   const handleOpenNewTask = () => {
-    getNewTaskFromServer().then((res) => {
+    const taskNumber = getNewTaskNumber();
+    console.log(taskNumber);
+    console.log(testId);
+    getNewTaskFromServer(testId, taskNumber).then((res) => {
       const path = `/${res._id}`;
       history.push(path);
     });
   };
 
   const handlerDeleteSelectedTask = (index) => {
-    deleteTaskById(index).then(() => {
-      getTasksFromServer().then((res) => {
-        setTaskList(res.tasks);
-      });
+    deleteTaskById(index, testId).then((res) => {
+      setTaskList(res.tasks);
     });
   };
 
@@ -59,7 +81,8 @@ function TasksComponent() {
   };
 
   const handlerSaveHeader = () => {
-    saveTaskListHeader(header);
+    dispatch(setTestName(header));
+    saveTaskListHeader(testId, header);
     handlerEditButton();
   };
 
