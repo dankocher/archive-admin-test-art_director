@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setTaskState, setInitialState } from "../../../../redux/actions";
+import {
+  setTaskState,
+  setInitialState,
+  setTaskNumber,
+} from "../../../../redux/actions";
 import {
   WELCOME_SCREEN,
   ILLUSTRATION_RADIO_BUTTONS,
@@ -28,7 +32,6 @@ const getPage = (taskType) => {
 
 function Loader() {
   const dispatch = useDispatch();
-  // const [firstLoad, setFirstLoad] = useState(false);
 
   const task = useSelector((state) => state.task);
   const taskType = useSelector((state) => state.task.type);
@@ -52,18 +55,13 @@ function Loader() {
   }, []);
 
   useEffect(() => {
-    // return () => {
-    // if (!firstLoad) {
-    //   setFirstLoad(true);
-    //   return;
-    // }
     if (task._id === "") return;
     console.log("ia STATE sohranilsia v LOADER");
-
-    // console.log(task);
-
-    handlerSaveTaskToDB({ task: { ...task } });
-    // };
+    handlerSaveTaskToDB({ task: { ...task } }).then((res) => {
+      console.log(res);
+      if (res.task.task_number === task.task_number) return;
+      dispatch(setTaskNumber(res.task.task_number));
+    });
   }, [task]);
 
   return <div className="wrapper-body--mainContainer">{getPage(taskType)}</div>;

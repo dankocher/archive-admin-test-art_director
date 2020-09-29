@@ -1,8 +1,5 @@
 import "./WelcomeScreen.scss";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-
-import { handlerSaveTaskToDB } from "../../helpers/workWithApi";
+import React from "react";
 
 import TopContainer from "../TopContainer/TopContainer";
 import DragAndDropZone from "../DragAndDropZone/DragAndDropZone";

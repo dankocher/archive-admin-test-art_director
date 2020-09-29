@@ -19,6 +19,7 @@ export const REMOVE_RADIO_BUTTON_TASK_OPTION =
   "REMOVE_RADIO_BUTTON_TASK_OPTION";
 export const REMOVE_RADIO_BUTTON_TASK = "REMOVE_RADIO_BUTTON_TASK";
 export const SET_IS_HAVE_MARKS = "SET_IS_HAVE_MARKS";
+export const SET_TASK_NUMBER = "SET_TASK_NUMBER";
 
 export const setInitialState = () => ({
   type: SET_INITIAL_STATE,
@@ -121,8 +122,7 @@ export const removeRadioButtonTask = (radioButtonTaskIndex) => ({
   radioButtonTaskIndex,
 });
 
-// export const setIsHaveMarks = (radioButtonTaskIndex, isHaveMarks) => ({
-//   type: SET_IS_HAVE_MARKS,
-//   radioButtonTaskIndex,
-//   payload: isHaveMarks,
-// });
+export const setTaskNumber = (task_number) => ({
+  type: SET_TASK_NUMBER,
+  payload: task_number,
+});

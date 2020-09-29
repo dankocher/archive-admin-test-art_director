@@ -21,8 +21,8 @@ import {
   SET_RADIO_BUTTON_TASK_OPTION_MARK,
   REMOVE_RADIO_BUTTON_TASK_OPTION,
   REMOVE_RADIO_BUTTON_TASK,
-  SET_IS_HAVE_MARKS,
   SET_INITIAL_STATE,
+  SET_TASK_NUMBER,
 } from "../actions";
 
 const radioButtonOption = { option: "", mark: "" };
@@ -228,18 +228,12 @@ function rootReducer(state = initialState, action) {
           },
         },
       });
-    // case SET_IS_HAVE_MARKS:
-    //   return update(state, {
-    //     task: {
-    //       data: {
-    //         radioButtonTaskList: {
-    //           [action.radioButtonTaskIndex]: {
-    //             isHaveMarks: { $set: action.payload },
-    //           },
-    //         },
-    //       },
-    //     },
-    //   });
+    case SET_TASK_NUMBER:
+      return update(state, {
+        task: {
+          task_number: { $set: action.payload },
+        },
+      });
     default:
       return state;
   }

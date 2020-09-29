@@ -1,9 +1,4 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
-import { handlerSaveTaskToDB } from "../../helpers/workWithApi";
-
-import { setInitialState } from "../../../../redux/actions";
+import React from "react";
 
 import TopContainer from "../TopContainer/TopContainer";
 import RadioButtonTaskList from "./RadioButtonTaskList/RadioButtonTaskList";
@@ -11,20 +6,6 @@ import RadioButtonTaskList from "./RadioButtonTaskList/RadioButtonTaskList";
 import "./SplitScreen.scss";
 
 function SplitScreen() {
-  const state = useSelector((state) => state);
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   return () => {
-  //     if (state.task._id === "") return;
-  //     console.log("ia STATE sohranilsia v SS");
-
-  //     console.log(state);
-  //     handlerSaveTaskToDB({ task: { ...state.task } });
-  //     // dispatch(setInitialState());
-  //   };
-  // }, [state]);
-
   return (
     <div className="wrapper-inline-block">
       <TopContainer />

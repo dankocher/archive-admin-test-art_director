@@ -1,13 +1,8 @@
 import "./RadioButtonOptionList.scss";
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 
-import {
-  addRadioButtonOption,
-  setIsHaveMarks,
-} from "../../../../../../../redux/actions";
-
-import { getIsHaveMarks } from "../../../../../helpers/getIsHaveMarks";
+import { addRadioButtonOption } from "../../../../../../../redux/actions";
 
 import RadioButtonOption from "./RadioButtonOption/RadioButtonOption";
 
@@ -17,17 +12,10 @@ function RadioButtonOptionList({ radioButtonOptionList, index }) {
   const handlerAddOptionBtn = () => {
     dispatch(addRadioButtonOption(index));
   };
-  // , getIsHaveMarks(radioButtonOptionList)
   const getIsHaveMark = (optionIndex) => {
     if (radioButtonOptionList.length === 1) return true;
     return radioButtonOptionList[optionIndex].mark !== "";
   };
-
-  // useEffect(() => {
-  //   if (radioButtonOptionList !== undefined) {
-  //     dispatch(setIsHaveMarks(index, getIsHaveMarks()));
-  //   }
-  // }, [radioButtonOptionList]);
 
   return (
     <div className="container--RadioButtonAnswers">

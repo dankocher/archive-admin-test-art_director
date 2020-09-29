@@ -31,6 +31,7 @@ function TopContainer() {
   const [localTaskDescription, setLocalTaskDescription] = useState("");
 
   const isHaveMarks = useGetIsHaveMarks();
+  const taskNumber = useSelector((state) => state.task.task_number);
   const taskName = useSelector((state) => state.task.name);
   const taskDescription = useSelector((state) => state.task.description);
   const taskType = useSelector((state) => state.task.type);
@@ -97,7 +98,7 @@ function TopContainer() {
           <div>
             {isWelcomeScreen(taskType) ? null : (
               <span className="countNumber-font countNumber-position--topContainer">
-                10
+                {taskNumber}
               </span>
             )}
 

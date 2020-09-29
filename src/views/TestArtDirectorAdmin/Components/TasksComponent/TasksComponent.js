@@ -27,13 +27,20 @@ function TasksComponent() {
   const dispatch = useDispatch();
 
   const testId = useSelector((state) => state._id);
+
   const [header, setHeader] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [isEditedHeader, setIsEditedHeader] = useState(false);
 
+  useEffect(() => {
+    getTasksFromServer(_ID).then((res) => {
+      dispatch(setTestProps(res.ttask._id, res.ttask.name));
+      setHeader(res.ttask.name);
+      setTaskList(res.tasks);
+    });
+  }, []);
+
   const getNewTaskNumber = () => {
-    console.log("taskList");
-    console.log(taskList);
     let count = 0;
     if (taskList.length === 0) return 1;
     taskList.forEach((index) => {
@@ -42,28 +49,9 @@ function TasksComponent() {
     });
     return count + 1;
   };
-  //const [taskNumber, setTaskNumber] = useState(0);???
-  let taskNumber = 0;
-
-  useEffect(() => {
-    getTasksFromServer(_ID).then((res) => {
-      dispatch(setTestProps(res.ttask._id, res.ttask.name));
-      setHeader(res.ttask.name);
-      setTaskList(res.tasks);
-
-      console.log("LIST");
-      console.log(res);
-    });
-  }, []);
-
-  const SetTaskNumber = (value) => {
-    taskNumber = value;
-  };
 
   const handleOpenNewTask = () => {
     const taskNumber = getNewTaskNumber();
-    console.log(taskNumber);
-    console.log(testId);
     getNewTaskFromServer(testId, taskNumber).then((res) => {
       const path = `/${res._id}`;
       history.push(path);
@@ -119,14 +107,10 @@ function TasksComponent() {
       <div className={"wrapper-shadow--tasks"}>
         <div className="taskList-border--tasks">
           {taskList.map((element, key) => {
-            if (!isWelcomeScreen(element.type)) {
-              SetTaskNumber(taskNumber + 1);
-            }
-
             return (
               <Task
                 key={key}
-                number={taskNumber}
+                number={element.task_number}
                 id={element._id}
                 index={key}
                 task={element}
