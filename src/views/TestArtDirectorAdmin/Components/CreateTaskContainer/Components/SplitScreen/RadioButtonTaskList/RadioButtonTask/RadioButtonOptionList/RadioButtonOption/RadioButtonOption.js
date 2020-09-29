@@ -5,12 +5,12 @@ import {
   setRadioButtonTaskOption,
   setRadioButtonTaskOptionMark,
   removeRadioButtonTaskOption,
-} from "../../../../../../../../redux/actions";
+} from "../../../../../../../../../../redux/actions";
 
-import { getIsHaveMarks } from "../../../../../../helpers/getIsHaveMarks";
+import { getIsHaveMarks } from "../../../../../../../../helpers/getIsHaveMarks";
 
-import TextArea from "../../../../../TextArea/TextArea";
-import DeleteButton from "../../../../../DeleteButton/DeleteButton";
+import TextArea from "../../../../../../../TextArea/TextArea";
+import DeleteButton from "../../../../../../../DeleteButton/DeleteButton";
 
 function RadioButtonOption({
   option,

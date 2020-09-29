@@ -1,18 +1,18 @@
 import "./Task.scss";
 import React, { useState } from "react";
 
-import { useGetIsHaveMarks } from "../../helpers/customHooks";
+import { useGetIsHaveMarks } from "../../../helpers/customHooks";
 
 import { Link } from "react-router-dom";
 
 import {
   taskTypeEnum,
   isWelcomeScreen,
-} from "../../helpers/taskTypes/taskTypeEnum";
+} from "../../../helpers/taskTypes/taskTypeEnum";
 
-import DeleteButton from "../DeleteButton/DeleteButton";
-import arrowIcon from "../../utils/icons/arrow-icon";
-import dotsIcon from "../../utils/icons/dots-icon";
+import DeleteButton from "../../DeleteButton/DeleteButton";
+import arrowIcon from "../../../utils/icons/arrow-icon";
+import dotsIcon from "../../../utils/icons/dots-icon";
 
 function Task({ task, id, index, number, ...props }) {
   const [isHoveredTask, setIsHoveredTask] = useState(false);

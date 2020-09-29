@@ -1,3 +1,5 @@
+import "./CreateTaskContainer.scss";
+
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,6 +11,7 @@ import {
 import {
   WELCOME_SCREEN,
   ILLUSTRATION_RADIO_BUTTONS,
+  QUSETION_ANSWER,
 } from "../../helpers/taskTypes/taskTypes";
 
 import {
@@ -16,8 +19,11 @@ import {
   handlerSaveTaskToDB,
 } from "../../helpers/workWithApi";
 
-import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
-import SplitScreen from "../SplitScreen/SplitScreen";
+import TopContainer from "./Containers/TopContainer/TopContainer";
+import BottomContainer from "./Containers/BottomContainer/BottomContainer";
+import WelcomeScreen from "./Components/WelcomeScreen/WelcomeScreen";
+import SplitScreen from "./Components/SplitScreen/SplitScreen";
+import QAList from "./Components/QAList/QAList";
 
 const getPage = (taskType) => {
   switch (taskType) {
@@ -25,12 +31,14 @@ const getPage = (taskType) => {
       return <WelcomeScreen />;
     case ILLUSTRATION_RADIO_BUTTONS:
       return <SplitScreen />;
+    case QUSETION_ANSWER:
+      return <QAList />;
     default:
       return <></>;
   }
 };
 
-function Loader() {
+function CreateTaskContainer() {
   const dispatch = useDispatch();
 
   const task = useSelector((state) => state.task);
@@ -38,11 +46,11 @@ function Loader() {
   const testId = useSelector((state) => state._id);
 
   useEffect(() => {
-    console.log("delau krasivo v LOADER");
+    // console.log("delau krasivo v LOADER");
 
     getTaskFromServer(testId).then((res) => {
-      console.log("фетчим/диспатчим таск");
-      console.log(res);
+      // console.log("фетчим/диспатчим таск");
+      // console.log(res);
       dispatch(setTaskState(res));
     });
   }, []);
@@ -57,14 +65,21 @@ function Loader() {
   useEffect(() => {
     if (task._id === "") return;
     console.log("ia STATE sohranilsia v LOADER");
+    // console.log(task);
     handlerSaveTaskToDB({ task: { ...task } }).then((res) => {
-      console.log(res);
       if (res.task.task_number === task.task_number) return;
       dispatch(setTaskNumber(res.task.task_number));
     });
   }, [task]);
 
-  return <div className="wrapper-body--mainContainer">{getPage(taskType)}</div>;
+  return (
+    <div className="body-wrapper--CreateTaskContainer">
+      <div className="wrapper-inline-block">
+        <TopContainer />
+        <BottomContainer>{getPage(taskType)}</BottomContainer>
+      </div>
+    </div>
+  );
 }
 
-export default Loader;
+export default CreateTaskContainer;

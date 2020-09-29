@@ -1,7 +1,7 @@
+import "./TaskList.scss";
+
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import "./TasksComponent.scss";
 
 import { useHistory } from "react-router-dom";
 
@@ -15,14 +15,14 @@ import {
 
 import { setTestProps, setTestName } from "../../../../redux/actions";
 
-import Task from "../Task/Task";
+import Task from "./Task/Task";
 import addIcon from "../../utils/icons/add-icon";
 import editIcon from "../../utils/icons/edit-icon";
 
 const _ID = "5f5f6162de1af368a21e299a";
 const MAX_HEADER_LENGTH = 240;
 
-function TasksComponent() {
+function TaskList() {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -132,4 +132,4 @@ function TasksComponent() {
   );
 }
 
-export default TasksComponent;
+export default TaskList;

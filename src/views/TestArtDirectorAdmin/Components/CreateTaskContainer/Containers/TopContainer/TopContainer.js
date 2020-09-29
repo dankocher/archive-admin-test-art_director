@@ -1,7 +1,7 @@
 import "./TopContainer.scss";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetIsHaveMarks } from "../../helpers/customHooks";
+import { useGetIsHaveMarks } from "../../../../helpers/customHooks";
 
 import {
   setTaskDescription as setStateTaskDescription,
@@ -10,16 +10,16 @@ import {
   setIsTimeConsidered,
   setIsTimeDisplayForUser,
   setIsOneGradeForAllSubTasks,
-} from "../../../../redux/actions";
+} from "../../../../../../redux/actions";
 
 import {
   taskTypeEnum,
   isWelcomeScreen,
-} from "../../helpers/taskTypes/taskTypeEnum";
+} from "../../../../helpers/taskTypes/taskTypeEnum";
 
-import Checkbox from "../Checkbox/Checkbox";
-import RadioButton from "../RadioButton/RadioButton";
-import DropDown from "../DropDown/DropDown";
+import Checkbox from "../../../Checkbox/Checkbox";
+import RadioButton from "../../../RadioButton/RadioButton";
+import DropDown from "../../../DropDown/DropDown";
 
 const MAX_TASK_NAME_LENGTH = 240;
 const MAX_TASK_DESCRIPTION_LENGTH = 500;

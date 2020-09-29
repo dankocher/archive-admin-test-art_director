@@ -2,7 +2,7 @@ import "./RadioButtonOptionList.scss";
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { addRadioButtonOption } from "../../../../../../../redux/actions";
+import { addRadioButtonOption } from "../../../../../../../../../redux/actions";
 
 import RadioButtonOption from "./RadioButtonOption/RadioButtonOption";
 

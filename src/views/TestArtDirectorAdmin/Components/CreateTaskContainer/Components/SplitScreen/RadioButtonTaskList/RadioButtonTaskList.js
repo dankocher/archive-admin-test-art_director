@@ -3,7 +3,7 @@ import "./RadioButtonTaskList.scss";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { addRadioButtonTask } from "../../../../../redux/actions";
+import { addRadioButtonTask } from "../../../../../../../redux/actions";
 
 import RadioButtonTask from "./RadioButtonTask/RadioButtonTask";
 

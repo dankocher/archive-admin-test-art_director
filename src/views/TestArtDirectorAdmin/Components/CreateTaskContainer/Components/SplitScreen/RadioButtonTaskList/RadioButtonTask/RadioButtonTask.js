@@ -6,10 +6,10 @@ import { useDispatch } from "react-redux";
 import {
   setRadioButtonTaskQuestion,
   removeRadioButtonTask,
-} from "../../../../../../redux/actions";
+} from "../../../../../../../../redux/actions";
 
-import DeleteButton from "../../../DeleteButton/DeleteButton";
-import TextArea from "../../../TextArea/TextArea";
+import DeleteButton from "../../../../../DeleteButton/DeleteButton";
+import TextArea from "../../../../../TextArea/TextArea";
 import RadioButtonOptionList from "./RadioButtonOptionList/RadioButtonOptionList";
 
 function RadioButtonTask({
