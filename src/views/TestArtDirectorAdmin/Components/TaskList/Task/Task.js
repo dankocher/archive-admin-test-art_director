@@ -33,7 +33,7 @@ function Task({ task, id, index, number, ...props }) {
           ) : isWelcomeScreen(task.type) ? (
             <span></span>
           ) : (
-            <span className="countNumber-font">{number}</span>
+            <span className="task-numbers-font">{number}</span>
           )}
         </div>
         <Link className={"link--task"} to={`/${id}`}>

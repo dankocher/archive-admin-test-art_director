@@ -1,29 +1,38 @@
-.container--QuestionAnswer {
+.container {
   margin-bottom: 2rem;
   display: grid;
   grid-template-columns: 1fr 3.3rem;
   position: relative;
 
-  .textarea-grid--QuestionAnswer {
+  &__textareaGrid {
     grid-area: 1/1/2/2;
-
+  
     & > :first-child {
       margin-bottom: 0.8rem;
     }
-
+  
     textarea {
       width: 100%;
       min-height: 4.8rem;
     }
     span {
       position: absolute;
+      top: 0;
+      left: -3.2rem;
     }
   }
 
-  .button-grid--QuestionAnswer {
+  .buttonGrid {
     grid-area: 1/2/2/3;
     display: flex;
     align-items: center;
     justify-content: flex-end;
   }
 }
+
+
+
+.btn-add--QuestionAnswer {
+  color: red;
+}
+

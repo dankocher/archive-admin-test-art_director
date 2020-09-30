@@ -97,7 +97,7 @@ function TopContainer() {
         <div className="grid-header--topContainer">
           <div>
             {isWelcomeScreen(taskType) ? null : (
-              <span className="countNumber-font countNumber-position--topContainer">
+              <span className="task-numbers-font countNumber-position--topContainer">
                 {taskNumber}
               </span>
             )}
