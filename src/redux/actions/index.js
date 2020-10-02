@@ -9,6 +9,7 @@ export const SET_IS_TIME_CONSIDERED = "IS_TIME_CONSIDERED";
 export const SET_IS_TIME_DISPLAY_FOR_USER = "SET_IS_TIME_DISPLAY_FOR_USER";
 export const SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS =
 	"SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS";
+export const SET_IS_ANSWER_SIZE_LIMITATION = "SET_IS_ANSWER_SIZE_LIMITATION";
 export const ADD_RADIO_BUTTON_TASK = "ADD_RADIO_BUTTON_TASK";
 export const ADD_RADIO_BUTTON_OPTION = "ADD_RADIO_BUTTON_OPTION";
 export const SET_RADIO_BUTTON_TASK_QUESTION = "SET_RADIO_BUTTON_TASK_QUESTION";
@@ -24,6 +25,8 @@ export const ADD_QUESTION_ANSWER = "ADD_QUESTION_ANSWER";
 export const DELETE_QUESTION_ANSWER = "DELETE_QUESTION_ANSWER";
 export const SET_QA_QUESTION = "SET_QA_QUESTION";
 export const SET_QA_DESCRIPTION = "SET_QA_DESCRIPTION";
+export const SET_RESPONSE_LIMITATION_FROM = "SET_RESPONSE_LIMITATION_FROM";
+export const SET_RESPONSE_LIMITATION_TO = "SET_RESPONSE_LIMITATION_TO";
 
 export const setInitialState = () => ({
 	type: SET_INITIAL_STATE,
@@ -64,6 +67,10 @@ export const setIsTimeDisplayForUser = () => ({
 
 export const setIsOneGradeForAllSubTasks = () => ({
 	type: SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
+});
+
+export const setIsAnswerSizeLimited = () => ({
+	type: SET_IS_ANSWER_SIZE_LIMITATION,
 });
 
 export const setTaskState = (task) => ({
@@ -146,11 +153,18 @@ export const setQAQuestion = (question, index) => ({
 	index,
 });
 
-export const setQADescription = (description, index) => {
-	console.log(description, index);
-	return {
-		type: SET_QA_DESCRIPTION,
-		payload: description,
-		index,
-	};
-};
+export const setQADescription = (description, index) => ({
+	type: SET_QA_DESCRIPTION,
+	payload: description,
+	index,
+});
+
+export const setGlobalResponseLimitationFrom = (number) => ({
+	type: SET_RESPONSE_LIMITATION_FROM,
+	payload: number,
+});
+
+export const setGlobalResponseLimitationTo = (number) => ({
+	type: SET_RESPONSE_LIMITATION_TO,
+	payload: number,
+});

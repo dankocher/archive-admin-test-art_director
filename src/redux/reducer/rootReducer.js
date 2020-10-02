@@ -9,6 +9,7 @@ import {
 	radioButtonOption,
 	radioButtonTask,
 	questionAnswer,
+	questionAnswerData,
 } from "../typesInitialData";
 
 import {
@@ -21,6 +22,7 @@ import {
 	SET_IS_TIME_CONSIDERED,
 	SET_IS_TIME_DISPLAY_FOR_USER,
 	SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
+	SET_IS_ANSWER_SIZE_LIMITATION,
 	ADD_RADIO_BUTTON_TASK,
 	ADD_RADIO_BUTTON_OPTION,
 	SET_RADIO_BUTTON_TASK_QUESTION,
@@ -34,6 +36,8 @@ import {
 	DELETE_QUESTION_ANSWER,
 	SET_QA_QUESTION,
 	SET_QA_DESCRIPTION,
+	SET_RESPONSE_LIMITATION_FROM,
+	SET_RESPONSE_LIMITATION_TO,
 } from "../actions";
 
 const initialState = {
@@ -66,7 +70,7 @@ const setDataOfType = (type) => {
 		case ILLUSTRATION_RADIO_BUTTONS:
 			return {radioButtonTaskList: [radioButtonTask]};
 		case QUSETION_ANSWER:
-			return {questionAnswerList: [questionAnswer]};
+			return questionAnswerData;
 		default:
 			return {};
 	}
@@ -148,6 +152,16 @@ function rootReducer(state = initialState, action) {
 				task: {
 					data: {
 						radioButtonTaskList: {$push: [radioButtonTask]},
+					},
+				},
+			});
+		case SET_IS_ANSWER_SIZE_LIMITATION:
+			return update(state, {
+				task: {
+					data: {
+						isAnswerSizeLimited: {
+							$set: !state.task.data.isAnswerSizeLimited,
+						},
 					},
 				},
 			});
@@ -282,6 +296,30 @@ function rootReducer(state = initialState, action) {
 								description: {
 									$set: action.payload,
 								},
+							},
+						},
+					},
+				},
+			});
+		case SET_RESPONSE_LIMITATION_FROM:
+			return update(state, {
+				task: {
+					data: {
+						responseLimitation: {
+							from: {
+								$set: action.payload,
+							},
+						},
+					},
+				},
+			});
+		case SET_RESPONSE_LIMITATION_TO:
+			return update(state, {
+				task: {
+					data: {
+						responseLimitation: {
+							to: {
+								$set: action.payload,
 							},
 						},
 					},

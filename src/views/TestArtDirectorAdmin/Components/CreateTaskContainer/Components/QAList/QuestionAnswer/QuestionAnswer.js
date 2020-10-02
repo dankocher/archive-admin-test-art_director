@@ -42,7 +42,7 @@ function QuestionAnswer({index, deleteQAHandler, question, description}) {
 					value={description}
 					onBlur={saveDescriptionHandler}
 				/>
-				<span className="subTasks-numbers-font">2</span>
+				<span className="subTasks-numbers-font">{index + 1}</span>
 			</div>
 			<div className={styles.buttonGrid}>
 				<DeleteButton onClick={() => deleteQAHandler(index)} />

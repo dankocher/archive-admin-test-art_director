@@ -10,3 +10,16 @@ export const questionAnswer = {
 	question: "",
 	description: "",
 };
+
+const responseLimitationOption = {
+	isAnswerSizeLimited: false,
+	responseLimitation: {
+		from: "",
+		to: "",
+	},
+};
+
+export const questionAnswerData = {
+	...responseLimitationOption,
+	questionAnswerList: [questionAnswer],
+};
