@@ -96,5 +96,5 @@ export const handlerSaveTaskToDB = (state) => {
   // console.log(state);
   // console.log("ieto tesk");
   // console.log("da ia sohranilsia");
-  saveTask(state.task);
+  return saveTask(state.task);
 };

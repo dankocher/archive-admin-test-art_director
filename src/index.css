@@ -90,6 +90,25 @@ textarea {
   color: #323232;
 }
 
+.task-numbers-font {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #bdbdc1;
+}
+
+.subTasks-numbers-font{
+  width: 2.4rem;
+  font-family: Roboto-Regular;
+  font-size: 14px;
+  line-height: 16px;
+  color: #BDBDC1;
+}
+
+
+
+
 .border-error {
   border: 0.1rem solid #eb5757;
 }
