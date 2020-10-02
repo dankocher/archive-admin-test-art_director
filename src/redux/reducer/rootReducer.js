@@ -3,6 +3,7 @@ import {
 	WELCOME_SCREEN,
 	ILLUSTRATION_RADIO_BUTTONS,
 	QUSETION_ANSWER,
+	WORDS_RADIO_BUTTONS,
 } from "../../views/TestArtDirectorAdmin/helpers/taskTypes/taskTypes";
 
 import {
@@ -10,6 +11,7 @@ import {
 	radioButtonTask,
 	questionAnswer,
 	questionAnswerData,
+	wordsRadioButtons,
 } from "../typesInitialData";
 
 import {
@@ -38,6 +40,9 @@ import {
 	SET_QA_DESCRIPTION,
 	SET_RESPONSE_LIMITATION_FROM,
 	SET_RESPONSE_LIMITATION_TO,
+	ADD_WORD,
+	DELETE_WORD,
+	SET_WORD,
 } from "../actions";
 
 const initialState = {
@@ -68,9 +73,11 @@ const setDataOfType = (type) => {
 		case WELCOME_SCREEN:
 			return {};
 		case ILLUSTRATION_RADIO_BUTTONS:
-			return {radioButtonTaskList: [radioButtonTask]};
+			return { radioButtonTaskList: [radioButtonTask] };
 		case QUSETION_ANSWER:
 			return questionAnswerData;
+		case WORDS_RADIO_BUTTONS:
+			return wordsRadioButtons;
 		default:
 			return {};
 	}
@@ -92,10 +99,10 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				isUpdatedLocally: false,
-				task: {...initialState.task, ...action.payload},
+				task: { ...initialState.task, ...action.payload },
 			};
 		case SET_INITIAL_STATE:
-			return {...state, task: {...initialState.task}};
+			return { ...state, task: { ...initialState.task } };
 		case SET_TASK_NAME:
 			return {
 				...state,
@@ -109,7 +116,7 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				isUpdatedLocally: true,
-				task: {...state.task, description: action.payload},
+				task: { ...state.task, description: action.payload },
 			};
 		case SET_TASK_TYPE:
 			const data = setDataOfType(action.payload);
@@ -127,7 +134,7 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				isUpdatedLocally: true,
-				task: {...state.task, isTimeConsidered: !state.task.isTimeConsidered},
+				task: { ...state.task, isTimeConsidered: !state.task.isTimeConsidered },
 			};
 		case SET_IS_TIME_DISPLAY_FOR_USER:
 			return {
@@ -151,7 +158,7 @@ function rootReducer(state = initialState, action) {
 			return update(state, {
 				task: {
 					data: {
-						radioButtonTaskList: {$push: [radioButtonTask]},
+						radioButtonTaskList: { $push: [radioButtonTask] },
 					},
 				},
 			});
@@ -171,8 +178,8 @@ function rootReducer(state = initialState, action) {
 					data: {
 						radioButtonTaskList: {
 							[action.payload]: {
-								isHaveMarks: {$set: false},
-								radioButtonOptionList: {$push: [radioButtonOption]},
+								isHaveMarks: { $set: false },
+								radioButtonOptionList: { $push: [radioButtonOption] },
 							},
 						},
 					},
@@ -183,7 +190,7 @@ function rootReducer(state = initialState, action) {
 				task: {
 					data: {
 						radioButtonTaskList: {
-							[action.index]: {question: {$set: action.payload}},
+							[action.index]: { question: { $set: action.payload } },
 						},
 					},
 				},
@@ -197,7 +204,7 @@ function rootReducer(state = initialState, action) {
 							[action.radioButtonTaskIndex]: {
 								radioButtonOptionList: {
 									[action.radioButtonTaskOptionIndex]: {
-										option: {$set: action.payload},
+										option: { $set: action.payload },
 									},
 								},
 							},
@@ -211,10 +218,10 @@ function rootReducer(state = initialState, action) {
 					data: {
 						radioButtonTaskList: {
 							[action.radioButtonTaskIndex]: {
-								isHaveMarks: {$set: action.isHaveMarks},
+								isHaveMarks: { $set: action.isHaveMarks },
 								radioButtonOptionList: {
 									[action.radioButtonTaskOptionIndex]: {
-										mark: {$set: action.payload},
+										mark: { $set: action.payload },
 									},
 								},
 							},
@@ -228,7 +235,7 @@ function rootReducer(state = initialState, action) {
 					data: {
 						radioButtonTaskList: {
 							[action.radioButtonTaskIndex]: {
-								isHaveMarks: {$set: action.isHaveMarks},
+								isHaveMarks: { $set: action.isHaveMarks },
 								radioButtonOptionList: {
 									$splice: [[action.radioButtonTaskOptionIndex, 1]],
 								},
@@ -250,7 +257,7 @@ function rootReducer(state = initialState, action) {
 		case SET_TASK_NUMBER:
 			return update(state, {
 				task: {
-					task_number: {$set: action.payload},
+					task_number: { $set: action.payload },
 				},
 			});
 		case ADD_QUESTION_ANSWER:
@@ -319,6 +326,40 @@ function rootReducer(state = initialState, action) {
 					data: {
 						responseLimitation: {
 							to: {
+								$set: action.payload,
+							},
+						},
+					},
+				},
+			});
+
+		case ADD_WORD:
+			return update(state, {
+				task: {
+					data: {
+						wordList: {
+							$push: [""],
+						},
+					},
+				},
+			});
+		case DELETE_WORD:
+			return update(state, {
+				task: {
+					data: {
+						wordList: {
+							$splice: [[action.index, 1]],
+						},
+					},
+				},
+			});
+
+		case SET_WORD:
+			return update(state, {
+				task: {
+					data: {
+						wordList: {
+							[action.index]: {
 								$set: action.payload,
 							},
 						},

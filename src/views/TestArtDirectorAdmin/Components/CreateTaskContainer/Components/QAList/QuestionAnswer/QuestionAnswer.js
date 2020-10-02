@@ -1,6 +1,6 @@
 import styles from "./QuestionAnswer.module.scss";
 import React from "react";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
 	setQAQuestion,
@@ -10,19 +10,14 @@ import {
 import TextArea from "../../../../TextArea/TextArea";
 import DeleteButton from "../../../../DeleteButton/DeleteButton";
 
-function QuestionAnswer({index, deleteQAHandler, question, description}) {
+function QuestionAnswer({ index, deleteQAHandler, question, description }) {
 	const dispatch = useDispatch();
 
 	const saveQuestionHandler = (text) => {
-		console.log(index);
 		dispatch(setQAQuestion(text, index));
 	};
 
 	const saveDescriptionHandler = (text) => {
-		console.log(index);
-		console.log(text);
-		console.log("//////////");
-
 		dispatch(setQADescription(text, index));
 	};
 

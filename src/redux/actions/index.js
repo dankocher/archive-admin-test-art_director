@@ -27,6 +27,9 @@ export const SET_QA_QUESTION = "SET_QA_QUESTION";
 export const SET_QA_DESCRIPTION = "SET_QA_DESCRIPTION";
 export const SET_RESPONSE_LIMITATION_FROM = "SET_RESPONSE_LIMITATION_FROM";
 export const SET_RESPONSE_LIMITATION_TO = "SET_RESPONSE_LIMITATION_TO";
+export const ADD_WORD = "ADD_WORD";
+export const DELETE_WORD = "DELETE_WORD";
+export const SET_WORD = "SET_WORD";
 
 export const setInitialState = () => ({
 	type: SET_INITIAL_STATE,
@@ -34,7 +37,7 @@ export const setInitialState = () => ({
 
 export const setTestProps = (_id, name) => ({
 	type: SET_TEST_PROPS,
-	payload: {_id, name},
+	payload: { _id, name },
 });
 
 export const setTestName = (name) => ({
@@ -167,4 +170,19 @@ export const setGlobalResponseLimitationFrom = (number) => ({
 export const setGlobalResponseLimitationTo = (number) => ({
 	type: SET_RESPONSE_LIMITATION_TO,
 	payload: number,
+});
+
+export const addWord = () => ({
+	type: ADD_WORD,
+});
+
+export const deleteWord = (index) => ({
+	type: DELETE_WORD,
+	index,
+});
+
+export const setWord = (word, index) => ({
+	type: SET_WORD,
+	payload: word,
+	index,
 });
