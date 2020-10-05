@@ -7,35 +7,35 @@ import { addWord, deleteWord } from "../../../../../../../redux/actions";
 import Word from "./Word/Word";
 
 function WordList() {
-	const wordList = useSelector((state) => state.task.data.wordList);
-	const dispatch = useDispatch();
+  const wordList = useSelector((state) => state.task.data.wordList);
+  const dispatch = useDispatch();
 
-	const addWordHendle = () => {
-		dispatch(addWord());
-	};
+  const addWordHendle = () => {
+    dispatch(addWord());
+  };
 
-	const deleteGlobalWordHendle = (index) => {
-		if (wordList.length === 1) addWordHendle();
-		dispatch(deleteWord(index));
-	};
+  const deleteGlobalWordHendle = (index) => {
+    if (wordList.length === 1) addWordHendle();
+    dispatch(deleteWord(index));
+  };
 
-	return (
-		<>
-			{wordList?.map((element, key) => (
-				<Word
-					key={key}
-					index={key}
-					value={element}
-					deleteGlobalWordHendle={deleteGlobalWordHendle}
-				/>
-			))}
-			<div className={styles.wrapper}>
-				<button className={"hidden-button input"} onClick={addWordHendle}>
-					Добавить группу радиобаттанов
-				</button>
-			</div>
-		</>
-	);
+  return (
+    <>
+      {wordList?.map((element, key) => (
+        <Word
+          key={key}
+          index={key}
+          value={element}
+          deleteGlobalWordHendle={deleteGlobalWordHendle}
+        />
+      ))}
+      <div className={styles.wrapper}>
+        <button className={"btn-intpu small-grey-font"} onClick={addWordHendle}>
+          Добавить слово
+        </button>
+      </div>
+    </>
+  );
 }
 
 export default WordList;

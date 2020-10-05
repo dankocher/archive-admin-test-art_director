@@ -1,42 +1,51 @@
 .container {
-	margin-bottom: 2rem;
-	display: grid;
-	grid-template-columns: 1fr 3.3rem;
-	position: relative;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 3.3rem;
+  position: relative;
 
-	&__textareaGrid {
-		grid-area: 1/1/2/2;
+  &__textareaGrid {
+    grid-area: 1/1/2/2;
 
-		& > :first-child {
-			margin-bottom: 0.8rem;
-		}
+    & > :first-child {
+      margin-bottom: 0.8rem;
+    }
 
-		textarea {
-			width: 100%;
-			min-height: 4.8rem;
-		}
+    textarea {
+      width: 100%;
+      min-height: 4.8rem;
+    }
 
-		span {
-			position: absolute;
-			top: 0;
-			left: -3.2rem;
-		}
-	}
+    span {
+      position: absolute;
+      top: 0;
+      left: -3.2rem;
+    }
 
-	.buttonGrid {
-		grid-area: 1/2/2/3;
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-	}
+    &__container_drugBtn {
+      position: absolute;
+      height: 100%;
+      left: -2.4rem;
+      top: 0;
+      display: flex;
+      align-items: center;
+    }
+  }
 
-	button {
-		visibility: hidden;
-	}
+  .buttonGrid {
+    grid-area: 1/2/2/3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 
-	&:hover {
-		button {
-			visibility: visible;
-		}
-	}
+  button {
+    visibility: hidden;
+  }
+
+  &:hover {
+    button {
+      visibility: visible;
+    }
+  }
 }

@@ -58,6 +58,17 @@ body * {
   color: #323232;
 }
 
+.btn-intpu {
+  width: 100%;
+  text-align: start;
+  padding: 1.5rem 1.3rem;
+  border: 0.1rem solid #d1d1d9;
+  border-radius: 0.4rem;
+  background-color: #ffffff;
+  cursor: text;
+  outline: none !important;
+}
+
 .input:focus {
   outline: none !important;
   border: 0.1rem solid #017aff;
@@ -98,16 +109,13 @@ textarea {
   color: #bdbdc1;
 }
 
-.subTasks-numbers-font{
+.subTasks-numbers-font {
   width: 2.4rem;
   font-family: Roboto-Regular;
   font-size: 14px;
   line-height: 16px;
-  color: #BDBDC1;
+  color: #bdbdc1;
 }
-
-
-
 
 .border-error {
   border: 0.1rem solid #eb5757;

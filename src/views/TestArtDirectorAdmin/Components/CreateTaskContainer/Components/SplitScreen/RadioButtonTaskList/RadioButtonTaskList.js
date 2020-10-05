@@ -30,7 +30,7 @@ function RadioButtonTaskList() {
         />
       ))}
       <button
-        className="hidden-button input btn-add--RadioButtonTaskList"
+        className="btn-intpu small-grey-font btn-add--RadioButtonTaskList"
         onClick={handlerAddGroupRadioButtons}
       >
         Добавить группу радиобаттанов
