@@ -1,0 +1,12 @@
+.wrapper {
+	display: grid;
+	grid-template-columns: 3.2rem 1fr 3.2rem;
+
+	button {
+		grid-area: 1/2/2/3;
+		width: 100%;
+		color: #bdbdc1;
+		background-color: #ffffff;
+		cursor: text;
+	}
+}

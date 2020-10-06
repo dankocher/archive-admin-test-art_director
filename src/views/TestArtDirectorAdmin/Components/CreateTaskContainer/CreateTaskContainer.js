@@ -1,7 +1,7 @@
 import "./CreateTaskContainer.scss";
 
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
 	setTaskState,
@@ -12,6 +12,7 @@ import {
 	WELCOME_SCREEN,
 	ILLUSTRATION_RADIO_BUTTONS,
 	QUSETION_ANSWER,
+	WORDS_RADIO_BUTTONS,
 } from "../../helpers/taskTypes/taskTypes";
 
 import {
@@ -24,6 +25,7 @@ import BottomContainer from "./Containers/BottomContainer/BottomContainer";
 import WelcomeScreen from "./Components/WelcomeScreen/WelcomeScreen";
 import SplitScreen from "./Components/SplitScreen/SplitScreen";
 import QAList from "./Components/QAList/QAList";
+import WordList from "./Components/SplitScreen/WordList/WordList";
 
 const getPage = (taskType) => {
 	switch (taskType) {
@@ -33,8 +35,10 @@ const getPage = (taskType) => {
 			return <SplitScreen />;
 		case QUSETION_ANSWER:
 			return <QAList />;
+		case WORDS_RADIO_BUTTONS:
+			return <SplitScreen rightSide={<WordList />} />;
 		default:
-			return <></>;
+			break;
 	}
 };
 
@@ -66,7 +70,7 @@ function CreateTaskContainer() {
 		if (task._id === "") return;
 		console.log("ia STATE sohranilsia v LOADER");
 		// console.log(task);
-		handlerSaveTaskToDB({task: {...task}}).then((res) => {
+		handlerSaveTaskToDB({ task: { ...task } }).then((res) => {
 			if (res.task.task_number === task.task_number) return;
 			dispatch(setTaskNumber(res.task.task_number));
 		});

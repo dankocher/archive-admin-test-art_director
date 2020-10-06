@@ -1,13 +1,11 @@
-.wrapper{
-  display: grid;
-  grid-template-columns: 1fr 3.3rem;
+.wrapper {
+	display: grid;
+	grid-template-columns: 1fr 3.3rem;
 
-  button {
-    width: 100%;
-    margin-right: 3.3rem;
-    color: #bdbdc1;
-    background-color: #ffffff;
-    cursor: text;
-  }    
+	button {
+		width: 100%;
+		color: #bdbdc1;
+		background-color: #ffffff;
+		cursor: text;
+	}
 }
-

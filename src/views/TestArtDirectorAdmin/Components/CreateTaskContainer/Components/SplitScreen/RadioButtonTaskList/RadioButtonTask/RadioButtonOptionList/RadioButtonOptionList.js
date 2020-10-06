@@ -39,7 +39,7 @@ function RadioButtonOptionList({ radioButtonOptionList, index }) {
       <div className="container-answer--RadioButtonAnswers">
         <button
           onClick={handlerAddOptionBtn}
-          className="hidden-button input btn-add--RadioButtonTaskList"
+          className="btn-intpu small-grey-font btn-add--RadioButtonTaskList"
         >
           Добавить вариант
         </button>

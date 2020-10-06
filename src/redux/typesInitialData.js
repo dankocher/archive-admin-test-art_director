@@ -1,4 +1,4 @@
-export const radioButtonOption = {option: "", mark: ""};
+export const radioButtonOption = { option: "", mark: "" };
 
 export const radioButtonTask = {
 	question: "",
@@ -22,4 +22,9 @@ const responseLimitationOption = {
 export const questionAnswerData = {
 	...responseLimitationOption,
 	questionAnswerList: [questionAnswer],
+};
+
+export const wordsRadioButtons = {
+	wordList: [""],
+	radioButtonTaskList: [radioButtonTask],
 };
