@@ -31,6 +31,7 @@ export const SET_WORD_LIST = "SET_WORD_LIST";
 export const ADD_WORD = "ADD_WORD";
 export const DELETE_WORD = "DELETE_WORD";
 export const SET_WORD = "SET_WORD";
+export const SET_WELCOME_PAGE_IMG_URL = "SET_WELCOME_PAGE_IMG_URL";
 
 export const setInitialState = () => ({
   type: SET_INITIAL_STATE,
@@ -191,4 +192,9 @@ export const setWord = (word, index) => ({
   type: SET_WORD,
   payload: word,
   index,
+});
+
+export const setWelcomePageImgUrl = (imgUrl) => ({
+  type: SET_WELCOME_PAGE_IMG_URL,
+  payload: imgUrl,
 });

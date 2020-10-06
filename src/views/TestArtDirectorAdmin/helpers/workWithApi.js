@@ -1,5 +1,5 @@
 import ajax from "../../../utils/ajax";
-import { api } from "../../../constants/api";
+import { api, host } from "../../../constants/api";
 import { WELCOME_SCREEN } from "../helpers/taskTypes/taskTypes";
 
 export const getUrlId = () => {
@@ -97,4 +97,28 @@ export const handlerSaveTaskToDB = (state) => {
   // console.log("ieto tesk");
   // console.log("da ia sohranilsia");
   return saveTask(state.task);
+};
+
+export const getImageUrl = async (file) => {
+  const $api = api.save_picture;
+  let url = host.uri + $api.uri;
+
+  const form = new FormData();
+
+  form.append("picture", file, file.name);
+  form.append("name", file.name);
+
+  return await fetch(url, {
+    method: $api.method,
+    cache: "no-cache",
+    credentials: "include",
+    body: form,
+  })
+    .then((res) => res.json())
+    .then(async (res) => {
+      return res;
+    })
+    .catch((e) => {
+      return { ok: false, status: "unreachable" };
+    });
 };

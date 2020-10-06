@@ -44,6 +44,7 @@ import {
   ADD_WORD,
   DELETE_WORD,
   SET_WORD,
+  SET_WELCOME_PAGE_IMG_URL,
 } from "../actions";
 
 const initialState = {
@@ -72,7 +73,7 @@ const initialState = {
 const setDataOfType = (type) => {
   switch (type) {
     case WELCOME_SCREEN:
-      return {};
+      return { imgUrl: "" };
     case ILLUSTRATION_RADIO_BUTTONS:
       return { radioButtonTaskList: [radioButtonTask] };
     case QUSETION_ANSWER:
@@ -372,6 +373,16 @@ function rootReducer(state = initialState, action) {
               [action.index]: {
                 $set: action.payload,
               },
+            },
+          },
+        },
+      });
+    case SET_WELCOME_PAGE_IMG_URL:
+      return update(state, {
+        task: {
+          data: {
+            imgUrl: {
+              $set: action.payload,
             },
           },
         },
