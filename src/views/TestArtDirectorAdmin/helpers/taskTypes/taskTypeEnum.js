@@ -1,6 +1,7 @@
 import {
 	WELCOME_SCREEN,
 	ILLUSTRATION_RADIO_BUTTONS,
+	ILLUSTRATIONS_ANSWERS,
 	QUSETION_ANSWER,
 	WORDS_RADIO_BUTTONS,
 } from "./taskTypes";
@@ -8,8 +9,9 @@ import {
 const taskTypeEnum = Object.freeze({
 	[WELCOME_SCREEN]: "Экран приветствия",
 	[ILLUSTRATION_RADIO_BUTTONS]: "Иллюстрации и радиобаттоны",
-	[QUSETION_ANSWER]: "Вопросы и ответы",
+	[ILLUSTRATIONS_ANSWERS]: "Иллюстрации и ответы",
 	[WORDS_RADIO_BUTTONS]: "Слова и радиобаттоны",
+	[QUSETION_ANSWER]: "Вопросы и ответы",
 });
 
 const getWelcomeScreenLabel = () => {

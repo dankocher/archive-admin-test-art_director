@@ -1,12 +1,12 @@
 import styles from "./TypeOptions.module.scss";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import {isWelcomeScreen} from "../../../../../helpers/taskTypes/taskTypeEnum";
+import { isWelcomeScreen } from "../../../../../helpers/taskTypes/taskTypeEnum";
 
 import {
 	ILLUSTRATION_RADIO_BUTTONS,
-	ILLUSTRATION,
+	ILLUSTRATIONS_ANSWERS,
 	QUSETION_ANSWER,
 } from "../../../../../helpers/taskTypes/taskTypes";
 
@@ -105,41 +105,41 @@ function TypeOptions() {
 	};
 
 	const getOptions = () => {
-		switch (taskType) {
-			case ILLUSTRATION_RADIO_BUTTONS:
-				return (
-					<React.Fragment>
-						<div className={styles.rightSide_checkboxes__radioButtons}>
-							<RadioButton
-								id={"isOneGradeForAllSubTasks"}
-								name={"GradeForSubTasks"}
-								label={"Одна оценка для всех подзаданий"}
-								value={isOneGradeForAllSubTasks}
-								onChange={handleChangeStateTaskIsOneGradeForAllSubTasks}
-							/>
-							<RadioButton
-								id={"isEachSubTaskHasOwnGrade"}
-								name={"GradeForSubTasks"}
-								label={"На каждое подзадание своя оценка"}
-								value={!isOneGradeForAllSubTasks}
-								onChange={handleChangeStateTaskIsOneGradeForAllSubTasks}
-							/>
-						</div>
-					</React.Fragment>
-				);
-			case ILLUSTRATION && QUSETION_ANSWER:
-				return (
-					<>
-						<Checkbox
-							id={"isAnswerSizeLimited"}
-							value={isAnswerSizeLimited}
-							onChange={changeIsAnswerSizeLimitedHandler}
-							label={"Ограничить количество символов в ответах"}
+		if (taskType === ILLUSTRATION_RADIO_BUTTONS) {
+			return (
+				<React.Fragment>
+					<div className={styles.rightSide_checkboxes__radioButtons}>
+						<RadioButton
+							id={"isOneGradeForAllSubTasks"}
+							name={"GradeForSubTasks"}
+							label={"Одна оценка для всех подзаданий"}
+							value={isOneGradeForAllSubTasks}
+							onChange={handleChangeStateTaskIsOneGradeForAllSubTasks}
 						/>
-					</>
-				);
-			default:
-				break;
+						<RadioButton
+							id={"isEachSubTaskHasOwnGrade"}
+							name={"GradeForSubTasks"}
+							label={"На каждое подзадание своя оценка"}
+							value={!isOneGradeForAllSubTasks}
+							onChange={handleChangeStateTaskIsOneGradeForAllSubTasks}
+						/>
+					</div>
+				</React.Fragment>
+			);
+		} else if (
+			taskType === ILLUSTRATIONS_ANSWERS ||
+			taskType === QUSETION_ANSWER
+		) {
+			return (
+				<>
+					<Checkbox
+						id={"isAnswerSizeLimited"}
+						value={isAnswerSizeLimited}
+						onChange={changeIsAnswerSizeLimitedHandler}
+						label={"Ограничить количество символов в ответах"}
+					/>
+				</>
+			);
 		}
 	};
 

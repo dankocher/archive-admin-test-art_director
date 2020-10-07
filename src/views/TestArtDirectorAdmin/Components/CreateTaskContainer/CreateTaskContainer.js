@@ -7,12 +7,14 @@ import {
 	setTaskState,
 	setInitialState,
 	setTaskNumber,
+	setTestProps,
 } from "../../../../redux/actions";
 import {
 	WELCOME_SCREEN,
 	ILLUSTRATION_RADIO_BUTTONS,
 	QUSETION_ANSWER,
 	WORDS_RADIO_BUTTONS,
+	ILLUSTRATIONS_ANSWERS,
 } from "../../helpers/taskTypes/taskTypes";
 
 import {
@@ -26,6 +28,7 @@ import WelcomeScreen from "./Components/WelcomeScreen/WelcomeScreen";
 import SplitScreen from "./Components/SplitScreen/SplitScreen";
 import QAList from "./Components/QAList/QAList";
 import WordList from "./Components/SplitScreen/WordList/WordList";
+import IllustrationsAnswers from "./Components/IllustrationsAnswers/IllustrationsAnswers";
 
 const getPage = (taskType) => {
 	switch (taskType) {
@@ -33,6 +36,8 @@ const getPage = (taskType) => {
 			return <WelcomeScreen />;
 		case ILLUSTRATION_RADIO_BUTTONS:
 			return <SplitScreen />;
+		case ILLUSTRATIONS_ANSWERS:
+			return <IllustrationsAnswers />;
 		case QUSETION_ANSWER:
 			return <QAList />;
 		case WORDS_RADIO_BUTTONS:
@@ -51,11 +56,11 @@ function CreateTaskContainer() {
 
 	useEffect(() => {
 		// console.log("delau krasivo v LOADER");
-
 		getTaskFromServer(testId).then((res) => {
 			// console.log("фетчим/диспатчим таск");
 			// console.log(res);
-			dispatch(setTaskState(res));
+			dispatch(setTestProps(res.task.tt_id));
+			dispatch(setTaskState(res.task));
 		});
 	}, [dispatch]);
 

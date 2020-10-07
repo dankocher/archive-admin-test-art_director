@@ -1,0 +1,53 @@
+$blue-color: #017aff;
+.container {
+	position: relative;
+
+	&__dragAndDrop_container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		padding: 2.65rem 0;
+		border: 0.1rem dashed #d1d1d9;
+		border-radius: 0.4rem;
+		outline: none;
+		cursor: pointer;
+		font-family: Roboto-Regular;
+	}
+
+	&__blur {
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(255, 255, 255, 0.85);
+		visibility: hidden;
+
+		&__small_font {
+			font-size: 18px;
+			line-height: 21px;
+		}
+
+		&__big_font {
+			font-family: Roboto-Medium;
+			font-weight: 500;
+			font-size: 24px;
+			line-height: 28px;
+		}
+	}
+
+	.selected {
+		visibility: visible;
+	}
+
+	.blue {
+		color: $blue-color;
+	}
+}
