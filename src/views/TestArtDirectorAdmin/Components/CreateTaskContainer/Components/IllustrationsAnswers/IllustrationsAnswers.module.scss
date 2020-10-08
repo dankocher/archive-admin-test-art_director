@@ -1,6 +1,7 @@
 $blue-color: #017aff;
 .container {
 	position: relative;
+	outline: none;
 
 	&__dragAndDrop_container {
 		display: flex;

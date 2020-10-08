@@ -1,7 +1,7 @@
 import styles from "./DragAndDropZone.module.scss";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { host } from "../../../../constants/api";
+import { getImgPath } from "../../helpers/getImgPath";
 
 import addImgIcon from "../../utils/icons/add-img-icon";
 
@@ -20,9 +20,7 @@ function DragAndDropZone() {
 			if (file) {
 				getImageUrl(file).then((res) => {
 					if (!res.ok) return;
-					dispatch(
-						setWelcomePageImgUrl(`${host.uri}/api/pic/get/${res.filename}`)
-					);
+					dispatch(setWelcomePageImgUrl(res.filename));
 				});
 			}
 		},
@@ -67,7 +65,7 @@ function DragAndDropZone() {
 					</span>
 				</React.Fragment>
 			) : (
-				<img src={imgUrl} alt="" />
+				<img src={getImgPath(imgUrl)} alt="" />
 			)}
 			<input id="file-uploader" {...getInputProps()} type="file" />
 		</div>

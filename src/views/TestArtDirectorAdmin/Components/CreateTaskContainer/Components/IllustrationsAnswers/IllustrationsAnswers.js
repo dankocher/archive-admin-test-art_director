@@ -4,22 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { useDropzone } from "react-dropzone";
 
 import addImgIcon from "../../../../utils/icons/add-img-icon";
-import { host } from "../../../../../../constants/api";
-import { setWelcomePageImgUrl } from "../../../../../../redux/actions";
+import { setRowImgIllustrationContainer } from "../../../../../../redux/actions";
 import { getImageUrl } from "../../../../helpers/workWithApi";
+
+import IllustrationGrid from "./IllustrationGrig/IllustrationGrid";
 
 function IllustrationsAnswers() {
 	const dispatch = useDispatch();
 
 	const onDrop = useCallback(
 		(acceptedFiles) => {
-			const file = acceptedFiles[0];
-			if (file) {
-				getImageUrl(file).then((res) => {
-					if (!res.ok) return;
-					dispatch(
-						setWelcomePageImgUrl(`${host.uri}/api/pic/get/${res.filename}`)
-					);
+			console.log(acceptedFiles);
+			debugger;
+			if (Array.isArray(acceptedFiles) && acceptedFiles.length !== 0) {
+				acceptedFiles.forEach((element) => {
+					getImageUrl(element).then((res) => {
+						if (!res.ok) return;
+						dispatch(setRowImgIllustrationContainer(res.filename));
+					});
 				});
 			}
 		},
@@ -34,13 +36,27 @@ function IllustrationsAnswers() {
 		isDragActive,
 		// isDragAccept,
 		// isDragReject,
-	} = useDropzone({ accept: "image/*", multiple: false, maxFiles: 2, onDrop });
+	} = useDropzone({ accept: "image/*", multiple: true, onDrop, noDrag: true });
+
+	const {
+		getRootProps: getRootProps2,
+		getInputProps: getInputProps2,
+		isDragActive: isDragActive2,
+		// isDragAccept,
+		// isDragReject,
+	} = useDropzone({
+		accept: "image/*",
+		multiple: true,
+		onDrop,
+		noClick: true,
+	});
 
 	return (
-		<div className={`${styles.container}`} {...getRootProps()}>
-			<input id="file-uploader" {...getInputProps()} type="file" />
-
-			<div className={`${styles.container__dragAndDrop_container}`}>
+		<div className={`${styles.container}`} {...getRootProps2()}>
+			<div
+				className={`${styles.container__dragAndDrop_container}`}
+				{...getRootProps()}
+			>
 				<div className="wrapper-img--dragAndDropZone">
 					<i>{addImgIcon}</i>
 				</div>
@@ -48,11 +64,14 @@ function IllustrationsAnswers() {
 					Перетащите сюда изображение или &nbsp;
 					<label className={`${styles.blue}`}>загрузите</label>
 				</span>
+				<input id="file-uploader" {...getInputProps()} type="file" />
 			</div>
+
+			<IllustrationGrid />
 
 			<div
 				className={`${styles.container__blur} ${
-					isDragActive ? styles.selected : ""
+					isDragActive2 ? styles.selected : ""
 				}`}
 			>
 				<span className={`${styles.blue} ${styles.container__blur__big_font}`}>

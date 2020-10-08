@@ -1,0 +1,60 @@
+.grid {
+	width: 100%;
+	display: grid;
+
+	grid-template-columns: 3.2rem 1fr;
+
+	&__sort_container {
+		grid-area: 1/1/2/2;
+		position: relative;
+
+		div {
+			display: flex;
+			height: calc(100% - 0.8rem);
+			flex-direction: column;
+			margin-bottom: 0.8rem;
+		}
+
+		span {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		button {
+			margin-top: auto;
+			margin-bottom: auto;
+			align-self: flex-end;
+			margin-right: 0.4rem;
+			visibility: hidden;
+		}
+	}
+
+	&:hover {
+		button {
+			visibility: visible;
+		}
+	}
+
+	&__imgRowContainer {
+		grid-area: 1/2/2/3;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+
+		&__imgContainer {
+			display: flex;
+			height: 8.4rem;
+			width: 8.4rem;
+			// background-color: rosybrown;
+
+			img {
+				width: 8.4rem;
+				height: 8.4rem;
+				object-fit: cover;
+				margin: auto;
+			}
+		}
+	}
+}

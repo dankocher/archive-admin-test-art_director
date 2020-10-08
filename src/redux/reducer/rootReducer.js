@@ -4,6 +4,7 @@ import {
 	ILLUSTRATION_RADIO_BUTTONS,
 	QUSETION_ANSWER,
 	WORDS_RADIO_BUTTONS,
+	ILLUSTRATIONS_ANSWERS,
 } from "../../views/TestArtDirectorAdmin/helpers/taskTypes/taskTypes";
 
 import {
@@ -12,6 +13,7 @@ import {
 	questionAnswer,
 	questionAnswerData,
 	wordsRadioButtons,
+	imgGrid,
 } from "../typesInitialData";
 
 import {
@@ -45,6 +47,7 @@ import {
 	DELETE_WORD,
 	SET_WORD,
 	SET_WELCOME_PAGE_IMG_URL,
+	SET_ROW_IMG_ILLUSTRATION_CONTAINER,
 } from "../actions";
 
 const initialState = {
@@ -76,6 +79,8 @@ const setDataOfType = (type) => {
 			return {};
 		case ILLUSTRATION_RADIO_BUTTONS:
 			return { radioButtonTaskList: [radioButtonTask] };
+		case ILLUSTRATIONS_ANSWERS:
+			return imgGrid;
 		case QUSETION_ANSWER:
 			return questionAnswerData;
 		case WORDS_RADIO_BUTTONS:
@@ -383,6 +388,16 @@ function rootReducer(state = initialState, action) {
 					data: {
 						imgUrl: {
 							$set: action.payload,
+						},
+					},
+				},
+			});
+		case SET_ROW_IMG_ILLUSTRATION_CONTAINER:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							$push: [[action.payload]],
 						},
 					},
 				},
