@@ -1,0 +1,70 @@
+$blue-color: #017aff;
+
+.blurContainer {
+	position: absolute;
+	top: 0;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.85);
+
+	&__modalWindow {
+		position: relative;
+		height: 22.5rem;
+		width: 50.4rem;
+		padding: 0 4rem;
+		padding-top: 2.4rem;
+		margin: auto;
+
+		background: #ffffff;
+		box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.1);
+		border-radius: 0.4rem;
+		outline: none;
+
+		:hover {
+			path {
+				fill: $blue-color;
+			}
+		}
+
+		& > p {
+			font-size: 16px;
+			line-height: 22px;
+			color: #323232;
+		}
+
+		&__inputZone {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			height: 12rem;
+			width: 100%;
+			margin-top: 3.2rem;
+			border: 0.1rem dashed #d1d1d9;
+			border-radius: 0.4rem;
+			outline: none;
+
+			i {
+				height: 4.4rem;
+				margin-top: 2.1rem;
+				margin-bottom: 1.1rem;
+			}
+
+			span {
+				color: $blue-color;
+			}
+		}
+
+		.closeIcon {
+			position: absolute;
+			top: 1.2rem;
+			right: 1.2rem;
+
+			:hover {
+				rect {
+					fill: #323232;
+				}
+			}
+		}
+	}
+}

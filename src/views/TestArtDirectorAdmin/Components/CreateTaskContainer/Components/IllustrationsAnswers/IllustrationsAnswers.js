@@ -1,6 +1,6 @@
 import styles from "./IllustrationsAnswers.module.scss";
-import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useDropzone } from "react-dropzone";
 
 import addImgIcon from "../../../../utils/icons/add-img-icon";
@@ -8,14 +8,14 @@ import { setRowImgIllustrationContainer } from "../../../../../../redux/actions"
 import { getImageUrl } from "../../../../helpers/workWithApi";
 
 import IllustrationGrid from "./IllustrationGrig/IllustrationGrid";
+import ModalWindow from "../../../ModalWindow/ModalWindow";
 
 function IllustrationsAnswers() {
 	const dispatch = useDispatch();
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const onDrop = useCallback(
 		(acceptedFiles) => {
-			console.log(acceptedFiles);
-			debugger;
 			if (Array.isArray(acceptedFiles) && acceptedFiles.length !== 0) {
 				acceptedFiles.forEach((element) => {
 					getImageUrl(element).then((res) => {
@@ -28,27 +28,23 @@ function IllustrationsAnswers() {
 		[dispatch]
 	);
 
-	const imgUrl = useSelector((state) => state.task.data.imgUrl);
-
-	const {
-		getRootProps,
-		getInputProps,
-		isDragActive,
-		// isDragAccept,
-		// isDragReject,
-	} = useDropzone({ accept: "image/*", multiple: true, onDrop, noDrag: true });
+	const { getRootProps, getInputProps } = useDropzone({
+		accept: "image/*",
+		multiple: true,
+		onDrop,
+		noDrag: true,
+		disabled: isModalOpen,
+	});
 
 	const {
 		getRootProps: getRootProps2,
-		getInputProps: getInputProps2,
 		isDragActive: isDragActive2,
-		// isDragAccept,
-		// isDragReject,
 	} = useDropzone({
 		accept: "image/*",
 		multiple: true,
 		onDrop,
 		noClick: true,
+		disabled: isModalOpen,
 	});
 
 	return (
@@ -66,9 +62,7 @@ function IllustrationsAnswers() {
 				</span>
 				<input id="file-uploader" {...getInputProps()} type="file" />
 			</div>
-
-			<IllustrationGrid />
-
+			<IllustrationGrid setIsModalOpen={setIsModalOpen} />
 			<div
 				className={`${styles.container__blur} ${
 					isDragActive2 ? styles.selected : ""
@@ -84,6 +78,7 @@ function IllustrationsAnswers() {
 					для создания новых подзаданий
 				</span>
 			</div>
+			{isModalOpen ? <ModalWindow setIsModalOpen={setIsModalOpen} /> : null}
 		</div>
 	);
 }

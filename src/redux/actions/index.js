@@ -34,6 +34,8 @@ export const SET_WORD = "SET_WORD";
 export const SET_WELCOME_PAGE_IMG_URL = "SET_WELCOME_PAGE_IMG_URL";
 export const SET_ROW_IMG_ILLUSTRATION_CONTAINER =
 	"SET_ROW_IMG_ILLUSTRATION_CONTAINER";
+export const DELETE_IMG_ILLUSTRATION_CONTAINER =
+	"DELETE_IMG_ILLUSTRATION_CONTAINER";
 
 export const setInitialState = () => ({
 	type: SET_INITIAL_STATE,
@@ -204,4 +206,10 @@ export const setWelcomePageImgUrl = (imgUrl) => ({
 export const setRowImgIllustrationContainer = (imgUrl) => ({
 	type: SET_ROW_IMG_ILLUSTRATION_CONTAINER,
 	payload: imgUrl,
+});
+
+export const deleteImgIllustrationContainer = (indexRow, indexColumn) => ({
+	type: DELETE_IMG_ILLUSTRATION_CONTAINER,
+	indexRow,
+	indexColumn,
 });

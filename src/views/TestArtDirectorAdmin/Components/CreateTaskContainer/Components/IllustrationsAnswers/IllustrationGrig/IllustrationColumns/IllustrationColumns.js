@@ -1,27 +1,43 @@
 import styles from "./IllustrationColumns.module.scss";
 import React from "react";
+import { useDispatch } from "react-redux";
 
-import { getImgPath } from "../../../../../../helpers/getImgPath";
+import { deleteImgIllustrationContainer } from "../../../../../../../../redux/actions";
+
+import addImgIconSmall from "../../../../../../utils/icons/add-img-icon-small";
 import DragButton from "../../../../../DragButton/DragButton";
+import Illustration from "./Illustration/Illustration";
 
-function IllustrationColumns({ imgRow, index }) {
+function IllustrationColumns({ imgRowList, indexRow, setIsModalOpen }) {
+	const dispatch = useDispatch();
+
+	const deleteImg = (indexColumn) => {
+		dispatch(deleteImgIllustrationContainer(indexRow, indexColumn));
+	};
+
 	return (
 		<div className={styles.grid}>
 			<div className={styles.grid__sort_container}>
 				<div>
-					<span className="subTasks-numbers-font">{index + 1}</span>
+					<span className="subTasks-numbers-font">{indexRow + 1}</span>
 					<DragButton />
 				</div>
 			</div>
 			<div className={styles.grid__imgRowContainer}>
-				{imgRow?.map((element, index) => (
-					<div
-						key={index}
-						className={styles.grid__imgRowContainer__imgContainer}
-					>
-						<img src={getImgPath(element)} alt="" />
-					</div>
+				{imgRowList?.map((element, indexColumn) => (
+					<Illustration
+						key={indexColumn}
+						imgName={element}
+						indexColumn={indexColumn}
+						deleteImg={deleteImg}
+					/>
 				))}
+				<div
+					className={styles.grid__imgRowContainer__addImgBtn}
+					onClick={() => setIsModalOpen(true)}
+				>
+					<i>{addImgIconSmall}</i>
+				</div>
 			</div>
 		</div>
 	);

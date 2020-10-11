@@ -48,6 +48,7 @@ import {
 	SET_WORD,
 	SET_WELCOME_PAGE_IMG_URL,
 	SET_ROW_IMG_ILLUSTRATION_CONTAINER,
+	DELETE_IMG_ILLUSTRATION_CONTAINER,
 } from "../actions";
 
 const initialState = {
@@ -402,6 +403,31 @@ function rootReducer(state = initialState, action) {
 					},
 				},
 			});
+		case DELETE_IMG_ILLUSTRATION_CONTAINER:
+			if (state.task.data.imgGrid[action.indexRow].length === 1) {
+				return update(state, {
+					task: {
+						data: {
+							imgGrid: {
+								$splice: [[action.indexRow, 1]],
+							},
+						},
+					},
+				});
+			} else {
+				return update(state, {
+					task: {
+						data: {
+							imgGrid: {
+								[action.indexRow]: {
+									$splice: [[action.indexColumn, 1]],
+								},
+							},
+						},
+					},
+				});
+			}
+
 		default:
 			return state;
 	}

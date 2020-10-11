@@ -16,6 +16,11 @@ $blue-color: #017aff;
 		outline: none;
 		cursor: pointer;
 		font-family: Roboto-Regular;
+		&:hover {
+			path {
+				fill: #017aff;
+			}
+		}
 	}
 
 	&__blur {

@@ -43,16 +43,13 @@
 		flex-wrap: wrap;
 		gap: 0.8rem;
 
-		&__imgContainer {
+		&__addImgBtn {
 			display: flex;
 			height: 8.4rem;
 			width: 8.4rem;
-			// background-color: rosybrown;
-
-			img {
-				width: 8.4rem;
-				height: 8.4rem;
-				object-fit: cover;
+			border: 0.1rem dashed #d1d1d9;
+			border-radius: 0.4rem;
+			i {
 				margin: auto;
 			}
 		}
