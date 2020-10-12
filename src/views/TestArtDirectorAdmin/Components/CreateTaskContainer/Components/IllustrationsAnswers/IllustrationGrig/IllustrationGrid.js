@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import IllustrationColumns from "./IllustrationColumns/IllustrationColumns";
 
-function IllustrationGrid({ setIsModalOpen }) {
+function IllustrationGrid({ setModalWindow }) {
 	const imgMatrix = useSelector((state) => state.task.data.imgGrid);
 	// const imgMatrix = [
 	// 	[""],
@@ -20,7 +20,7 @@ function IllustrationGrid({ setIsModalOpen }) {
 						key={`item-${index}`}
 						imgRowList={element}
 						indexRow={index}
-						setIsModalOpen={setIsModalOpen}
+						setModalWindow={setModalWindow}
 					/>
 				);
 			})}
