@@ -1,10 +1,13 @@
 import styles from "./IllustrationsAnswers.module.scss";
 import React, { useCallback, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useDropzone } from "react-dropzone";
 
 import addImgIcon from "../../../../utils/icons/add-img-icon";
-import { setRowImgIllustrationContainer } from "../../../../../../redux/actions";
+import {
+  addRowImgIllustrationContainer,
+  setRowImgIllustrationContainer,
+} from "../../../../../../redux/actions";
 import { getImageUrl } from "../../../../helpers/workWithApi";
 
 import IllustrationGrid from "./IllustrationGrig/IllustrationGrid";
@@ -12,6 +15,8 @@ import ModalWindow from "../../../ModalWindow/ModalWindow";
 
 function IllustrationsAnswers() {
   const dispatch = useDispatch();
+  const imgMatrix = useSelector((state) => state.task.data.imgGrid);
+
   const [modalWindow, setModalWindow] = useState({
     isModalOpen: false,
     rowChosed: null,
@@ -20,10 +25,19 @@ function IllustrationsAnswers() {
   const onDrop = useCallback(
     (acceptedFiles) => {
       if (Array.isArray(acceptedFiles) && acceptedFiles.length !== 0) {
-        acceptedFiles.forEach((element) => {
+        // acceptedFiles.forEach((element) => {
+        //   dispatch(setRowImgIllustrationContainer(res.filename));
+        // });
+        acceptedFiles.forEach((element, index) => {
+          console.log(index);
+          dispatch(addRowImgIllustrationContainer(""));
+
           getImageUrl(element).then((res) => {
             if (!res.ok) return;
-            dispatch(setRowImgIllustrationContainer(res.filename));
+            console.log(imgMatrix.length);
+            // dispatch(
+            //   setRowImgIllustrationContainer(res.filename, imgMatrix.length, 0)
+            // );
           });
         });
       }
@@ -34,7 +48,7 @@ function IllustrationsAnswers() {
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     multiple: true,
-    onDrop,
+    // onDrop,
     noDrag: true,
     disabled: modalWindow.isModalOpen,
   });
@@ -51,7 +65,11 @@ function IllustrationsAnswers() {
   });
 
   return (
-    <div className={`${styles.container}`} {...getRootProps2()}>
+    <div
+      id="illustrationsContainer"
+      className={`${styles.container}`}
+      {...getRootProps2()}
+    >
       <div
         className={`${styles.container__dragAndDrop_container}`}
         {...getRootProps()}

@@ -47,9 +47,11 @@ import {
   DELETE_WORD,
   SET_WORD,
   SET_WELCOME_PAGE_IMG_URL,
+  ADD_ROW_IMG_ILLUSTRATION_CONTAINER,
   SET_ROW_IMG_ILLUSTRATION_CONTAINER,
-  DELETE_IMG_ILLUSTRATION_CONTAINER,
+  ADD_COLUMN_IMG_ILLUSTRATION_CONTAINER,
   SET_COLUMN_IMG_ILLUSTRATION_CONTAINER,
+  DELETE_IMG_ILLUSTRATION_CONTAINER,
 } from "../actions";
 
 const initialState = {
@@ -394,12 +396,52 @@ function rootReducer(state = initialState, action) {
           },
         },
       });
+    case ADD_ROW_IMG_ILLUSTRATION_CONTAINER:
+      return update(state, {
+        task: {
+          data: {
+            imgGrid: {
+              $push: [[""]],
+            },
+          },
+        },
+      });
     case SET_ROW_IMG_ILLUSTRATION_CONTAINER:
       return update(state, {
         task: {
           data: {
             imgGrid: {
-              $push: [[action.payload]],
+              [action.indexRow]: {
+                [action.indexColumn]: {
+                  $set: action.payload,
+                },
+              },
+            },
+          },
+        },
+      });
+    case ADD_COLUMN_IMG_ILLUSTRATION_CONTAINER:
+      return update(state, {
+        task: {
+          data: {
+            imgGrid: {
+              [action.indexRow]: {
+                $push: [""],
+              },
+            },
+          },
+        },
+      });
+    case SET_COLUMN_IMG_ILLUSTRATION_CONTAINER:
+      return update(state, {
+        task: {
+          data: {
+            imgGrid: {
+              [action.indexRow]: {
+                [action.indexColumn]: {
+                  $set: action.payload,
+                },
+              },
             },
           },
         },
@@ -428,18 +470,6 @@ function rootReducer(state = initialState, action) {
           },
         });
       }
-    case SET_COLUMN_IMG_ILLUSTRATION_CONTAINER:
-      return update(state, {
-        task: {
-          data: {
-            imgGrid: {
-              [action.indexRow]: {
-                $push: [action.payload],
-              },
-            },
-          },
-        },
-      });
     default:
       return state;
   }

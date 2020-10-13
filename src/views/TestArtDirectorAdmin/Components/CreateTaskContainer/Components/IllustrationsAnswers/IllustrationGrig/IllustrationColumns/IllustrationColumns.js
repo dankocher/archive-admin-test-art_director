@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 
 import { deleteImgIllustrationContainer } from "../../../../../../../../redux/actions";
 
+import { deleteImgFromServer } from "../../../../../../helpers/workWithApi";
+
 import addImgIconSmall from "../../../../../../utils/icons/add-img-icon-small";
 import DragButton from "../../../../../DragButton/DragButton";
 import Illustration from "./Illustration/Illustration";
@@ -11,7 +13,8 @@ import Illustration from "./Illustration/Illustration";
 function IllustrationColumns({ imgRowList, indexRow, setModalWindow }) {
   const dispatch = useDispatch();
 
-  const deleteImg = (indexColumn) => {
+  const deleteImg = (indexColumn, imgName) => {
+    deleteImgFromServer(imgName);
     dispatch(deleteImgIllustrationContainer(indexRow, indexColumn));
   };
 

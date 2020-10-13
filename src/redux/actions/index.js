@@ -32,8 +32,12 @@ export const ADD_WORD = "ADD_WORD";
 export const DELETE_WORD = "DELETE_WORD";
 export const SET_WORD = "SET_WORD";
 export const SET_WELCOME_PAGE_IMG_URL = "SET_WELCOME_PAGE_IMG_URL";
+export const ADD_ROW_IMG_ILLUSTRATION_CONTAINER =
+  "ADD_ROW_IMG_ILLUSTRATION_CONTAINER";
 export const SET_ROW_IMG_ILLUSTRATION_CONTAINER =
   "SET_ROW_IMG_ILLUSTRATION_CONTAINER";
+export const ADD_COLUMN_IMG_ILLUSTRATION_CONTAINER =
+  "ADD_COLUMN_IMG_ILLUSTRATION_CONTAINER";
 export const SET_COLUMN_IMG_ILLUSTRATION_CONTAINER =
   "SET_COLUMN_IMG_ILLUSTRATION_CONTAINER";
 export const DELETE_IMG_ILLUSTRATION_CONTAINER =
@@ -205,15 +209,37 @@ export const setWelcomePageImgUrl = (imgUrl) => ({
   payload: imgUrl,
 });
 
-export const setRowImgIllustrationContainer = (imgUrl) => ({
-  type: SET_ROW_IMG_ILLUSTRATION_CONTAINER,
+export const addRowImgIllustrationContainer = (imgUrl) => ({
+  type: ADD_ROW_IMG_ILLUSTRATION_CONTAINER,
   payload: imgUrl,
 });
 
-export const setColumnImgIllustrationContainer = (imgUrl, indexRow) => ({
+export const setRowImgIllustrationContainer = (
+  imgUrl,
+  indexRow,
+  indexColumn
+) => ({
+  type: SET_ROW_IMG_ILLUSTRATION_CONTAINER,
+  payload: imgUrl,
+  indexRow,
+  indexColumn,
+});
+
+export const addColumnImgIllustrationContainer = (imgUrl, indexRow) => ({
+  type: ADD_COLUMN_IMG_ILLUSTRATION_CONTAINER,
+  payload: imgUrl,
+  indexRow,
+});
+
+export const setColumnImgIllustrationContainer = (
+  imgUrl,
+  indexRow,
+  indexColumn
+) => ({
   type: SET_COLUMN_IMG_ILLUSTRATION_CONTAINER,
   payload: imgUrl,
   indexRow,
+  indexColumn,
 });
 
 export const deleteImgIllustrationContainer = (indexRow, indexColumn) => ({

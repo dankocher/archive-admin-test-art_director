@@ -1,5 +1,6 @@
 import styles from "./ModalWindow.module.scss";
-import React, { useCallback } from "react";
+import React, { useCallback, useState, useEffect } from "react";
+
 import { useDispatch } from "react-redux";
 import { useDropzone } from "react-dropzone";
 
@@ -11,6 +12,30 @@ import closeIcon from "../../utils/icons/close-icon";
 
 function ModalWindow({ setModalWindow, indexRow }) {
   const dispatch = useDispatch();
+  const [modalWindowTopIndent, setModalWindowTopIndent] = useState(0);
+  useEffect(() => {
+    setModalWindowTopIndent(getPositionModalWindow());
+  }, [setModalWindowTopIndent]);
+
+  const getPositionModalWindow = () => {
+    const blurContainer = document.getElementById("illustrationsContainer");
+
+    if (blurContainer === null) {
+      return;
+    }
+
+    const vh = window.innerHeight;
+    const blurContainerYPosition = blurContainer.getBoundingClientRect().y;
+    let top = 0;
+
+    if (blurContainerYPosition < 0) {
+      top = vh / 2 - blurContainerYPosition;
+    } else {
+      top = (vh - blurContainerYPosition) / 2;
+    }
+    console.log(top);
+    return top;
+  };
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -47,10 +72,11 @@ function ModalWindow({ setModalWindow, indexRow }) {
   });
 
   return (
-    <div className={styles.blurContainer}>
+    <div id="blurContainerModalWidow" className={styles.blurContainer}>
       <div
         className={styles.blurContainer__modalWindow}
         {...getRootPropsDropZone()}
+        style={{ top: modalWindowTopIndent }}
       >
         <div
           className={`${styles.isDragActive} ${
