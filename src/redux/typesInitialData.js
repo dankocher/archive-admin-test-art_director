@@ -34,6 +34,7 @@ export const wordsRadioButtons = {
 // };
 
 export const imgGrid = { imgGrid: [] };
+export const img = { loading: true, name: "", error: false };
 // export const imgCollum = {
 // 	imgCollum: [],
 // };
