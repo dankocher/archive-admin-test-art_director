@@ -1,5 +1,10 @@
 import update from "react-addons-update";
-import { setDataOfType, clearImgContainer } from "./reducerHelpers";
+import {
+	setDataOfType,
+	clearImgContainer,
+	getSortedImgGridRows,
+	getSortedRowInImgGrid,
+} from "./reducerHelpers";
 
 import {
 	radioButtonOption,
@@ -43,6 +48,8 @@ import {
 	SET_IMG_TO_IMG_GRID_SUCCESS,
 	SET_IMG_TO_IMG_GRID_ERROR,
 	DELETE_IMG_FROM_IMG_GRID,
+	SORT_IMG_GRID_ROWS,
+	SORT_ROW_IN_IMG_GRID,
 } from "../actions";
 
 const initialState = {
@@ -467,6 +474,28 @@ function rootReducer(state = initialState, action) {
 					},
 				});
 			}
+		case SORT_IMG_GRID_ROWS:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							$set: getSortedImgGridRows(state, action),
+						},
+					},
+				},
+			});
+		case SORT_ROW_IN_IMG_GRID:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							[action.indexRow]: {
+								$set: getSortedRowInImgGrid(state, action),
+							},
+						},
+					},
+				},
+			});
 		default:
 			return state;
 	}

@@ -1,3 +1,4 @@
+import arrayMove from "array-move";
 import { isString } from "../../views/TestArtDirectorAdmin/helpers/isString";
 import { deleteImgFromServer } from "../../views/TestArtDirectorAdmin/helpers/workWithApi";
 import {
@@ -45,4 +46,14 @@ export const clearImgContainer = (state) => {
 			}
 		}
 	}
+};
+
+export const getSortedImgGridRows = (state, action) => {
+	const imgGrid = state.task.data.imgGrid;
+	return arrayMove(imgGrid, action.oldIndex, action.newIndex);
+};
+
+export const getSortedRowInImgGrid = (state, action) => {
+	const imgRow = state.task.data.imgGrid[action.indexRow];
+	return arrayMove(imgRow, action.oldIndex, action.newIndex);
 };

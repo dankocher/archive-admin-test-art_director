@@ -37,6 +37,8 @@ export const LOAD_COLUMN_IMG_TO_IMG_GRID = "LOAD_COLUMN_IMG_TO_IMG_GRID";
 export const SET_IMG_TO_IMG_GRID_SUCCESS = "SET_IMG_TO_IMG_GRID_SUCCESS";
 export const SET_IMG_TO_IMG_GRID_ERROR = "SET_IMG_TO_IMG_GRID_ERROR";
 export const DELETE_IMG_FROM_IMG_GRID = "DELETE_IMG_FROM_IMG_GRID";
+export const SORT_IMG_GRID_ROWS = "SORT_IMG_GRID_ROWS";
+export const SORT_ROW_IN_IMG_GRID = "SORT_ROW_IN_IMG_GRID";
 
 export const setInitialState = () => ({
 	type: SET_INITIAL_STATE,
@@ -232,4 +234,17 @@ export const deleteImgFromImgGrig = (indexRow, indexColumn) => ({
 	type: DELETE_IMG_FROM_IMG_GRID,
 	indexRow,
 	indexColumn,
+});
+
+export const sortImgGridRows = (oldIndex, newIndex) => ({
+	type: SORT_IMG_GRID_ROWS,
+	oldIndex,
+	newIndex,
+});
+
+export const sortRowInImgGrid = (indexRow,oldIndex, newIndex) => ({
+	type: SORT_ROW_IN_IMG_GRID,
+	oldIndex,
+	newIndex,
+	indexRow
 });
