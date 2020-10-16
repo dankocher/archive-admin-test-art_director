@@ -1,19 +1,10 @@
 import update from "react-addons-update";
-import {
-	WELCOME_SCREEN,
-	ILLUSTRATION_RADIO_BUTTONS,
-	QUSETION_ANSWER,
-	WORDS_RADIO_BUTTONS,
-	ILLUSTRATIONS_ANSWERS,
-} from "../../views/TestArtDirectorAdmin/helpers/taskTypes/taskTypes";
+import { setDataOfType, clearImgContainer } from "./reduserHelpers";
 
 import {
 	radioButtonOption,
 	radioButtonTask,
 	questionAnswer,
-	questionAnswerData,
-	wordsRadioButtons,
-	imgGrid,
 } from "../typesInitialData";
 
 import {
@@ -73,23 +64,6 @@ const initialState = {
 		updated: "",
 		data: {},
 	},
-};
-
-const setDataOfType = (type) => {
-	switch (type) {
-		case WELCOME_SCREEN:
-			return {};
-		case ILLUSTRATION_RADIO_BUTTONS:
-			return { radioButtonTaskList: [radioButtonTask] };
-		case ILLUSTRATIONS_ANSWERS:
-			return imgGrid;
-		case QUSETION_ANSWER:
-			return questionAnswerData;
-		case WORDS_RADIO_BUTTONS:
-			return wordsRadioButtons;
-		default:
-			return {};
-	}
 };
 
 const setLoadingImgsRow = (state, fileList) => {
@@ -160,6 +134,7 @@ function rootReducer(state = initialState, action) {
 				task: { ...state.task, description: action.payload },
 			};
 		case SET_TASK_TYPE:
+			clearImgContainer(state);
 			const data = setDataOfType(action.payload);
 			return update(state, {
 				task: {
