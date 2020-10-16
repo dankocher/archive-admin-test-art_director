@@ -9,9 +9,7 @@ import {
 } from "../../views/TestArtDirectorAdmin/helpers/taskTypes/taskTypes";
 
 import {
-	radioButtonOption,
 	radioButtonTask,
-	questionAnswer,
 	questionAnswerData,
 	wordsRadioButtons,
 	imgGrid,

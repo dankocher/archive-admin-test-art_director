@@ -1,5 +1,5 @@
 import update from "react-addons-update";
-import { setDataOfType, clearImgContainer } from "./reduserHelpers";
+import { setDataOfType, clearImgContainer } from "./reducerHelpers";
 
 import {
 	radioButtonOption,
