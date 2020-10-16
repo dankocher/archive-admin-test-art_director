@@ -61,7 +61,6 @@ export const deleteTaskById = async (id, testId) => {
 		console.log("Bad response");
 		return;
 	}
-	console.log(res);
 	return res;
 };
 
@@ -127,6 +126,5 @@ export const deleteImgFromServer = async (imgName) => {
 		console.log("Bad response");
 		return;
 	}
-	console.log(res);
 	return res;
 };

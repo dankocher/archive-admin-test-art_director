@@ -32,18 +32,11 @@ export const ADD_WORD = "ADD_WORD";
 export const DELETE_WORD = "DELETE_WORD";
 export const SET_WORD = "SET_WORD";
 export const SET_WELCOME_PAGE_IMG_URL = "SET_WELCOME_PAGE_IMG_URL";
-export const LOAD_ROW_IMG_ILLUSTRATION_CONTAINER =
-	"LOAD_ROW_IMG_ILLUSTRATION_CONTAINER";
-export const SET_ROW_IMG_ILLUSTRATION_CONTAINER_SUCCESS =
-	"SET_ROW_IMG_ILLUSTRATION_CONTAINER_SUCCESS";
-export const SET_ROW_IMG_ILLUSTRATION_CONTAINER_ERROR =
-	"SET_ROW_IMG_ILLUSTRATION_CONTAINER_ERROR";
-export const ADD_COLUMN_IMG_ILLUSTRATION_CONTAINER =
-	"ADD_COLUMN_IMG_ILLUSTRATION_CONTAINER";
-export const SET_COLUMN_IMG_ILLUSTRATION_CONTAINER =
-	"SET_COLUMN_IMG_ILLUSTRATION_CONTAINER";
-export const DELETE_IMG_ILLUSTRATION_CONTAINER =
-	"DELETE_IMG_ILLUSTRATION_CONTAINER";
+export const LOAD_ROW_IMG_TO_IMG_GRID = "LOAD_ROW_IMG_TO_IMG_GRID";
+export const LOAD_COLUMN_IMG_TO_IMG_GRID = "LOAD_COLUMN_IMG_TO_IMG_GRID";
+export const SET_IMG_TO_IMG_GRID_SUCCESS = "SET_IMG_TO_IMG_GRID_SUCCESS";
+export const SET_IMG_TO_IMG_GRID_ERROR = "SET_IMG_TO_IMG_GRID_ERROR";
+export const DELETE_IMG_FROM_IMG_GRID = "DELETE_IMG_FROM_IMG_GRID";
 
 export const setInitialState = () => ({
 	type: SET_INITIAL_STATE,
@@ -211,46 +204,32 @@ export const setWelcomePageImgUrl = (imgUrl) => ({
 	payload: imgUrl,
 });
 
-export const loadRowImgIllustrationContainer = () => ({
-	type: LOAD_ROW_IMG_ILLUSTRATION_CONTAINER,
+export const loadRowImgToImgGrig = (file) => ({
+	type: LOAD_ROW_IMG_TO_IMG_GRID,
+	payload: file,
 });
 
-export const setRowImgIllustrationContainerSuccess = (
-	imgUrl,
+export const loadColumnImgToImgGrig = (file, indexRow) => ({
+	type: LOAD_COLUMN_IMG_TO_IMG_GRID,
+	payload: file,
 	indexRow,
-	indexColumn
-) => ({
-	type: SET_ROW_IMG_ILLUSTRATION_CONTAINER_SUCCESS,
+});
+
+export const setImgToImgGridSuccess = (imgUrl, indexRow, indexColumn) => ({
+	type: SET_IMG_TO_IMG_GRID_SUCCESS,
 	payload: imgUrl,
 	indexRow,
 	indexColumn,
 });
 
-export const setRowImgIllustrationContainerError = (indexRow, indexColumn) => ({
-	type: SET_ROW_IMG_ILLUSTRATION_CONTAINER_ERROR,
+export const setImgToImgGridError = (indexRow, indexColumn) => ({
+	type: SET_IMG_TO_IMG_GRID_ERROR,
 	indexRow,
 	indexColumn,
 });
 
-export const addColumnImgIllustrationContainer = (imgUrl, indexRow) => ({
-	type: ADD_COLUMN_IMG_ILLUSTRATION_CONTAINER,
-	payload: imgUrl,
-	indexRow,
-});
-
-export const setColumnImgIllustrationContainer = (
-	imgUrl,
-	indexRow,
-	indexColumn
-) => ({
-	type: SET_COLUMN_IMG_ILLUSTRATION_CONTAINER,
-	payload: imgUrl,
-	indexRow,
-	indexColumn,
-});
-
-export const deleteImgIllustrationContainer = (indexRow, indexColumn) => ({
-	type: DELETE_IMG_ILLUSTRATION_CONTAINER,
+export const deleteImgFromImgGrig = (indexRow, indexColumn) => ({
+	type: DELETE_IMG_FROM_IMG_GRID,
 	indexRow,
 	indexColumn,
 });

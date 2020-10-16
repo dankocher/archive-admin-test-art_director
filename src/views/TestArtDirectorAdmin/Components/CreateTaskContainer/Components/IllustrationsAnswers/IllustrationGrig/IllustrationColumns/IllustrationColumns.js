@@ -1,25 +1,11 @@
 import styles from "./IllustrationColumns.module.scss";
 import React from "react";
-import { useDispatch } from "react-redux";
-
-import { deleteImgIllustrationContainer } from "../../../../../../../../redux/actions";
-
-import { deleteImgFromServer } from "../../../../../../helpers/workWithApi";
 
 import addImgIconSmall from "../../../../../../utils/icons/add-img-icon-small";
 import DragButton from "../../../../../DragButton/DragButton";
 import Illustration from "./Illustration/Illustration";
 
 function IllustrationColumns({ imgRowList, indexRow, setModalWindow }) {
-	const dispatch = useDispatch();
-
-	const deleteImg = (indexColumn, imgName) => {
-		if (imgName !== "") {
-			deleteImgFromServer(imgName);
-		}
-		dispatch(deleteImgIllustrationContainer(indexRow, indexColumn));
-	};
-
 	return (
 		<div className={styles.grid}>
 			<div className={styles.grid__sort_container}>
@@ -33,8 +19,8 @@ function IllustrationColumns({ imgRowList, indexRow, setModalWindow }) {
 					<Illustration
 						key={indexColumn}
 						imgState={element}
+						indexRow={indexRow}
 						indexColumn={indexColumn}
-						deleteImg={deleteImg}
 					/>
 				))}
 				<div

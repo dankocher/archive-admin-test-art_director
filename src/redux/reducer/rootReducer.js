@@ -47,13 +47,11 @@ import {
 	DELETE_WORD,
 	SET_WORD,
 	SET_WELCOME_PAGE_IMG_URL,
-	LOAD_ROW_IMG_ILLUSTRATION_CONTAINER,
-	SET_ROW_IMG_ILLUSTRATION_CONTAINER_SUCCESS,
-	SET_ROW_IMG_ILLUSTRATION_CONTAINER_ERROR,
-	SET_ROW_IMG_ILLUSTRATION_CONTAINER,
-	ADD_COLUMN_IMG_ILLUSTRATION_CONTAINER,
-	SET_COLUMN_IMG_ILLUSTRATION_CONTAINER,
-	DELETE_IMG_ILLUSTRATION_CONTAINER,
+	LOAD_ROW_IMG_TO_IMG_GRID,
+	LOAD_COLUMN_IMG_TO_IMG_GRID,
+	SET_IMG_TO_IMG_GRID_SUCCESS,
+	SET_IMG_TO_IMG_GRID_ERROR,
+	DELETE_IMG_FROM_IMG_GRID,
 } from "../actions";
 
 const initialState = {
@@ -73,9 +71,7 @@ const initialState = {
 		position: "",
 		date: "",
 		updated: "",
-		data: {
-			//radioButtonTaskList: [radioButtonTask],
-		},
+		data: {},
 	},
 };
 
@@ -94,6 +90,38 @@ const setDataOfType = (type) => {
 		default:
 			return {};
 	}
+};
+
+const setLoadingImgsRow = (state, fileList) => {
+	for (const file of fileList) {
+		state = update(state, {
+			task: {
+				data: {
+					imgGrid: {
+						$push: [[{ loading: true, name: file, error: false }]],
+					},
+				},
+			},
+		});
+	}
+	return state;
+};
+
+const setLoadingImgsColumn = (state, action) => {
+	for (const file of action.payload) {
+		state = update(state, {
+			task: {
+				data: {
+					imgGrid: {
+						[action.indexRow]: {
+							$push: [{ loading: true, name: file, error: false }],
+						},
+					},
+				},
+			},
+		});
+	}
+	return state;
 };
 
 function rootReducer(state = initialState, action) {
@@ -398,17 +426,11 @@ function rootReducer(state = initialState, action) {
 					},
 				},
 			});
-		case LOAD_ROW_IMG_ILLUSTRATION_CONTAINER:
-			return update(state, {
-				task: {
-					data: {
-						imgGrid: {
-							$push: [[{ loading: true, name: "", error: false }]],
-						},
-					},
-				},
-			});
-		case SET_ROW_IMG_ILLUSTRATION_CONTAINER_SUCCESS:
+		case LOAD_ROW_IMG_TO_IMG_GRID:
+			return setLoadingImgsRow(state, action.payload);
+		case LOAD_COLUMN_IMG_TO_IMG_GRID:
+			return setLoadingImgsColumn(state, action);
+		case SET_IMG_TO_IMG_GRID_SUCCESS:
 			return update(state, {
 				task: {
 					data: {
@@ -427,7 +449,7 @@ function rootReducer(state = initialState, action) {
 					},
 				},
 			});
-		case SET_ROW_IMG_ILLUSTRATION_CONTAINER_ERROR:
+		case SET_IMG_TO_IMG_GRID_ERROR:
 			return update(state, {
 				task: {
 					data: {
@@ -446,35 +468,7 @@ function rootReducer(state = initialState, action) {
 					},
 				},
 			});
-		// case SET_ROW_IMG_ILLUSTRATION_CONTAINER_SUCCESS:
-		// 	return update(state, {
-		// 		task: {
-		// 			data: {
-		// 				imgGrid: {
-		// 					[action.indexRow]: {
-		// 						[action.indexColumn]: {
-		// 							$set: action.payload,
-		// 						},
-		// 					},
-		// 				},
-		// 			},
-		// 		},
-		// 	});
-		// case SET_ROW_IMG_ILLUSTRATION_CONTAINER_ERROR:
-		// 	return update(state, {
-		// 		task: {
-		// 			data: {
-		// 				imgGrid: {
-		// 					[action.indexRow]: {
-		// 						[action.indexColumn]: {
-		// 							$set: action.payload,
-		// 						},
-		// 					},
-		// 				},
-		// 			},
-		// 		},
-		// 	});
-		case DELETE_IMG_ILLUSTRATION_CONTAINER:
+		case DELETE_IMG_FROM_IMG_GRID:
 			if (state.task.data.imgGrid[action.indexRow].length === 1) {
 				return update(state, {
 					task: {

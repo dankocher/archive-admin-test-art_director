@@ -1,22 +1,16 @@
 import styles from "./IllustrationsAnswers.module.scss";
-import React, { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useDropzone } from "react-dropzone";
 
 import addImgIcon from "../../../../utils/icons/add-img-icon";
-// import {
-// 	loadRowImgIllustrationContainer,
-// 	setRowImgIllustrationContainerSuccess,
-// } from "../../../../../../redux/actions";
-import { addImgRowIllustarionComponent } from "../../../../../../thunks/addImgRowIllustarionComponent";
-import { getImageUrl } from "../../../../helpers/workWithApi";
+import { loadRowImgToImgGrig } from "../../../../../../redux/actions";
 
 import IllustrationGrid from "./IllustrationGrig/IllustrationGrid";
 import ModalWindow from "../../../ModalWindow/ModalWindow";
 
 function IllustrationsAnswers() {
 	const dispatch = useDispatch();
-	const imgMatrix = useSelector((state) => state.task.data.imgGrid);
 
 	const [modalWindow, setModalWindow] = useState({
 		isModalOpen: false,
@@ -24,48 +18,16 @@ function IllustrationsAnswers() {
 	});
 
 	const onDrop = (acceptedFiles) => {
-		console.log(acceptedFiles);
-		dispatch(addImgRowIllustarionComponent(acceptedFiles));
+		console.log("ZAGRUZKA");
+		if (Array.isArray(acceptedFiles) && acceptedFiles.length !== 0) {
+			dispatch(loadRowImgToImgGrig(acceptedFiles));
+		}
 	};
-
-	// const onDrop = (acceptedFiles) => {
-	// 	if (Array.isArray(acceptedFiles) && acceptedFiles.length !== 0) {
-	// 		// acceptedFiles.forEach((element) => {
-	// 		//   dispatch(setRowImgIllustrationContainer(res.filename));
-	// 		// });
-	// 		acceptedFiles.forEach((element, index) => {
-	// 			console.log(index);
-	// 			// dispatch(addRowImgIllustrationContainer(""));
-
-	// 			getImageUrl(element).then((res) => {
-	// 				if (!res.ok) return;
-	// 				console.log(imgMatrix.length + index);
-	// 				// dispatch(
-	// 				//   setRowImgIllustrationContainer(res.filename, imgMatrix.length, 0)
-	// 				// );
-	// 			});
-	// 		});
-	// 	}
-	// };
-
-	// const onDrop = useCallback(
-	// 	(acceptedFiles) => {
-	// 		if (Array.isArray(acceptedFiles) && acceptedFiles.length !== 0) {
-	// 			acceptedFiles.forEach((element, index) => {
-	// 				useAddImgRowIllustarionComponent(element);
-
-	// 				// console.log(index);
-	// 				// dispatch(addRowImgIllustrationContainer(""));
-	// 			});
-	// 		}
-	// 	},
-	// 	[useAddImgRowIllustarionComponent, dispatch]
-	// );
 
 	const { getRootProps, getInputProps } = useDropzone({
 		accept: "image/*",
 		multiple: true,
-		// onDrop,
+		onDrop,
 		noDrag: true,
 		disabled: modalWindow.isModalOpen,
 	});
