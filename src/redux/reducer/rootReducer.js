@@ -1,17 +1,15 @@
 import update from "react-addons-update";
 import {
-	WELCOME_SCREEN,
-	ILLUSTRATION_RADIO_BUTTONS,
-	QUSETION_ANSWER,
-	WORDS_RADIO_BUTTONS,
-} from "../../views/TestArtDirectorAdmin/helpers/taskTypes/taskTypes";
+	setDataOfType,
+	clearImgContainer,
+	getSortedImgGridRows,
+	getSortedRowInImgGrid,
+} from "./reducerHelpers";
 
 import {
 	radioButtonOption,
 	radioButtonTask,
 	questionAnswer,
-	questionAnswerData,
-	wordsRadioButtons,
 } from "../typesInitialData";
 
 import {
@@ -45,6 +43,13 @@ import {
 	DELETE_WORD,
 	SET_WORD,
 	SET_WELCOME_PAGE_IMG_URL,
+	LOAD_ROW_IMG_TO_IMG_GRID,
+	LOAD_COLUMN_IMG_TO_IMG_GRID,
+	SET_IMG_TO_IMG_GRID_SUCCESS,
+	SET_IMG_TO_IMG_GRID_ERROR,
+	DELETE_IMG_FROM_IMG_GRID,
+	SORT_IMG_GRID_ROWS,
+	SORT_ROW_IN_IMG_GRID,
 } from "../actions";
 
 const initialState = {
@@ -64,25 +69,40 @@ const initialState = {
 		position: "",
 		date: "",
 		updated: "",
-		data: {
-			//radioButtonTaskList: [radioButtonTask],
-		},
+		data: {},
 	},
 };
 
-const setDataOfType = (type) => {
-	switch (type) {
-		case WELCOME_SCREEN:
-			return {};
-		case ILLUSTRATION_RADIO_BUTTONS:
-			return { radioButtonTaskList: [radioButtonTask] };
-		case QUSETION_ANSWER:
-			return questionAnswerData;
-		case WORDS_RADIO_BUTTONS:
-			return wordsRadioButtons;
-		default:
-			return {};
+const setLoadingImgsRow = (state, fileList) => {
+	for (const file of fileList) {
+		state = update(state, {
+			task: {
+				data: {
+					imgGrid: {
+						$push: [[{ loading: true, name: file, error: false }]],
+					},
+				},
+			},
+		});
 	}
+	return state;
+};
+
+const setLoadingImgsColumn = (state, action) => {
+	for (const file of action.payload) {
+		state = update(state, {
+			task: {
+				data: {
+					imgGrid: {
+						[action.indexRow]: {
+							$push: [{ loading: true, name: file, error: false }],
+						},
+					},
+				},
+			},
+		});
+	}
+	return state;
 };
 
 function rootReducer(state = initialState, action) {
@@ -121,6 +141,7 @@ function rootReducer(state = initialState, action) {
 				task: { ...state.task, description: action.payload },
 			};
 		case SET_TASK_TYPE:
+			clearImgContainer(state);
 			const data = setDataOfType(action.payload);
 			return update(state, {
 				task: {
@@ -383,6 +404,94 @@ function rootReducer(state = initialState, action) {
 					data: {
 						imgUrl: {
 							$set: action.payload,
+						},
+					},
+				},
+			});
+		case LOAD_ROW_IMG_TO_IMG_GRID:
+			return setLoadingImgsRow(state, action.payload);
+		case LOAD_COLUMN_IMG_TO_IMG_GRID:
+			return setLoadingImgsColumn(state, action);
+		case SET_IMG_TO_IMG_GRID_SUCCESS:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							[action.indexRow]: {
+								[action.indexColumn]: {
+									loading: {
+										$set: false,
+									},
+									name: {
+										$set: action.payload,
+									},
+								},
+							},
+						},
+					},
+				},
+			});
+		case SET_IMG_TO_IMG_GRID_ERROR:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							[action.indexRow]: {
+								[action.indexColumn]: {
+									loading: {
+										$set: false,
+									},
+									error: {
+										$set: true,
+									},
+								},
+							},
+						},
+					},
+				},
+			});
+		case DELETE_IMG_FROM_IMG_GRID:
+			if (state.task.data.imgGrid[action.indexRow].length === 1) {
+				return update(state, {
+					task: {
+						data: {
+							imgGrid: {
+								$splice: [[action.indexRow, 1]],
+							},
+						},
+					},
+				});
+			} else {
+				return update(state, {
+					task: {
+						data: {
+							imgGrid: {
+								[action.indexRow]: {
+									$splice: [[action.indexColumn, 1]],
+								},
+							},
+						},
+					},
+				});
+			}
+		case SORT_IMG_GRID_ROWS:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							$set: getSortedImgGridRows(state, action),
+						},
+					},
+				},
+			});
+		case SORT_ROW_IN_IMG_GRID:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							[action.indexRow]: {
+								$set: getSortedRowInImgGrid(state, action),
+							},
 						},
 					},
 				},

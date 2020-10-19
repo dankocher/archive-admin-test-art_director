@@ -16,6 +16,7 @@ const api = {
   td_delete_task: { method: "DELETE", uri: "/api/td/delete/:tt_id/:_id" },
   td_sort_tasks: { method: "POST", uri: "/api/td/sort" },
   save_picture: { method: "POST", uri: "/api/pic/save" },
+  delete_picture: { method: "DELETE", uri: "/api/pic/delete/:filename" },
 };
 
 export { host, api };

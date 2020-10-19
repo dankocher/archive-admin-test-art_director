@@ -28,3 +28,13 @@ export const wordsRadioButtons = {
 	wordList: [""],
 	radioButtonTaskList: [radioButtonTask],
 };
+
+// export const imgGrid = {
+// 	imgRow: [{ imgCollum: [] }],
+// };
+
+export const imgGrid = { imgGrid: [] };
+export const img = { loading: true, name: "", error: false };
+// export const imgCollum = {
+// 	imgCollum: [],
+// };
