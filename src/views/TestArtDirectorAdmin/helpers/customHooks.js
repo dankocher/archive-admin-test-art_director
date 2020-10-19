@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 export const useGetIsHaveMarks = (radioButtonTaskList) => {
   const radioButtonTaskListState = useSelector(
-    (state) => state.task.data.radioButtonTaskList
+    (state) => state.reduxStorage.task.data.radioButtonTaskList
   );
   if (radioButtonTaskList === undefined) {
     radioButtonTaskList = radioButtonTaskListState;

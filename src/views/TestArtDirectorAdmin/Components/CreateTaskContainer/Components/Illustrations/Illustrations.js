@@ -9,7 +9,7 @@ import { loadRowImgToImgGrig } from "../../../../../../redux/actions";
 import IllustrationGrid from "./IllustrationGrig/IllustrationGrid";
 import ModalWindow from "../../../ModalWindow/ModalWindow";
 
-function IllustrationsAnswers() {
+function Illustrations() {
 	const dispatch = useDispatch();
 
 	const [modalWindow, setModalWindow] = useState({
@@ -88,4 +88,4 @@ function IllustrationsAnswers() {
 	);
 }
 
-export default IllustrationsAnswers;
+export default Illustrations;

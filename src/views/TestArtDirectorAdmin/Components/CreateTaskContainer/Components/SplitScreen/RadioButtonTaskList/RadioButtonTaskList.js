@@ -11,7 +11,7 @@ function RadioButtonTaskList() {
   const dispatch = useDispatch();
 
   const radioButtonTaskList = useSelector(
-    (state) => state.task.data.radioButtonTaskList
+    (state) => state.reduxStorage.task.data.radioButtonTaskList
   );
   const handlerAddGroupRadioButtons = () => {
     dispatch(addRadioButtonTask());

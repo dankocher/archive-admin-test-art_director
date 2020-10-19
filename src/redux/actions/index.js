@@ -8,16 +8,16 @@ export const SET_TASK_TYPE = "SET_TASK_TYPE";
 export const SET_IS_TIME_CONSIDERED = "IS_TIME_CONSIDERED";
 export const SET_IS_TIME_DISPLAY_FOR_USER = "SET_IS_TIME_DISPLAY_FOR_USER";
 export const SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS =
-	"SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS";
+  "SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS";
 export const SET_IS_ANSWER_SIZE_LIMITATION = "SET_IS_ANSWER_SIZE_LIMITATION";
 export const ADD_RADIO_BUTTON_TASK = "ADD_RADIO_BUTTON_TASK";
 export const ADD_RADIO_BUTTON_OPTION = "ADD_RADIO_BUTTON_OPTION";
 export const SET_RADIO_BUTTON_TASK_QUESTION = "SET_RADIO_BUTTON_TASK_QUESTION";
 export const SET_RADIO_BUTTON_TASK_OPTION = "SET_RADIO_BUTTON_TASK_OPTION";
 export const SET_RADIO_BUTTON_TASK_OPTION_MARK =
-	"SET_RADIO_BUTTON_TASK_OPTION_MARK";
+  "SET_RADIO_BUTTON_TASK_OPTION_MARK";
 export const REMOVE_RADIO_BUTTON_TASK_OPTION =
-	"REMOVE_RADIO_BUTTON_TASK_OPTION";
+  "REMOVE_RADIO_BUTTON_TASK_OPTION";
 export const REMOVE_RADIO_BUTTON_TASK = "REMOVE_RADIO_BUTTON_TASK";
 export const SET_IS_HAVE_MARKS = "SET_IS_HAVE_MARKS";
 export const SET_TASK_NUMBER = "SET_TASK_NUMBER";
@@ -39,212 +39,218 @@ export const SET_IMG_TO_IMG_GRID_ERROR = "SET_IMG_TO_IMG_GRID_ERROR";
 export const DELETE_IMG_FROM_IMG_GRID = "DELETE_IMG_FROM_IMG_GRID";
 export const SORT_IMG_GRID_ROWS = "SORT_IMG_GRID_ROWS";
 export const SORT_ROW_IN_IMG_GRID = "SORT_ROW_IN_IMG_GRID";
+export const SET_CHOOSEN_IMG_GRID_ROW = "SET_CHOOSEN_IMG_GRID_ROW";
 
 export const setInitialState = () => ({
-	type: SET_INITIAL_STATE,
+  type: SET_INITIAL_STATE,
 });
 
 export const setTestProps = (_id, name) => ({
-	type: SET_TEST_PROPS,
-	payload: { _id, name },
+  type: SET_TEST_PROPS,
+  payload: { _id, name },
 });
 
 export const setTestName = (name) => ({
-	type: SET_TEST_NAME,
-	payload: name,
+  type: SET_TEST_NAME,
+  payload: name,
 });
 
 export const setTaskName = (name) => ({
-	type: SET_TASK_NAME,
-	payload: name,
+  type: SET_TASK_NAME,
+  payload: name,
 });
 
 export const setTaskDescription = (description) => ({
-	type: SET_TASK_DESCRIPTION,
-	payload: description,
+  type: SET_TASK_DESCRIPTION,
+  payload: description,
 });
 
 export const setTaskType = (type) => ({
-	type: SET_TASK_TYPE,
-	payload: type,
+  type: SET_TASK_TYPE,
+  payload: type,
 });
 
 export const setIsTimeConsidered = () => ({
-	type: SET_IS_TIME_CONSIDERED,
+  type: SET_IS_TIME_CONSIDERED,
 });
 
 export const setIsTimeDisplayForUser = () => ({
-	type: SET_IS_TIME_DISPLAY_FOR_USER,
+  type: SET_IS_TIME_DISPLAY_FOR_USER,
 });
 
 export const setIsOneGradeForAllSubTasks = () => ({
-	type: SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
+  type: SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
 });
 
 export const setIsAnswerSizeLimited = () => ({
-	type: SET_IS_ANSWER_SIZE_LIMITATION,
+  type: SET_IS_ANSWER_SIZE_LIMITATION,
 });
 
 export const setTaskState = (task) => ({
-	type: SET_TASK_STATE,
-	payload: task,
+  type: SET_TASK_STATE,
+  payload: task,
 });
 
 export const addRadioButtonTask = () => ({
-	type: ADD_RADIO_BUTTON_TASK,
+  type: ADD_RADIO_BUTTON_TASK,
 });
 
 export const addRadioButtonOption = (index) => ({
-	type: ADD_RADIO_BUTTON_OPTION,
-	payload: index,
+  type: ADD_RADIO_BUTTON_OPTION,
+  payload: index,
 });
 
 export const setRadioButtonTaskQuestion = (question, index) => ({
-	type: SET_RADIO_BUTTON_TASK_QUESTION,
-	index: index,
-	payload: question,
+  type: SET_RADIO_BUTTON_TASK_QUESTION,
+  index: index,
+  payload: question,
 });
 
 export const setRadioButtonTaskOption = (
-	option,
-	radioButtonTaskIndex,
-	radioButtonTaskOptionIndex
+  option,
+  radioButtonTaskIndex,
+  radioButtonTaskOptionIndex
 ) => ({
-	type: SET_RADIO_BUTTON_TASK_OPTION,
-	radioButtonTaskIndex,
-	radioButtonTaskOptionIndex,
-	payload: option,
+  type: SET_RADIO_BUTTON_TASK_OPTION,
+  radioButtonTaskIndex,
+  radioButtonTaskOptionIndex,
+  payload: option,
 });
 
 export const setRadioButtonTaskOptionMark = (
-	mark,
-	radioButtonTaskIndex,
-	radioButtonTaskOptionIndex,
-	isHaveMarks
+  mark,
+  radioButtonTaskIndex,
+  radioButtonTaskOptionIndex,
+  isHaveMarks
 ) => ({
-	type: SET_RADIO_BUTTON_TASK_OPTION_MARK,
-	radioButtonTaskIndex,
-	radioButtonTaskOptionIndex,
-	payload: mark,
-	isHaveMarks,
+  type: SET_RADIO_BUTTON_TASK_OPTION_MARK,
+  radioButtonTaskIndex,
+  radioButtonTaskOptionIndex,
+  payload: mark,
+  isHaveMarks,
 });
 
 export const removeRadioButtonTaskOption = (
-	radioButtonTaskIndex,
-	radioButtonTaskOptionIndex,
-	isHaveMarks
+  radioButtonTaskIndex,
+  radioButtonTaskOptionIndex,
+  isHaveMarks
 ) => ({
-	type: REMOVE_RADIO_BUTTON_TASK_OPTION,
-	radioButtonTaskIndex,
-	radioButtonTaskOptionIndex,
-	isHaveMarks,
+  type: REMOVE_RADIO_BUTTON_TASK_OPTION,
+  radioButtonTaskIndex,
+  radioButtonTaskOptionIndex,
+  isHaveMarks,
 });
 
 export const removeRadioButtonTask = (radioButtonTaskIndex) => ({
-	type: REMOVE_RADIO_BUTTON_TASK,
-	radioButtonTaskIndex,
+  type: REMOVE_RADIO_BUTTON_TASK,
+  radioButtonTaskIndex,
 });
 
 export const setTaskNumber = (task_number) => ({
-	type: SET_TASK_NUMBER,
-	payload: task_number,
+  type: SET_TASK_NUMBER,
+  payload: task_number,
 });
 
 export const addQustionAnswer = () => ({
-	type: ADD_QUESTION_ANSWER,
+  type: ADD_QUESTION_ANSWER,
 });
 
 export const deleteQustionAnswer = (index) => ({
-	type: DELETE_QUESTION_ANSWER,
-	index,
+  type: DELETE_QUESTION_ANSWER,
+  index,
 });
 
 export const setQAQuestion = (question, index) => ({
-	type: SET_QA_QUESTION,
-	payload: question,
-	index,
+  type: SET_QA_QUESTION,
+  payload: question,
+  index,
 });
 
 export const setQADescription = (description, index) => ({
-	type: SET_QA_DESCRIPTION,
-	payload: description,
-	index,
+  type: SET_QA_DESCRIPTION,
+  payload: description,
+  index,
 });
 
 export const setGlobalResponseLimitationFrom = (number) => ({
-	type: SET_RESPONSE_LIMITATION_FROM,
-	payload: number,
+  type: SET_RESPONSE_LIMITATION_FROM,
+  payload: number,
 });
 
 export const setGlobalResponseLimitationTo = (number) => ({
-	type: SET_RESPONSE_LIMITATION_TO,
-	payload: number,
+  type: SET_RESPONSE_LIMITATION_TO,
+  payload: number,
 });
 
 export const setWordList = (wordList) => ({
-	type: SET_WORD_LIST,
-	payload: wordList,
+  type: SET_WORD_LIST,
+  payload: wordList,
 });
 
 export const addWord = () => ({
-	type: ADD_WORD,
+  type: ADD_WORD,
 });
 
 export const deleteWord = (index) => ({
-	type: DELETE_WORD,
-	index,
+  type: DELETE_WORD,
+  index,
 });
 
 export const setWord = (word, index) => ({
-	type: SET_WORD,
-	payload: word,
-	index,
+  type: SET_WORD,
+  payload: word,
+  index,
 });
 
 export const setWelcomePageImgUrl = (imgUrl) => ({
-	type: SET_WELCOME_PAGE_IMG_URL,
-	payload: imgUrl,
+  type: SET_WELCOME_PAGE_IMG_URL,
+  payload: imgUrl,
 });
 
 export const loadRowImgToImgGrig = (file) => ({
-	type: LOAD_ROW_IMG_TO_IMG_GRID,
-	payload: file,
+  type: LOAD_ROW_IMG_TO_IMG_GRID,
+  payload: file,
 });
 
 export const loadColumnImgToImgGrig = (file, indexRow) => ({
-	type: LOAD_COLUMN_IMG_TO_IMG_GRID,
-	payload: file,
-	indexRow,
+  type: LOAD_COLUMN_IMG_TO_IMG_GRID,
+  payload: file,
+  indexRow,
 });
 
 export const setImgToImgGridSuccess = (imgUrl, indexRow, indexColumn) => ({
-	type: SET_IMG_TO_IMG_GRID_SUCCESS,
-	payload: imgUrl,
-	indexRow,
-	indexColumn,
+  type: SET_IMG_TO_IMG_GRID_SUCCESS,
+  payload: imgUrl,
+  indexRow,
+  indexColumn,
 });
 
 export const setImgToImgGridError = (indexRow, indexColumn) => ({
-	type: SET_IMG_TO_IMG_GRID_ERROR,
-	indexRow,
-	indexColumn,
+  type: SET_IMG_TO_IMG_GRID_ERROR,
+  indexRow,
+  indexColumn,
 });
 
 export const deleteImgFromImgGrig = (indexRow, indexColumn) => ({
-	type: DELETE_IMG_FROM_IMG_GRID,
-	indexRow,
-	indexColumn,
+  type: DELETE_IMG_FROM_IMG_GRID,
+  indexRow,
+  indexColumn,
 });
 
 export const sortImgGridRows = (oldIndex, newIndex) => ({
-	type: SORT_IMG_GRID_ROWS,
-	oldIndex,
-	newIndex,
+  type: SORT_IMG_GRID_ROWS,
+  oldIndex,
+  newIndex,
 });
 
-export const sortRowInImgGrid = (indexRow,oldIndex, newIndex) => ({
-	type: SORT_ROW_IN_IMG_GRID,
-	oldIndex,
-	newIndex,
-	indexRow
+export const sortRowInImgGrid = (indexRow, oldIndex, newIndex) => ({
+  type: SORT_ROW_IN_IMG_GRID,
+  oldIndex,
+  newIndex,
+  indexRow,
+});
+
+export const setChoosenRowImgGrid = (row) => ({
+  type: SET_CHOOSEN_IMG_GRID_ROW,
+  payload: row,
 });
