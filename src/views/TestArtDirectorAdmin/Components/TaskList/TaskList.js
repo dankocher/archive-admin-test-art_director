@@ -1,11 +1,11 @@
 import "./TaskList.scss";
 
-import React, {useState, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-import {isWelcomeScreen} from "../../helpers/taskTypes/taskTypeEnum";
+import { isWelcomeScreen } from "../../helpers/taskTypes/taskTypeEnum";
 import {
 	getTasksFromServer,
 	getNewTaskFromServer,
@@ -13,7 +13,7 @@ import {
 	saveTaskListHeader,
 } from "../../helpers/workWithApi";
 
-import {setTestProps, setTestName} from "../../../../redux/actions";
+import { setTestProps, setTestName } from "../../../../redux/actions";
 
 import Task from "./Task/Task";
 import addIcon from "../../utils/icons/add-icon";
@@ -26,7 +26,7 @@ function TaskList() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 
-	const testId = useSelector((state) => state._id);
+	const testId = useSelector((state) => state.reduxStorage._id);
 
 	const [header, setHeader] = useState("");
 	const [taskList, setTaskList] = useState([]);

@@ -22,7 +22,7 @@ function Illustration({ imgState, indexColumn, indexRow }) {
 
   const getImgUrlHandle = () => {
     const rowDiff = imgGrid.length - 1 - indexRow;
-    const columnDiff = imgGrid[indexRow].length - 1 - indexColumn;
+    const columnDiff = imgGrid[indexRow].imgColumnList.length - 1 - indexColumn;
     console.log(indexRow, indexColumn);
 
     getImageUrl(imgState.name)
