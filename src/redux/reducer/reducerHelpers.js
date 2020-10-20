@@ -57,3 +57,15 @@ export const getSortedRowInImgGrid = (state, action) => {
   const imgRow = state.task.data.imgGrid[action.indexRow];
   return arrayMove(imgRow, action.oldIndex, action.newIndex);
 };
+
+export const getNextId = (array) => {
+  if (array === undefined || array.length === 0) {
+    return 0;
+  } else {
+    let max = array[0].id;
+    for (const item of array) {
+      max = item.id > max ? item.id : max;
+    }
+    return max + 1;
+  }
+};

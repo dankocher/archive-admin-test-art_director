@@ -27,10 +27,11 @@ function RadioButtonTask({
   };
 
   const handlerOnClickRemoveBtn = () => {
+    dispatch(removeRadioButtonTask(index));
+    console.log(radioButtonTaskListLength);
     if (radioButtonTaskListLength === 1) {
       addNewTask();
     }
-    dispatch(removeRadioButtonTask(index));
   };
 
   return (

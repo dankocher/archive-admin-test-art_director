@@ -1,10 +1,19 @@
-export const radioButtonOption = { option: "", mark: "" };
+export const radioButtonOption = {
+  id: 0,
+  option: "",
+  marks: [{ id: 0, mark: "" }],
+};
 
 export const radioButtonTask = {
+  id: 0,
   question: "",
   isHaveMarks: true,
   radioButtonOptionList: [radioButtonOption],
 };
+
+// export const radioButtonTaskLists = [
+//   { id: 0, radioButtonTaskList: [radioButtonTask] },
+// ];
 
 export const questionAnswer = {
   question: "",
