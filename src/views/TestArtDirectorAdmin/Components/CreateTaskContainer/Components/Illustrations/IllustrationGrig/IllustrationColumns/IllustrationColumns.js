@@ -18,11 +18,9 @@ function IllustrationColumns({ imgRow, indexRow, setModalWindow }) {
 	const isOneGradeForAllSubTasks = useSelector(
 		(state) => state.reduxStorage.task.isOneGradeForAllSubTasks
 	);
-
-	useEffect(() => {
-		// if (isOneGradeForAllSubTasks) return;
-		//tut dolshen bit thunk
-	}, []);
+	const isSelectedRow = useSelector(
+		(state) => state.radioButtonIllustrationResucer
+	);
 
 	const onSortEnd = ({ oldIndex, newIndex }) => {
 		dispatch(sortRowInImgGrid(indexRow, oldIndex, newIndex));
@@ -30,11 +28,19 @@ function IllustrationColumns({ imgRow, indexRow, setModalWindow }) {
 
 	const choosingImgRow = () => {
 		dispatch(setChoosenRowImgGridId(imgRow.id));
-		console.log(`chosen ${imgRow.id}`);
+		// console.log(`chosen ${imgRow.id}`);
+	};
+
+	const getIsRowSlected = () => {
+		return isSelectedRow === imgRow.id;
 	};
 
 	return (
-		<div className={styles.grid}>
+		<div
+			className={`${styles.grid} ${
+				isOneGradeForAllSubTasks ? "" : getIsRowSlected() ? styles.selected : ""
+			}`}
+		>
 			<div
 				className={styles.grid__sort_container}
 				onClick={isOneGradeForAllSubTasks ? null : choosingImgRow}

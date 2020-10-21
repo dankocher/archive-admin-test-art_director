@@ -8,7 +8,8 @@ export const setRowImgIllustrationContainer = (
 	return (dispatch, getState) => {
 		const imgMatrix = getState().reduxStorage.task.data.imgGrid;
 		const rowIndex = imgMatrix.length - 1 - rowDiff;
-		const columnIndex = imgMatrix[rowIndex].imgColumnList.length - 1 - columnDiff;
+		const columnIndex =
+			imgMatrix[rowIndex].imgColumnList.length - 1 - columnDiff;
 		// console.log(rowIndex);
 		// console.log(columnIndex);
 

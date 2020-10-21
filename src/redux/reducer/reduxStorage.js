@@ -91,7 +91,67 @@ const setLoadingImgsRow = (state, fileList) => {
 			},
 		});
 	}
+
 	return state;
+	// if (state.isOneGradeForAllSubTasks) {
+	// 	for (const file of fileList) {
+	// 		state = update(state, {
+	// 			task: {
+	// 				data: {
+	// 					imgGrid: {
+	// 						$push: [
+	// 							{
+	// 								id: getNextId(state.task.data.imgGrid),
+	// 								imgColumnList: [{ loading: true, name: file, error: false }],
+	// 							},
+	// 						],
+	// 					},
+	// 				},
+	// 			},
+	// 		});
+	// 	}
+	// } else {
+	// 	for (const file of fileList) {
+	// 		const nextId = getNextId(state.task.data.imgGrid);
+	// 		state = update(state, {
+	// 			task: {
+	// 				data: {
+	// 					imgGrid: {
+	// 						$push: [
+	// 							{
+	// 								id: nextId,
+	// 								imgColumnList: [{ loading: true, name: file, error: false }],
+	// 							},
+	// 						],
+	// 					},
+	// 				},
+	// 			},
+	// 		});
+	// 		for (const indexRBTL of state.task.data.radioButtonTaskList.keys()) {
+	// 			for (const indexRBOL of state.task.data.radioButtonTaskList[
+	// 				indexRBTL
+	// 			].radioButtonOptionList.keys()) {
+	// 				// for (const indexMark of state.task.data.radioButtonTaskList[indexRBTL]
+	// 				// 	.radioButtonOptionList[indexRBOL].marks[indexMark]) {
+	// 				state = update(state, {
+	// 					task: {
+	// 						data: {
+	// 							radioButtonTaskList: {
+	// 								[indexRBTL]: {
+	// 									radioButtonOptionList: {
+	// 										[indexRBOL]: {
+	// 											marks: { $push: [{ id: nextId, mark: "" }] },
+	// 										},
+	// 									},
+	// 								},
+	// 							},
+	// 						},
+	// 					},
+	// 				});
+	// 				// }
+	// 			}
+	// 		}
+	// 	}
 };
 
 const setLoadingImgsColumn = (state, action) => {

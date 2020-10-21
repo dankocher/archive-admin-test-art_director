@@ -1,14 +1,24 @@
 export const radioButtonOption = {
-  id: 0,
-  option: "",
-  marks: [{ id: 0, mark: "" }],
+	id: 0,
+	option: "",
+	marks: [],
 };
 
+// const ImgANDRB = {
+// 	1: [
+// 		{
+// 			rbOID: 1,
+// 			markId: 1,
+// 		},
+// 	],
+// };
+// const mark = { id: 0, mark: "" };
+
 export const radioButtonTask = {
-  id: 0,
-  question: "",
-  isHaveMarks: true,
-  radioButtonOptionList: [radioButtonOption],
+	id: 0,
+	question: "",
+	isHaveMarks: true,
+	radioButtonOptionList: [radioButtonOption],
 };
 
 // export const radioButtonTaskLists = [
@@ -16,30 +26,30 @@ export const radioButtonTask = {
 // ];
 
 export const questionAnswer = {
-  question: "",
-  description: "",
+	question: "",
+	description: "",
 };
 
 const responseLimitationOption = {
-  isAnswerSizeLimited: false,
-  responseLimitation: {
-    from: "",
-    to: "",
-  },
+	isAnswerSizeLimited: false,
+	responseLimitation: {
+		from: "",
+		to: "",
+	},
 };
 
 export const questionAnswerData = {
-  ...responseLimitationOption,
-  questionAnswerList: [questionAnswer],
+	...responseLimitationOption,
+	questionAnswerList: [questionAnswer],
 };
 
 export const wordsRadioButtons = {
-  wordList: [""],
-  radioButtonTaskList: [radioButtonTask],
+	wordList: [""],
+	radioButtonTaskList: [radioButtonTask],
 };
 
 export const imgGrid = {
-  imgGrid: [],
+	imgGrid: [],
 };
 
 // export const illustrationRadiobuttonsImgRow = {

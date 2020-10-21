@@ -1,9 +1,11 @@
 import styles from "./IllustrationGrid.module.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { sortableContainer, sortableElement } from "react-sortable-hoc";
 
 import { sortImgGridRows } from "../../../../../../../redux/actions";
+
+import { setFirstImgRowId } from "../../../../../../../thunks/setFirstImgRowId";
 
 import IllustrationColumns from "./IllustrationColumns/IllustrationColumns";
 
@@ -26,6 +28,11 @@ function IllustrationGrid({ setModalWindow }) {
 	const imgMatrix = useSelector(
 		(state) => state.reduxStorage.task.data.imgGrid
 	);
+
+	useEffect(() => {
+		//tut dolshen bit thunk
+		dispatch(setFirstImgRowId());
+	}, [dispatch]);
 
 	const onSortEnd = ({ oldIndex, newIndex }) => {
 		dispatch(sortImgGridRows(oldIndex, newIndex));
