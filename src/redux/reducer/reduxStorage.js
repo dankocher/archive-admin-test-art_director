@@ -28,6 +28,7 @@ import {
 	ADD_RADIO_BUTTON_OPTION,
 	SET_RADIO_BUTTON_TASK_QUESTION,
 	SET_RADIO_BUTTON_TASK_OPTION,
+	ADD_RADIO_BUTTON_TASK_OPTION_MARK,
 	SET_RADIO_BUTTON_TASK_OPTION_MARK,
 	REMOVE_RADIO_BUTTON_TASK_OPTION,
 	REMOVE_RADIO_BUTTON_TASK,
@@ -48,7 +49,8 @@ import {
 	LOAD_COLUMN_IMG_TO_IMG_GRID,
 	SET_IMG_TO_IMG_GRID_SUCCESS,
 	SET_IMG_TO_IMG_GRID_ERROR,
-	DELETE_IMG_FROM_IMG_GRID,
+	DELETE_COLUMN_FROM_IMG_GRID,
+	DELETE_ROW_FROM_IMG_GRID,
 	SORT_IMG_GRID_ROWS,
 	SORT_ROW_IN_IMG_GRID,
 } from "../actions";
@@ -320,6 +322,25 @@ function reduxStorage(state = initialState, action) {
 					},
 				},
 			});
+		// case ADD_RADIO_BUTTON_TASK_OPTION_MARK:
+		// 	return update(state, {
+		// 		task: {
+		// 			data: {
+		// 				radioButtonTaskList: {
+		// 					[action.radioButtonTaskIndex]: {
+		// 						isHaveMarks: { $set: action.isHaveMarks },
+		// 						radioButtonOptionList: {
+		// 							[action.radioButtonTaskOptionIndex]: {
+		// 								scoreList: {
+		// 									[action.scoreKey]: { $set: action.payload },
+		// 								},
+		// 							},
+		// 						},
+		// 					},
+		// 				},
+		// 			},
+		// 		},
+		// 	});
 		case SET_RADIO_BUTTON_TASK_OPTION_MARK:
 			return update(state, {
 				task: {
@@ -329,7 +350,9 @@ function reduxStorage(state = initialState, action) {
 								isHaveMarks: { $set: action.isHaveMarks },
 								radioButtonOptionList: {
 									[action.radioButtonTaskOptionIndex]: {
-										mark: { $set: action.payload },
+										scoreList: {
+											[action.scoreKey]: { $set: action.payload },
+										},
 									},
 								},
 							},
@@ -539,32 +562,30 @@ function reduxStorage(state = initialState, action) {
 					},
 				},
 			});
-		case DELETE_IMG_FROM_IMG_GRID:
-			if (state.task.data.imgGrid[action.indexRow].imgColumnList.length === 1) {
-				return update(state, {
-					task: {
-						data: {
-							imgGrid: {
-								$splice: [[action.indexRow, 1]],
-							},
+		case DELETE_ROW_FROM_IMG_GRID:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							$splice: [[action.indexRow, 1]],
 						},
 					},
-				});
-			} else {
-				return update(state, {
-					task: {
-						data: {
-							imgGrid: {
-								[action.indexRow]: {
-									imgColumnList: {
-										$splice: [[action.indexColumn, 1]],
-									},
+				},
+			});
+		case DELETE_COLUMN_FROM_IMG_GRID:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							[action.indexRow]: {
+								imgColumnList: {
+									$splice: [[action.indexColumn, 1]],
 								},
 							},
 						},
 					},
-				});
-			}
+				},
+			});
 		case SORT_IMG_GRID_ROWS:
 			return update(state, {
 				task: {

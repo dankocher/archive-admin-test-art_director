@@ -16,6 +16,8 @@ export const SET_RADIO_BUTTON_TASK_QUESTION = "SET_RADIO_BUTTON_TASK_QUESTION";
 export const SET_RADIO_BUTTON_TASK_OPTION = "SET_RADIO_BUTTON_TASK_OPTION";
 export const SET_RADIO_BUTTON_TASK_OPTION_MARK =
 	"SET_RADIO_BUTTON_TASK_OPTION_MARK";
+export const ADD_RADIO_BUTTON_TASK_OPTION_MARK =
+	"ADD_RADIO_BUTTON_TASK_OPTION_MARK";
 export const REMOVE_RADIO_BUTTON_TASK_OPTION =
 	"REMOVE_RADIO_BUTTON_TASK_OPTION";
 export const REMOVE_RADIO_BUTTON_TASK = "REMOVE_RADIO_BUTTON_TASK";
@@ -36,7 +38,8 @@ export const LOAD_ROW_IMG_TO_IMG_GRID = "LOAD_ROW_IMG_TO_IMG_GRID";
 export const LOAD_COLUMN_IMG_TO_IMG_GRID = "LOAD_COLUMN_IMG_TO_IMG_GRID";
 export const SET_IMG_TO_IMG_GRID_SUCCESS = "SET_IMG_TO_IMG_GRID_SUCCESS";
 export const SET_IMG_TO_IMG_GRID_ERROR = "SET_IMG_TO_IMG_GRID_ERROR";
-export const DELETE_IMG_FROM_IMG_GRID = "DELETE_IMG_FROM_IMG_GRID";
+export const DELETE_ROW_FROM_IMG_GRID = "DELETE_ROW_FROM_IMG_GRID";
+export const DELETE_COLUMN_FROM_IMG_GRID = "DELETE_COLUMN_FROM_IMG_GRID";
 export const SORT_IMG_GRID_ROWS = "SORT_IMG_GRID_ROWS";
 export const SORT_ROW_IN_IMG_GRID = "SORT_ROW_IN_IMG_GRID";
 export const SET_CHOOSEN_IMG_GRID_ROW_ID = "SET_CHOOSEN_IMG_GRID_ROW_ID";
@@ -117,16 +120,33 @@ export const setRadioButtonTaskOption = (
 	payload: option,
 });
 
+// export const addRadioButtonTaskOptionMark = (
+// 	score,
+// 	radioButtonTaskIndex,
+// 	radioButtonTaskOptionIndex,
+// 	chosedImgRow,
+// 	isHaveMarks
+// ) => ({
+// 	type: ADD_RADIO_BUTTON_TASK_OPTION_MARK,
+// 	payload: score,
+// 	radioButtonTaskIndex,
+// 	radioButtonTaskOptionIndex,
+// 	scoreKey: chosedImgRow,
+// 	isHaveMarks,
+// });
+
 export const setRadioButtonTaskOptionMark = (
-	mark,
+	score,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
+	chosedImgRow,
 	isHaveMarks
 ) => ({
 	type: SET_RADIO_BUTTON_TASK_OPTION_MARK,
+	payload: score,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
-	payload: mark,
+	scoreKey: chosedImgRow,
 	isHaveMarks,
 });
 
@@ -231,8 +251,13 @@ export const setImgToImgGridError = (indexRow, indexColumn) => ({
 	indexColumn,
 });
 
-export const deleteImgFromImgGrig = (indexRow, indexColumn) => ({
-	type: DELETE_IMG_FROM_IMG_GRID,
+export const deleteRowFromImgGrig = (indexRow) => ({
+	type: DELETE_ROW_FROM_IMG_GRID,
+	indexRow,
+});
+
+export const deleteColumnFromImgGrig = (indexRow, indexColumn) => ({
+	type: DELETE_COLUMN_FROM_IMG_GRID,
 	indexRow,
 	indexColumn,
 });
@@ -250,7 +275,7 @@ export const sortRowInImgGrid = (indexRow, oldIndex, newIndex) => ({
 	indexRow,
 });
 
-export const setChoosenRowImgGridId = (row) => ({
+export const setSelectedRowIdImgGrid = (row) => ({
 	type: SET_CHOOSEN_IMG_GRID_ROW_ID,
 	payload: row,
 });

@@ -1,7 +1,7 @@
 export const radioButtonOption = {
 	id: 0,
 	option: "",
-	marks: [],
+	scoreList: {},
 };
 
 // const ImgANDRB = {
@@ -12,6 +12,8 @@ export const radioButtonOption = {
 // 		},
 // 	],
 // };
+
+// const score = {imgRowId:"",}
 // const mark = { id: 0, mark: "" };
 
 export const radioButtonTask = {

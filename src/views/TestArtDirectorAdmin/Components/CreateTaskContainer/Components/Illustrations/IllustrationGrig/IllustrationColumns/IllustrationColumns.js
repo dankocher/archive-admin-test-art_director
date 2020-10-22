@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sortableContainer, sortableElement } from "react-sortable-hoc";
 import {
 	sortRowInImgGrid,
-	setChoosenRowImgGridId,
+	setSelectedRowIdImgGrid,
 } from "../../../../../../../../redux/actions";
 
 import addImgIconSmall from "../../../../../../utils/icons/add-img-icon-small";
@@ -18,8 +18,8 @@ function IllustrationColumns({ imgRow, indexRow, setModalWindow }) {
 	const isOneGradeForAllSubTasks = useSelector(
 		(state) => state.reduxStorage.task.isOneGradeForAllSubTasks
 	);
-	const isSelectedRow = useSelector(
-		(state) => state.radioButtonIllustrationResucer
+	const selectedRow = useSelector(
+		(state) => state.radioButtonIllustrationResucer.selectedImgRow
 	);
 
 	const onSortEnd = ({ oldIndex, newIndex }) => {
@@ -27,12 +27,12 @@ function IllustrationColumns({ imgRow, indexRow, setModalWindow }) {
 	};
 
 	const choosingImgRow = () => {
-		dispatch(setChoosenRowImgGridId(imgRow.id));
+		dispatch(setSelectedRowIdImgGrid(imgRow.id));
 		// console.log(`chosen ${imgRow.id}`);
 	};
 
 	const getIsRowSlected = () => {
-		return isSelectedRow === imgRow.id;
+		return selectedRow === imgRow.id;
 	};
 
 	return (

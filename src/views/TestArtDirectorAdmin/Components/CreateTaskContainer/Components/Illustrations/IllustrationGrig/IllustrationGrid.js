@@ -25,12 +25,11 @@ const SortableItem = sortableElement(({ imgRow, indexRow, setModalWindow }) => {
 
 function IllustrationGrid({ setModalWindow }) {
 	const dispatch = useDispatch();
-	const imgMatrix = useSelector(
-		(state) => state.reduxStorage.task.data.imgGrid
-	);
+	const imgGrid = useSelector((state) => state.reduxStorage.task.data.imgGrid);
 
 	useEffect(() => {
 		//tut dolshen bit thunk
+		if (imgGrid.length === 0) return;
 		dispatch(setFirstImgRowId());
 	}, [dispatch]);
 
@@ -40,7 +39,7 @@ function IllustrationGrid({ setModalWindow }) {
 
 	return (
 		<SortableContainer onSortEnd={onSortEnd} useDragHandle>
-			{imgMatrix?.map((element, index) => {
+			{imgGrid?.map((element, index) => {
 				// console.log(element);
 				return (
 					<SortableItem

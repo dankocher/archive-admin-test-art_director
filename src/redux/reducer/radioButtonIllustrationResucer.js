@@ -1,11 +1,11 @@
 import { SET_CHOOSEN_IMG_GRID_ROW_ID } from "../actions";
 
-const chosenImgRow = 1;
+const initialState = { selectedImgRow: null };
 
-function radioButtonIllustrationResucer(state = chosenImgRow, action) {
+function radioButtonIllustrationResucer(state = initialState, action) {
 	switch (action.type) {
 		case SET_CHOOSEN_IMG_GRID_ROW_ID:
-			return action.payload;
+			return { ...state, selectedImgRow: action.payload };
 		default:
 			return state;
 	}

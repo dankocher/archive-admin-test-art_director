@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
 	setRadioButtonTaskOption,
-	setRadioButtonTaskOptionMark,
 	removeRadioButtonTaskOption,
 } from "../../../../../../../../../../redux/actions";
+
+import { setRadioButtonTaskOptionMarkThunk } from "../../../../../../../../../../thunks/setRadioButtonTaskOptionMarkThunk";
 
 import { getIsHaveMarks } from "../../../../../../../../helpers/getIsHaveMarks";
 
@@ -24,11 +25,27 @@ function RadioButtonOption({
 	const [isHoveredOption, setIsHoveredOption] = useState(false);
 	const [answerScore, setAnswerScore] = useState("");
 
+	const isOneGradeForAllSubTasks = useSelector(
+		(state) => state.reduxStorage.task.isOneGradeForAllSubTasks
+	);
+
+	// const c
+
+	const selectedImgRow = useSelector(
+		(state) => state.radioButtonIllustrationResucer.selectedImgRow
+	);
 	// const answerScoreRedux = useSelector(state=> state.reduxStorage.task.data.radioButtonTaskList[].)
 
 	useEffect(() => {
-		setAnswerScore(radioButtonOption.mark);
-	}, [radioButtonOption.mark]);
+		// debugger
+		if (radioButtonOption.scoreList == null) return;
+		// debugger;
+		const score = isOneGradeForAllSubTasks
+			? radioButtonOption.score
+			: radioButtonOption?.scoreList[selectedImgRow];
+
+		setAnswerScore(score || "");
+	}, [isOneGradeForAllSubTasks, selectedImgRow]);
 
 	const handlerAnswerScoreOnChange = (event) => {
 		const number = event.target.validity.valid
@@ -59,7 +76,7 @@ function RadioButtonOption({
 		// console.log(isHaveMarks);
 
 		dispatch(
-			setRadioButtonTaskOptionMark(
+			setRadioButtonTaskOptionMarkThunk(
 				answerScore,
 				radioButtonTaskIndex,
 				optionIndex,
@@ -105,6 +122,7 @@ function RadioButtonOption({
 					value={answerScore}
 					onChange={handlerAnswerScoreOnChange}
 					onBlur={handlerOnBlureMark}
+					disabled={selectedImgRow === null}
 				/>
 			</div>
 

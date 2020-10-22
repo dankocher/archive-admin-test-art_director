@@ -20,12 +20,14 @@ export const setRadioButtonTaskOptionMarkThunk = (
 				)
 			);
 		} else {
-			const chosedImgRow = getState().radioButtonIllustrationResucer;
+			const selectedImgRow = getState().radioButtonIllustrationResucer
+				.selectedImgRow;
 			dispatch(
 				setRadioButtonTaskOptionMark(
 					answerScore,
 					radioButtonTaskIndex,
 					optionIndex,
+					selectedImgRow,
 					isHaveMarks
 				)
 			);
