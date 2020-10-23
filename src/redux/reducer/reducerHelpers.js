@@ -47,7 +47,9 @@ export const deleteRadioButtonTaskOptionScoreFromScoreList = (
 		].radioButtonOptionList.entries()) {
 			const scoreList = option.scoreList;
 
-			if (scoreList[scoreKey] == null) return;
+			if (scoreList == null) return state;
+
+			if (scoreList[scoreKey] == null) return state;
 
 			const { [scoreKey]: value, ...newScoreList } = scoreList;
 

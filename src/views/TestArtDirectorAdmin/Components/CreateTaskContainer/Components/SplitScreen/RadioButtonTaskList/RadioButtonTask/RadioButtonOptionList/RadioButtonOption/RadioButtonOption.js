@@ -97,6 +97,11 @@ function RadioButtonOption({
 		}
 	};
 
+	const isScoreInputDisabled = () => {
+		if (isOneGradeForAllSubTasks) return false;
+		else if (selectedImgRow === null) return true;
+	};
+
 	return (
 		<div
 			className="container-answer--RadioButtonAnswers"
@@ -116,7 +121,7 @@ function RadioButtonOption({
 					value={answerScore}
 					onChange={handlerAnswerScoreOnChange}
 					onBlur={handlerOnBlureMark}
-					disabled={selectedImgRow === null}
+					disabled={() => isScoreInputDisabled}
 				/>
 			</div>
 
