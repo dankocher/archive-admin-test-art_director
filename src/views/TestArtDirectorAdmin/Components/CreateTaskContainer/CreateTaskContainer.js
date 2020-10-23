@@ -58,7 +58,7 @@ function CreateTaskContainer() {
 		// console.log("delau krasivo v LOADER");
 		getTaskFromServer(testId).then((res) => {
 			// console.log("фетчим/диспатчим таск");
-			console.log(res);
+			// console.log(res);
 			dispatch(setTestProps(res.task.tt_id));
 			dispatch(setTaskState(res.task));
 		});

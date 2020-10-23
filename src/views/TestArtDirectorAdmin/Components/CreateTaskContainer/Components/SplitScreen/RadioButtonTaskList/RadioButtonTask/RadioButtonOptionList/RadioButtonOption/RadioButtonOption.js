@@ -29,20 +29,16 @@ function RadioButtonOption({
 		(state) => state.reduxStorage.task.isOneGradeForAllSubTasks
 	);
 
-	// const c
-
 	const selectedImgRow = useSelector(
 		(state) => state.radioButtonIllustrationResucer.selectedImgRow
 	);
-	// const answerScoreRedux = useSelector(state=> state.reduxStorage.task.data.radioButtonTaskList[].)
 
 	useEffect(() => {
-		// debugger
 		if (radioButtonOption.scoreList == null) return;
-		// debugger;
+
 		const score = isOneGradeForAllSubTasks
 			? radioButtonOption.score
-			: radioButtonOption?.scoreList[selectedImgRow];
+			: radioButtonOption.scoreList[selectedImgRow];
 
 		setAnswerScore(score || "");
 	}, [isOneGradeForAllSubTasks, selectedImgRow]);
@@ -72,8 +68,6 @@ function RadioButtonOption({
 
 		const isHaveMarks =
 			answerScore !== "" && getIsHaveMarks(radioButtonOptionList, optionIndex);
-
-		// console.log(isHaveMarks);
 
 		dispatch(
 			setRadioButtonTaskOptionMarkThunk(

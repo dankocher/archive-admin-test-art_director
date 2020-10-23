@@ -5,6 +5,7 @@ import {
 	getSortedImgGridRows,
 	getSortedRowInImgGrid,
 	getNextId,
+	deleteRadioButtonTaskOptionScoreFromScoreList,
 } from "./reducerHelpers";
 
 import {
@@ -28,8 +29,9 @@ import {
 	ADD_RADIO_BUTTON_OPTION,
 	SET_RADIO_BUTTON_TASK_QUESTION,
 	SET_RADIO_BUTTON_TASK_OPTION,
-	ADD_RADIO_BUTTON_TASK_OPTION_MARK,
-	SET_RADIO_BUTTON_TASK_OPTION_MARK,
+	SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST,
+	DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST,
+	SET_RADIO_BUTTON_TASK_OPTION_SCORE,
 	REMOVE_RADIO_BUTTON_TASK_OPTION,
 	REMOVE_RADIO_BUTTON_TASK,
 	SET_INITIAL_STATE,
@@ -341,7 +343,24 @@ function reduxStorage(state = initialState, action) {
 		// 			},
 		// 		},
 		// 	});
-		case SET_RADIO_BUTTON_TASK_OPTION_MARK:
+		case SET_RADIO_BUTTON_TASK_OPTION_SCORE:
+			return update(state, {
+				task: {
+					data: {
+						radioButtonTaskList: {
+							[action.radioButtonTaskIndex]: {
+								isHaveMarks: { $set: action.isHaveMarks },
+								radioButtonOptionList: {
+									[action.radioButtonTaskOptionIndex]: {
+										score: { $set: action.payload },
+									},
+								},
+							},
+						},
+					},
+				},
+			});
+		case SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST:
 			return update(state, {
 				task: {
 					data: {
@@ -360,6 +379,8 @@ function reduxStorage(state = initialState, action) {
 					},
 				},
 			});
+		case DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST:
+			return deleteRadioButtonTaskOptionScoreFromScoreList(state, action);
 		case REMOVE_RADIO_BUTTON_TASK_OPTION:
 			return update(state, {
 				task: {

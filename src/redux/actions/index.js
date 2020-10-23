@@ -14,10 +14,12 @@ export const ADD_RADIO_BUTTON_TASK = "ADD_RADIO_BUTTON_TASK";
 export const ADD_RADIO_BUTTON_OPTION = "ADD_RADIO_BUTTON_OPTION";
 export const SET_RADIO_BUTTON_TASK_QUESTION = "SET_RADIO_BUTTON_TASK_QUESTION";
 export const SET_RADIO_BUTTON_TASK_OPTION = "SET_RADIO_BUTTON_TASK_OPTION";
-export const SET_RADIO_BUTTON_TASK_OPTION_MARK =
-	"SET_RADIO_BUTTON_TASK_OPTION_MARK";
-export const ADD_RADIO_BUTTON_TASK_OPTION_MARK =
-	"ADD_RADIO_BUTTON_TASK_OPTION_MARK";
+export const SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST =
+	"SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST";
+export const DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST =
+	"DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST";
+export const SET_RADIO_BUTTON_TASK_OPTION_SCORE =
+	"SET_RADIO_BUTTON_TASK_OPTION_SCORE";
 export const REMOVE_RADIO_BUTTON_TASK_OPTION =
 	"REMOVE_RADIO_BUTTON_TASK_OPTION";
 export const REMOVE_RADIO_BUTTON_TASK = "REMOVE_RADIO_BUTTON_TASK";
@@ -135,17 +137,39 @@ export const setRadioButtonTaskOption = (
 // 	isHaveMarks,
 // });
 
-export const setRadioButtonTaskOptionMark = (
+export const setRadioButtonTaskOptionScore = (
+	score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	isHaveMarks
+) => ({
+	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE,
+	payload: score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	isHaveMarks,
+});
+
+export const setRadioButtonTaskOptionScoreToScoreList = (
 	score,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
 	chosedImgRow,
 	isHaveMarks
 ) => ({
-	type: SET_RADIO_BUTTON_TASK_OPTION_MARK,
+	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST,
 	payload: score,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
+	scoreKey: chosedImgRow,
+	isHaveMarks,
+});
+
+export const deleteRadioButtonTaskOptionScoreFromScoreList = (
+	chosedImgRow,
+	isHaveMarks
+) => ({
+	type: DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST,
 	scoreKey: chosedImgRow,
 	isHaveMarks,
 });

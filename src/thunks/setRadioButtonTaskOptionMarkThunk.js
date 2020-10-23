@@ -1,4 +1,7 @@
-import { setRadioButtonTaskOptionMark } from "../redux/actions";
+import {
+	setRadioButtonTaskOptionScoreToScoreList,
+	setRadioButtonTaskOptionScore,
+} from "../redux/actions";
 
 export const setRadioButtonTaskOptionMarkThunk = (
 	answerScore,
@@ -12,7 +15,7 @@ export const setRadioButtonTaskOptionMarkThunk = (
 
 		if (isOneGradeForAllSubTasks) {
 			dispatch(
-				setRadioButtonTaskOptionMark(
+				setRadioButtonTaskOptionScore(
 					answerScore,
 					radioButtonTaskIndex,
 					optionIndex,
@@ -23,7 +26,7 @@ export const setRadioButtonTaskOptionMarkThunk = (
 			const selectedImgRow = getState().radioButtonIllustrationResucer
 				.selectedImgRow;
 			dispatch(
-				setRadioButtonTaskOptionMark(
+				setRadioButtonTaskOptionScoreToScoreList(
 					answerScore,
 					radioButtonTaskIndex,
 					optionIndex,
