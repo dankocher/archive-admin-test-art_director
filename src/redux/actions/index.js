@@ -16,6 +16,10 @@ export const SET_RADIO_BUTTON_TASK_QUESTION = "SET_RADIO_BUTTON_TASK_QUESTION";
 export const SET_RADIO_BUTTON_TASK_OPTION = "SET_RADIO_BUTTON_TASK_OPTION";
 export const SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST =
 	"SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST";
+export const SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST =
+	"SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST";
+export const DELETE_RADIO_BUTTON_TASK_OPTION_SCORES =
+	"DELETE_RADIO_BUTTON_TASK_OPTION_SCORES";
 export const DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST =
 	"DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST";
 export const SET_RADIO_BUTTON_TASK_OPTION_SCORE =
@@ -45,6 +49,8 @@ export const DELETE_COLUMN_FROM_IMG_GRID = "DELETE_COLUMN_FROM_IMG_GRID";
 export const SORT_IMG_GRID_ROWS = "SORT_IMG_GRID_ROWS";
 export const SORT_ROW_IN_IMG_GRID = "SORT_ROW_IN_IMG_GRID";
 export const SET_CHOOSEN_IMG_GRID_ROW_ID = "SET_CHOOSEN_IMG_GRID_ROW_ID";
+export const SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION =
+	"SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
 
 export const setInitialState = () => ({
 	type: SET_INITIAL_STATE,
@@ -150,6 +156,21 @@ export const setRadioButtonTaskOptionScore = (
 	isHaveMarks,
 });
 
+export const setRadioButtonTaskOptionScoreList = (
+	score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	chosedImgRow,
+	isHaveMarks
+) => ({
+	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST,
+	payload: score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	scoreKey: chosedImgRow,
+	isHaveMarks,
+});
+
 export const setRadioButtonTaskOptionScoreToScoreList = (
 	score,
 	radioButtonTaskIndex,
@@ -163,6 +184,10 @@ export const setRadioButtonTaskOptionScoreToScoreList = (
 	radioButtonTaskOptionIndex,
 	scoreKey: chosedImgRow,
 	isHaveMarks,
+});
+
+export const deleteRadioButtonTaskOptionScores = () => ({
+	type: DELETE_RADIO_BUTTON_TASK_OPTION_SCORES,
 });
 
 export const deleteRadioButtonTaskOptionScoreFromScoreList = (
@@ -302,4 +327,13 @@ export const sortRowInImgGrid = (indexRow, oldIndex, newIndex) => ({
 export const setSelectedRowIdImgGrid = (row) => ({
 	type: SET_CHOOSEN_IMG_GRID_ROW_ID,
 	payload: row,
+});
+
+export const setUnfilledScoreCounterRadioButtonIllustration = (
+	imgRowId,
+	unfilledScoreCounter
+) => ({
+	type: SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	payload: unfilledScoreCounter,
+	imgRowId,
 });

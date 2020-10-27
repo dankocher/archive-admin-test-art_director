@@ -1,6 +1,7 @@
 import {
 	setIsOneGradeForAllSubTasks,
 	setSelectedRowIdImgGrid,
+	deleteRadioButtonTaskOptionScores,
 } from "../redux/actions";
 
 import { setFirstImgRowId } from "./setFirstImgRowId";
@@ -11,6 +12,7 @@ export const changeIsOneGradeForAllSubTasksThunk = () => {
 			.isOneGradeForAllSubTasks;
 
 		dispatch(setIsOneGradeForAllSubTasks());
+		dispatch(deleteRadioButtonTaskOptionScores());
 		if (isOneGradeForAllSubTasks) {
 			dispatch(setFirstImgRowId());
 		} else {

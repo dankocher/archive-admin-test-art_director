@@ -1,6 +1,7 @@
 import {
 	setRadioButtonTaskOptionScoreToScoreList,
 	setRadioButtonTaskOptionScore,
+	setRadioButtonTaskOptionScoreList,
 } from "../redux/actions";
 
 export const setRadioButtonTaskOptionMarkThunk = (
@@ -25,15 +26,31 @@ export const setRadioButtonTaskOptionMarkThunk = (
 		} else {
 			const selectedImgRow = getState().radioButtonIllustrationResucer
 				.selectedImgRow;
-			dispatch(
-				setRadioButtonTaskOptionScoreToScoreList(
-					answerScore,
-					radioButtonTaskIndex,
-					optionIndex,
-					selectedImgRow,
-					isHaveMarks
-				)
-			);
+			const scoreList = getState().reduxStorage.task.data.radioButtonTaskList[
+				radioButtonTaskIndex
+			].radioButtonOptionList[optionIndex].scoreList;
+			if (scoreList != null) {
+				dispatch(
+					setRadioButtonTaskOptionScoreToScoreList(
+						answerScore,
+						radioButtonTaskIndex,
+						optionIndex,
+						selectedImgRow,
+						isHaveMarks
+					)
+				);
+			} else {
+				dispatch(
+					setRadioButtonTaskOptionScoreList(
+						answerScore,
+						radioButtonTaskIndex,
+						optionIndex,
+						selectedImgRow,
+						isHaveMarks
+					)
+				);
+				console.log("net tvoego score lISTA paskuda");
+			}
 		}
 	};
 };

@@ -34,22 +34,45 @@ export const setDataOfType = (type) => {
 	}
 };
 
+// export const setRsdioButtonTaskOptionScoreToScoreList = (state, action) =>{
+// 	return update(state, {
+// 		task: {
+// 			data: {
+// 				radioButtonTaskList: {
+// 					[action.radioButtonTaskIndex]: {
+// 						isHaveMarks: { $set: action.isHaveMarks },
+// 						radioButtonOptionList: {
+// 							[action.radioButtonTaskOptionIndex]: {
+// 								scoreList: {
+// 									[action.scoreKey]: { $set: action.payload },
+// 								},
+// 							},
+// 						},
+// 					},
+// 				},
+// 			},
+// 		},
+// 	});
+// }
+
 export const deleteRadioButtonTaskOptionScoreFromScoreList = (
 	state,
 	action
 ) => {
 	const radioButtonTaskList = state.task.data.radioButtonTaskList;
 	const scoreKey = action.scoreKey;
-
+	console.log("ia tut mazaFAKA");
 	for (const RBTIndex of radioButtonTaskList.keys()) {
 		for (const [RBOLIndex, option] of radioButtonTaskList[
 			RBTIndex
 		].radioButtonOptionList.entries()) {
 			const scoreList = option.scoreList;
+			// debugger;
+			console.log(scoreList);
 
-			if (scoreList == null) return state;
+			if (scoreList == null) continue;
 
-			if (scoreList[scoreKey] == null) return state;
+			if (scoreList[scoreKey] == null) continue;
 
 			const { [scoreKey]: value, ...newScoreList } = scoreList;
 
@@ -75,6 +98,32 @@ export const deleteRadioButtonTaskOptionScoreFromScoreList = (
 		}
 	}
 	console.log(state);
+	return state;
+};
+
+export const deleteRadioButtonTaskOptionScoresRedux = (state) => {
+	const radioButtonTaskList = state.task.data.radioButtonTaskList;
+	console.log("ia tut mazaFAKA");
+	for (const RBTIndex of radioButtonTaskList.keys()) {
+		for (const [RBOLIndex, option] of radioButtonTaskList[
+			RBTIndex
+		].radioButtonOptionList.entries()) {
+			const { score, scoreList, ...newOptin } = option;
+			state = update(state, {
+				task: {
+					data: {
+						radioButtonTaskList: {
+							[RBTIndex]: {
+								radioButtonOptionList: {
+									[RBOLIndex]: { $set: newOptin },
+								},
+							},
+						},
+					},
+				},
+			});
+		}
+	}
 	return state;
 };
 

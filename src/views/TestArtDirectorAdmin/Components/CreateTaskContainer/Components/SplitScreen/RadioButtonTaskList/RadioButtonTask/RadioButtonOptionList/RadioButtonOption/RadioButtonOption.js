@@ -24,24 +24,39 @@ function RadioButtonOption({
 	const dispatch = useDispatch();
 	const [isHoveredOption, setIsHoveredOption] = useState(false);
 	const [answerScore, setAnswerScore] = useState("");
+	const [isScoreInputDisabled, setIsScoreInputDisabled] = useState(true);
 
 	const isOneGradeForAllSubTasks = useSelector(
 		(state) => state.reduxStorage.task.isOneGradeForAllSubTasks
 	);
+
+	const imgGrid = useSelector((state) => state.reduxStorage.task.data.imgGrid);
 
 	const selectedImgRow = useSelector(
 		(state) => state.radioButtonIllustrationResucer.selectedImgRow
 	);
 
 	useEffect(() => {
-		if (radioButtonOption.scoreList == null) return;
+		if (isOneGradeForAllSubTasks) {
+			setAnswerScore(radioButtonOption.score || "");
+		} else {
+			const scoreList = radioButtonOption.scoreList;
 
-		const score = isOneGradeForAllSubTasks
-			? radioButtonOption.score
-			: radioButtonOption.scoreList[selectedImgRow];
-
-		setAnswerScore(score || "");
+			if (scoreList) {
+				setAnswerScore(scoreList[selectedImgRow] || "");
+			} else {
+				setAnswerScore("");
+			}
+		}
 	}, [isOneGradeForAllSubTasks, selectedImgRow]);
+
+	useEffect(() => {
+		if (imgGrid.length === 0) {
+			setIsScoreInputDisabled(true);
+		} else {
+			setIsScoreInputDisabled(false);
+		}
+	}, [imgGrid]);
 
 	const handlerAnswerScoreOnChange = (event) => {
 		const number = event.target.validity.valid
@@ -97,10 +112,12 @@ function RadioButtonOption({
 		}
 	};
 
-	const isScoreInputDisabled = () => {
-		if (isOneGradeForAllSubTasks) return false;
-		else if (selectedImgRow === null) return true;
-	};
+	// const isScoreInputDisabled = () => {
+	// 	debugger;
+	// 	console.log(imgGrid.length);
+	// 	if (imgGrid.length === 0) return true;
+	// 	else if (selectedImgRow === null) return true;
+	// };
 
 	return (
 		<div
@@ -121,7 +138,7 @@ function RadioButtonOption({
 					value={answerScore}
 					onChange={handlerAnswerScoreOnChange}
 					onBlur={handlerOnBlureMark}
-					disabled={() => isScoreInputDisabled}
+					disabled={isScoreInputDisabled}
 				/>
 			</div>
 

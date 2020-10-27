@@ -74,7 +74,7 @@ function CreateTaskContainer() {
 	useEffect(() => {
 		if (task._id === "") return;
 		console.log("ia STATE sohranilsia v LOADER");
-		console.log(task);
+		// console.log(task);
 		handlerSaveTaskToDB({ task: { ...task } }).then((res) => {
 			if (res.task.task_number === task.task_number) return;
 			dispatch(setTaskNumber(res.task.task_number));
