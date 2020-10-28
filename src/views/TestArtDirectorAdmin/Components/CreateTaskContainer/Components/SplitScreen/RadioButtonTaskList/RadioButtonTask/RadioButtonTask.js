@@ -8,6 +8,8 @@ import {
   removeRadioButtonTask,
 } from "../../../../../../../../redux/actions";
 
+import { removeRadioButtonTaskThunk } from "../../../../../../../../thunks/removeRadioButtonTaskThunk";
+
 import DeleteButton from "../../../../../DeleteButton/DeleteButton";
 import TextArea from "../../../../../TextArea/TextArea";
 import RadioButtonOptionList from "./RadioButtonOptionList/RadioButtonOptionList";
@@ -27,11 +29,11 @@ function RadioButtonTask({
   };
 
   const handlerOnClickRemoveBtn = () => {
-    dispatch(removeRadioButtonTask(index));
-    console.log(radioButtonTaskListLength);
-    if (radioButtonTaskListLength === 1) {
-      addNewTask();
-    }
+    dispatch(removeRadioButtonTaskThunk(index, addNewTask));
+    // console.log(radioButtonTaskListLength);
+    // if (radioButtonTaskListLength === 1) {
+    //   addNewTask();
+    // }
   };
 
   return (

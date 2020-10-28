@@ -7,7 +7,7 @@ export const setUnfilledScoreCounterToRadioButtonIllustrationThunk = (
 	return (dispatch, getState) => {
 		const radioButtonTaskList = getState().reduxStorage.task.data
 			.radioButtonTaskList;
-		console.log(radioButtonTaskList);
+		// console.log(radioButtonTaskList);
 		let unfilledScoreCounter = 0;
 		for (const radioButtonTask of radioButtonTaskList) {
 			for (const option of radioButtonTask.radioButtonOptionList) {

@@ -1,38 +1,47 @@
 import { removeRadioButtonTaskOption } from "../redux/actions";
-import { decrementUnfilledScoreCounterFromImgGrid } from "../redux/actions";
+import { decrementUnfilledScoreCounterFromImgGridRBOption } from "../redux/actions";
 
 export const deleteRadioButtonTaskOptionThunk = (
-	radioButtonTaskIndex,
-	optionIndex,
-	isHaveMarks
+  radioButtonTaskIndex,
+  optionIndex,
+  isHaveMarks,
+  addNewOption
 ) => {
-	return (dispatch, getState) => {
-		const state = getState();
-		const isOneGradeForAllSubTasks =
-			state.reduxStorage.task.isOneGradeForAllSubTasks;
+  return (dispatch, getState) => {
+    const state = getState();
+    const isOneGradeForAllSubTasks =
+      state.reduxStorage.task.isOneGradeForAllSubTasks;
 
-		dispatch(
-			removeRadioButtonTaskOption(
-				radioButtonTaskIndex,
-				optionIndex,
-				isHaveMarks
-			)
-		);
+    const optionListLength =
+      state.reduxStorage.task.data.radioButtonTaskList[radioButtonTaskIndex]
+        .radioButtonOptionList.length;
 
-		if (isOneGradeForAllSubTasks) return;
+    dispatch(
+      removeRadioButtonTaskOption(
+        radioButtonTaskIndex,
+        optionIndex,
+        isHaveMarks
+      )
+    );
 
-		const scoreList =
-			state.reduxStorage.task.data.radioButtonTaskList[radioButtonTaskIndex]
-				.radioButtonOptionList[optionIndex].scoreList;
+    if (optionListLength === 1) {
+      addNewOption();
+    }
 
-		// debugger;
-		let listImgId;
-		if (scoreList != null) {
-			listImgId = Object.keys(scoreList).filter((key) => scoreList[key] !== "");
-		}
+    if (isOneGradeForAllSubTasks) return;
 
-		console.log(listImgId);
+    const scoreList =
+      state.reduxStorage.task.data.radioButtonTaskList[radioButtonTaskIndex]
+        .radioButtonOptionList[optionIndex].scoreList;
 
-		dispatch(decrementUnfilledScoreCounterFromImgGrid(listImgId));
-	};
+    // debugger;
+    let listImgId;
+    if (scoreList != null) {
+      listImgId = Object.keys(scoreList).filter((key) => scoreList[key] !== "");
+    }
+
+    console.log(listImgId);
+
+    dispatch(decrementUnfilledScoreCounterFromImgGridRBOption(listImgId));
+  };
 };

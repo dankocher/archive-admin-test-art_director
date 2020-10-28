@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { addRadioButtonTask } from "../../../../../../../redux/actions";
 
+import { addRadioButtonTaskThunk } from "../../../../../../../thunks/addRadioButtonTaskThunk";
+
 import RadioButtonTask from "./RadioButtonTask/RadioButtonTask";
 
 function RadioButtonTaskList() {
@@ -13,21 +15,9 @@ function RadioButtonTaskList() {
   const radioButtonTaskList = useSelector(
     (state) => state.reduxStorage.task.data.radioButtonTaskList
   );
-  // const isOneGradeForAllSubTasks = useSelector(
-  //   (state) => state.reduxStorage.task.isOneGradeForAllSubTasks
-  // );
-  // const radioButtonIllustration = useSelector(
-  //   (state) => state.radioButtonIllustrationResucer
-  // );
-
-  // const radioButtonTaskList = isOneGradeForAllSubTasks
-  //   ? radioButtonTaskLists[0].radioButtonTaskList
-  //   : radioButtonTaskLists[0].radioButtonTaskList;
-  // console.log(`//////${radioButtonTaskList}/////`);
-  // console.log(radioButtonTaskList);
 
   const handlerAddGroupRadioButtons = () => {
-    dispatch(addRadioButtonTask());
+    dispatch(addRadioButtonTaskThunk());
   };
 
   return (

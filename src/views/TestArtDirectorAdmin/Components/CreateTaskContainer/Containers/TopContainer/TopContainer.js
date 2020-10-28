@@ -71,6 +71,9 @@ function TopContainer() {
   const handleChangeType = (event) => {
     dispatch(setTaskType(event.target.value));
   };
+  // const isHaveMarks = () => {
+  //   return isHaveMarks === undefined || isHaveMarks;
+  // };
 
   return (
     <>
