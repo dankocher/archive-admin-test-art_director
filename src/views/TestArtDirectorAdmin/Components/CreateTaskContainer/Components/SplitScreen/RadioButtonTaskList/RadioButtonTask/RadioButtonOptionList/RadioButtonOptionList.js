@@ -2,7 +2,8 @@ import "./RadioButtonOptionList.scss";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addRadioButtonOption } from "../../../../../../../../../redux/actions";
+// import { addRadioButtonOption } from "../../../../../../../../../redux/actions";
+import { addRadioButtonOptionThunk } from "../../../../../../../../../thunks/addRadioButtonOptionThunk";
 
 import RadioButtonOption from "./RadioButtonOption/RadioButtonOption";
 
@@ -14,8 +15,9 @@ function RadioButtonOptionList({ radioButtonOptionList, index }) {
 	);
 
 	const handlerAddOptionBtn = () => {
-		dispatch(addRadioButtonOption(index));
+		dispatch(addRadioButtonOptionThunk(index));
 	};
+
 	const getIsHaveMark = (optionIndex) => {
 		if (radioButtonOptionList.length === 1) return true;
 		else if (isOneGradeForAllSubTasks) {

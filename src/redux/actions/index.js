@@ -51,6 +51,14 @@ export const SORT_ROW_IN_IMG_GRID = "SORT_ROW_IN_IMG_GRID";
 export const SET_CHOOSEN_IMG_GRID_ROW_ID = "SET_CHOOSEN_IMG_GRID_ROW_ID";
 export const SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION =
 	"SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
+export const INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION =
+	"INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
+export const DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION =
+	"DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
+export const DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID =
+	"DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID";
+export const INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID =
+	"INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID";
 
 export const setInitialState = () => ({
 	type: SET_INITIAL_STATE,
@@ -330,10 +338,33 @@ export const setSelectedRowIdImgGrid = (row) => ({
 });
 
 export const setUnfilledScoreCounterRadioButtonIllustration = (
-	imgRowId,
+	rowIndex,
 	unfilledScoreCounter
 ) => ({
 	type: SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
 	payload: unfilledScoreCounter,
-	imgRowId,
+	rowIndex,
+});
+
+export const incrementUnfilledScoreCounterRadioButtonIllustration = (
+	rowIndex
+) => ({
+	type: INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	rowIndex,
+});
+
+export const decrementUnfilledScoreCounterRadioButtonIllustration = (
+	rowIndex
+) => ({
+	type: DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	rowIndex,
+});
+
+export const decrementUnfilledScoreCounterFromImgGrid = (listImgId) => ({
+	type: DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID,
+	payload: listImgId,
+});
+
+export const incrementUnfilledScoreCounterFromImgGrid = () => ({
+	type: INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID,
 });

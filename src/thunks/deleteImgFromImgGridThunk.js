@@ -15,7 +15,7 @@ export const deleteImgFromImgGridThunk = (indexRow, indexColumn) => {
 			.selectedImgRow;
 		const isOneGradeForAllSubTasks = getState().reduxStorage.task
 			.isOneGradeForAllSubTasks;
-
+		debugger;
 		if (imgGrid[indexRow].imgColumnList.length === 1) {
 			dispatch(deleteRowFromImgGrig(indexRow));
 

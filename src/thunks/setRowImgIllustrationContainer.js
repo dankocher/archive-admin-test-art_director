@@ -1,6 +1,6 @@
 import { setImgToImgGridSuccess, setImgToImgGridError } from "../redux/actions";
 import { setFirstImgRowId } from "./setFirstImgRowId";
-import { setUnfilledScoreCounterRadioButtonIllustrationThunk } from "./setUnfilledScoreCounterRadioButtonIllustrationThunk";
+import { setUnfilledScoreCounterToRadioButtonIllustrationThunk } from "./setUnfilledScoreCounterRadioButtonIllustrationThunk";
 
 export const setRowImgIllustrationContainer = (
 	imgName,
@@ -22,7 +22,12 @@ export const setRowImgIllustrationContainer = (
 		if (imgName !== "") {
 			dispatch(setImgToImgGridSuccess(imgName, rowIndex, columnIndex));
 			if (isOneGradeForAllSubTasks) return;
-			dispatch(setUnfilledScoreCounterRadioButtonIllustrationThunk(imgRowId));
+			dispatch(
+				setUnfilledScoreCounterToRadioButtonIllustrationThunk(
+					imgRowId,
+					rowIndex
+				)
+			);
 			if (selectedImgRow === null) {
 				dispatch(setFirstImgRowId());
 			}

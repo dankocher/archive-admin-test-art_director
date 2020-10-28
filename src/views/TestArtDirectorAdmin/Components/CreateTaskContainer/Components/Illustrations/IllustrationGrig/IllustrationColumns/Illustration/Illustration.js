@@ -43,6 +43,7 @@ function Illustration({ imgState, indexColumn, indexRow }) {
 	};
 
 	useEffect(() => {
+		// console.log(imgState.name);
 		if (isString(imgState.name)) return;
 		getImgUrlHandle();
 	}, []);

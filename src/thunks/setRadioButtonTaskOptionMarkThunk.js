@@ -4,6 +4,8 @@ import {
 	setRadioButtonTaskOptionScoreList,
 } from "../redux/actions";
 
+import { setUnfilledScoreCounterUpdateThunk } from "./setUnfilledScoreCounterUpdateThunk";
+
 export const setRadioButtonTaskOptionMarkThunk = (
 	answerScore,
 	radioButtonTaskIndex,
@@ -29,6 +31,15 @@ export const setRadioButtonTaskOptionMarkThunk = (
 			const scoreList = getState().reduxStorage.task.data.radioButtonTaskList[
 				radioButtonTaskIndex
 			].radioButtonOptionList[optionIndex].scoreList;
+
+			dispatch(
+				setUnfilledScoreCounterUpdateThunk(
+					answerScore,
+					radioButtonTaskIndex,
+					optionIndex
+				)
+			);
+
 			if (scoreList != null) {
 				dispatch(
 					setRadioButtonTaskOptionScoreToScoreList(
@@ -49,7 +60,6 @@ export const setRadioButtonTaskOptionMarkThunk = (
 						isHaveMarks
 					)
 				);
-				console.log("net tvoego score lISTA paskuda");
 			}
 		}
 	};

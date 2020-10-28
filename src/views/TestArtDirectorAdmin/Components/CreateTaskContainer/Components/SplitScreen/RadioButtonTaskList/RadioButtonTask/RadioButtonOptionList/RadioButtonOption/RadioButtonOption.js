@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
 	setRadioButtonTaskOption,
-	removeRadioButtonTaskOption,
+	// removeRadioButtonTaskOption,
 } from "../../../../../../../../../../redux/actions";
 
 import { setRadioButtonTaskOptionMarkThunk } from "../../../../../../../../../../thunks/setRadioButtonTaskOptionMarkThunk";
+import { deleteRadioButtonTaskOptionThunk } from "../../../../../../../../../../thunks/deleteRadioButtonTaskOptionThunk";
 
 import { getIsHaveMarks } from "../../../../../../../../helpers/getIsHaveMarks";
 
@@ -79,8 +80,13 @@ function RadioButtonOption({
 	};
 
 	const handlerOnBlureMark = () => {
-		if (radioButtonOption.mark === answerScore) return;
-
+		if (isOneGradeForAllSubTasks) {
+			if (radioButtonOption.score === answerScore) return;
+		} else {
+			if (radioButtonOption.scoreList != null) {
+				if (radioButtonOption.scoreList[selectedImgRow] === answerScore) return;
+			}
+		}
 		const isHaveMarks =
 			answerScore !== "" && getIsHaveMarks(radioButtonOptionList, optionIndex);
 
@@ -101,7 +107,7 @@ function RadioButtonOption({
 				? true
 				: getIsHaveMarks(radioButtonOptionList, optionIndex);
 		dispatch(
-			removeRadioButtonTaskOption(
+			deleteRadioButtonTaskOptionThunk(
 				radioButtonTaskIndex,
 				optionIndex,
 				isHaveMarks

@@ -61,14 +61,13 @@ export const deleteRadioButtonTaskOptionScoreFromScoreList = (
 ) => {
 	const radioButtonTaskList = state.task.data.radioButtonTaskList;
 	const scoreKey = action.scoreKey;
-	console.log("ia tut mazaFAKA");
 	for (const RBTIndex of radioButtonTaskList.keys()) {
 		for (const [RBOLIndex, option] of radioButtonTaskList[
 			RBTIndex
 		].radioButtonOptionList.entries()) {
 			const scoreList = option.scoreList;
 			// debugger;
-			console.log(scoreList);
+			// console.log(scoreList);
 
 			if (scoreList == null) continue;
 
@@ -167,4 +166,61 @@ export const getNextId = (array) => {
 		}
 		return max + 1;
 	}
+};
+
+export const decrementUnfilledScoreCounterFromImgGridRedux = (
+	state,
+	action
+) => {
+	const imgGrid = state.task.data.imgGrid;
+	for (const [rowIndex, imgRow] of imgGrid.entries()) {
+		// debugger;
+		const listImgId = action.payload;
+		if (listImgId == null || listImgId.length === 0) {
+			state = decrementUnfilledScoreCounter(state, rowIndex);
+		} else {
+			for (const imgId of listImgId) {
+				// debugger;
+				if (imgRow.id === imgId) continue;
+				state = decrementUnfilledScoreCounter(state, rowIndex);
+			}
+		}
+	}
+	return state;
+};
+
+const decrementUnfilledScoreCounter = (state, rowIndex) => {
+	return update(state, {
+		task: {
+			data: {
+				imgGrid: {
+					[rowIndex]: {
+						unfilledScoreCounter: {
+							$apply: (unfilledScoreCounter) => unfilledScoreCounter - 1,
+						},
+					},
+				},
+			},
+		},
+	});
+};
+
+export const incrementUnfilledScoreCounterFromImgGridRedux = (state) => {
+	const imgGrid = state.task.data.imgGrid;
+	for (const rowIndex of imgGrid.keys()) {
+		state = update(state, {
+			task: {
+				data: {
+					imgGrid: {
+						[rowIndex]: {
+							unfilledScoreCounter: {
+								$apply: (unfilledScoreCounter) => unfilledScoreCounter + 1,
+							},
+						},
+					},
+				},
+			},
+		});
+	}
+	return state;
 };

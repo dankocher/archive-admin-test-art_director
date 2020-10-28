@@ -7,6 +7,8 @@ import {
 	getNextId,
 	deleteRadioButtonTaskOptionScoreFromScoreList,
 	deleteRadioButtonTaskOptionScoresRedux,
+	decrementUnfilledScoreCounterFromImgGridRedux,
+	incrementUnfilledScoreCounterFromImgGridRedux,
 } from "./reducerHelpers";
 
 import {
@@ -58,6 +60,11 @@ import {
 	DELETE_ROW_FROM_IMG_GRID,
 	SORT_IMG_GRID_ROWS,
 	SORT_ROW_IN_IMG_GRID,
+	SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID,
+	INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID,
 } from "../actions";
 
 const initialState = {
@@ -654,6 +661,52 @@ function reduxStorage(state = initialState, action) {
 					},
 				},
 			});
+		case SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							[action.rowIndex]: {
+								unfilledScoreCounter: {
+									$set: action.payload,
+								},
+							},
+						},
+					},
+				},
+			});
+		case INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							[action.rowIndex]: {
+								unfilledScoreCounter: {
+									$apply: (unfilledScoreCounter) => unfilledScoreCounter + 1,
+								},
+							},
+						},
+					},
+				},
+			});
+		case DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION:
+			return update(state, {
+				task: {
+					data: {
+						imgGrid: {
+							[action.rowIndex]: {
+								unfilledScoreCounter: {
+									$apply: (unfilledScoreCounter) => unfilledScoreCounter - 1,
+								},
+							},
+						},
+					},
+				},
+			});
+		case DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID:
+			return decrementUnfilledScoreCounterFromImgGridRedux(state, action);
+		case INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID:
+			return incrementUnfilledScoreCounterFromImgGridRedux(state);
 		default:
 			return state;
 	}
