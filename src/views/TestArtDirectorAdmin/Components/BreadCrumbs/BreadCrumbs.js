@@ -12,8 +12,8 @@ import "./BreadCrumbs.scss";
 
 function BreadCrumbs() {
   const routLocation = useLocation();
-  const testName = useSelector((state) => state.name);
-  const taskName = useSelector((state) => state.task.name);
+  const testName = useSelector((state) => state.reduxStorage.name);
+  const taskName = useSelector((state) => state.reduxStorage.task.name);
 
   return (
     <>

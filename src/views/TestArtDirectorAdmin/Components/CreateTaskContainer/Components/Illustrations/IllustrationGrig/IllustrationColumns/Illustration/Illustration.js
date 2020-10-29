@@ -2,8 +2,9 @@ import styles from "./Illustration.module.scss";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { deleteImgFromImgGrig } from "../../../../../../../../../redux/actions";
+// import { deleteImgFromImgGrig } from "../../../../../../../../../redux/actions";
 import { setRowImgIllustrationContainer } from "../../../../../../../../../thunks/setRowImgIllustrationContainer";
+import { deleteImgFromImgGridThunk } from "../../../../../../../../../thunks/deleteImgFromImgGridThunk";
 import {
 	deleteImgFromServer,
 	getImageUrl,
@@ -18,21 +19,23 @@ import erorImgIcon from "../../../../../../../utils/icons/error-emg-icon";
 
 function Illustration({ imgState, indexColumn, indexRow }) {
 	const dispatch = useDispatch();
-	const imgGrid = useSelector((state) => state.task.data.imgGrid);
+	const imgGrid = useSelector((state) => state.reduxStorage.task.data.imgGrid);
 
 	const getImgUrlHandle = () => {
 		const rowDiff = imgGrid.length - 1 - indexRow;
-		const columnDiff = imgGrid[indexRow].length - 1 - indexColumn;
-		console.log(indexRow, indexColumn);
+		const columnDiff = imgGrid[indexRow].imgColumnList.length - 1 - indexColumn;
+		// console.log(indexRow, indexColumn);
 
 		getImageUrl(imgState.name)
 			.then((res) => {
 				if (!res.ok) return;
+
 				dispatch(
 					setRowImgIllustrationContainer(res.filename, rowDiff, columnDiff)
 				);
 			})
 			.catch((error) => {
+				console.log(error);
 				const img = "";
 				dispatch(setRowImgIllustrationContainer(img, rowDiff, columnDiff));
 				return { ok: false, status: "unreachable", error: error };
@@ -40,6 +43,7 @@ function Illustration({ imgState, indexColumn, indexRow }) {
 	};
 
 	useEffect(() => {
+		// console.log(imgState.name);
 		if (isString(imgState.name)) return;
 		getImgUrlHandle();
 	}, []);
@@ -48,7 +52,7 @@ function Illustration({ imgState, indexColumn, indexRow }) {
 		if (imgName !== "" && isString(imgName)) {
 			deleteImgFromServer(imgName);
 		}
-		dispatch(deleteImgFromImgGrig(indexRow, indexColumn));
+		dispatch(deleteImgFromImgGridThunk(indexRow, indexColumn));
 	};
 
 	const illustrationContent = () => {

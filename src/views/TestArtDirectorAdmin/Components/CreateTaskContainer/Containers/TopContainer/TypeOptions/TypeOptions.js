@@ -13,11 +13,13 @@ import {
 import {
 	setIsTimeConsidered,
 	setIsTimeDisplayForUser,
-	setIsOneGradeForAllSubTasks,
+	// setIsOneGradeForAllSubTasks,
 	setIsAnswerSizeLimited,
 	setGlobalResponseLimitationFrom,
 	setGlobalResponseLimitationTo,
 } from "../../../../../../../redux/actions";
+
+import { changeIsOneGradeForAllSubTasksThunk } from "../../../../../../../thunks/changeIsOneGradeForAllSubTasksThunk";
 
 import Checkbox from "../../../../Checkbox/Checkbox";
 import RadioButton from "../../../../RadioButton/RadioButton";
@@ -28,24 +30,26 @@ function TypeOptions() {
 	const [responseLimitationFrom, setResponseLimitationFrom] = useState("");
 	const [responseLimitationTo, setResponseLimitationTo] = useState("");
 
-	const taskType = useSelector((state) => state.task.type);
-	const isTimeConsidered = useSelector((state) => state.task.isTimeConsidered);
+	const taskType = useSelector((state) => state.reduxStorage.task.type);
+	const isTimeConsidered = useSelector(
+		(state) => state.reduxStorage.task.isTimeConsidered
+	);
 	const isTimeDisplayForUser = useSelector(
-		(state) => state.task.isTimeDisplayForUser
+		(state) => state.reduxStorage.task.isTimeDisplayForUser
 	);
 	const isOneGradeForAllSubTasks = useSelector(
-		(state) => state.task.isOneGradeForAllSubTasks
+		(state) => state.reduxStorage.task.isOneGradeForAllSubTasks
 	);
 	const isAnswerSizeLimited = useSelector(
-		(state) => state.task.data.isAnswerSizeLimited
+		(state) => state.reduxStorage.task.data.isAnswerSizeLimited
 	);
 
 	const globalResponseLimitationFrom = useSelector(
-		(state) => state.task.data.responseLimitation?.from
+		(state) => state.reduxStorage.task.data.responseLimitation?.from
 	);
 
 	const globalResponseLimitationTo = useSelector(
-		(state) => state.task.data.responseLimitation?.to
+		(state) => state.reduxStorage.task.data.responseLimitation?.to
 	);
 
 	useEffect(() => {
@@ -65,7 +69,7 @@ function TypeOptions() {
 	};
 
 	const handleChangeStateTaskIsOneGradeForAllSubTasks = () => {
-		dispatch(setIsOneGradeForAllSubTasks());
+		dispatch(changeIsOneGradeForAllSubTasksThunk());
 	};
 
 	const changeIsAnswerSizeLimitedHandler = () => {

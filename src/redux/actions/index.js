@@ -14,8 +14,16 @@ export const ADD_RADIO_BUTTON_TASK = "ADD_RADIO_BUTTON_TASK";
 export const ADD_RADIO_BUTTON_OPTION = "ADD_RADIO_BUTTON_OPTION";
 export const SET_RADIO_BUTTON_TASK_QUESTION = "SET_RADIO_BUTTON_TASK_QUESTION";
 export const SET_RADIO_BUTTON_TASK_OPTION = "SET_RADIO_BUTTON_TASK_OPTION";
-export const SET_RADIO_BUTTON_TASK_OPTION_MARK =
-	"SET_RADIO_BUTTON_TASK_OPTION_MARK";
+export const SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST =
+	"SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST";
+export const SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST =
+	"SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST";
+export const DELETE_RADIO_BUTTON_TASK_OPTION_SCORES =
+	"DELETE_RADIO_BUTTON_TASK_OPTION_SCORES";
+export const DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST =
+	"DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST";
+export const SET_RADIO_BUTTON_TASK_OPTION_SCORE =
+	"SET_RADIO_BUTTON_TASK_OPTION_SCORE";
 export const REMOVE_RADIO_BUTTON_TASK_OPTION =
 	"REMOVE_RADIO_BUTTON_TASK_OPTION";
 export const REMOVE_RADIO_BUTTON_TASK = "REMOVE_RADIO_BUTTON_TASK";
@@ -36,9 +44,25 @@ export const LOAD_ROW_IMG_TO_IMG_GRID = "LOAD_ROW_IMG_TO_IMG_GRID";
 export const LOAD_COLUMN_IMG_TO_IMG_GRID = "LOAD_COLUMN_IMG_TO_IMG_GRID";
 export const SET_IMG_TO_IMG_GRID_SUCCESS = "SET_IMG_TO_IMG_GRID_SUCCESS";
 export const SET_IMG_TO_IMG_GRID_ERROR = "SET_IMG_TO_IMG_GRID_ERROR";
-export const DELETE_IMG_FROM_IMG_GRID = "DELETE_IMG_FROM_IMG_GRID";
+export const DELETE_ROW_FROM_IMG_GRID = "DELETE_ROW_FROM_IMG_GRID";
+export const DELETE_COLUMN_FROM_IMG_GRID = "DELETE_COLUMN_FROM_IMG_GRID";
 export const SORT_IMG_GRID_ROWS = "SORT_IMG_GRID_ROWS";
 export const SORT_ROW_IN_IMG_GRID = "SORT_ROW_IN_IMG_GRID";
+export const SET_CHOOSEN_IMG_GRID_ROW_ID = "SET_CHOOSEN_IMG_GRID_ROW_ID";
+export const SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION =
+	"SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
+export const SET_UNFILLED_SCORE_COUNTER_TO_IMG_GRID =
+	"SET_UNFILLED_SCORE_COUNTER_TO_IMG_GRID";
+export const INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION =
+	"INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
+export const DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION =
+	"DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
+export const DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_OPTION =
+	"DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_OPTION";
+export const INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID =
+	"INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID";
+export const DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK =
+	"DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK";
 
 export const setInitialState = () => ({
 	type: SET_INITIAL_STATE,
@@ -116,28 +140,61 @@ export const setRadioButtonTaskOption = (
 	payload: option,
 });
 
-export const setRadioButtonTaskOptionMark = (
-	mark,
+export const setRadioButtonTaskOptionScore = (
+	score,
 	radioButtonTaskIndex,
-	radioButtonTaskOptionIndex,
-	isHaveMarks
+	radioButtonTaskOptionIndex
 ) => ({
-	type: SET_RADIO_BUTTON_TASK_OPTION_MARK,
+	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE,
+	payload: score,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
-	payload: mark,
-	isHaveMarks,
+});
+
+export const setRadioButtonTaskOptionScoreList = (
+	score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	chosedImgRow
+) => ({
+	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST,
+	payload: score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	scoreKey: chosedImgRow,
+});
+
+export const setRadioButtonTaskOptionScoreToScoreList = (
+	score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	chosedImgRow
+) => ({
+	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST,
+	payload: score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	scoreKey: chosedImgRow,
+});
+
+export const deleteRadioButtonTaskOptionScores = () => ({
+	type: DELETE_RADIO_BUTTON_TASK_OPTION_SCORES,
+});
+
+export const deleteRadioButtonTaskOptionScoreFromScoreList = (
+	chosedImgRow
+) => ({
+	type: DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST,
+	scoreKey: chosedImgRow,
 });
 
 export const removeRadioButtonTaskOption = (
 	radioButtonTaskIndex,
-	radioButtonTaskOptionIndex,
-	isHaveMarks
+	radioButtonTaskOptionIndex
 ) => ({
 	type: REMOVE_RADIO_BUTTON_TASK_OPTION,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
-	isHaveMarks,
 });
 
 export const removeRadioButtonTask = (radioButtonTaskIndex) => ({
@@ -230,8 +287,13 @@ export const setImgToImgGridError = (indexRow, indexColumn) => ({
 	indexColumn,
 });
 
-export const deleteImgFromImgGrig = (indexRow, indexColumn) => ({
-	type: DELETE_IMG_FROM_IMG_GRID,
+export const deleteRowFromImgGrig = (indexRow) => ({
+	type: DELETE_ROW_FROM_IMG_GRID,
+	indexRow,
+});
+
+export const deleteColumnFromImgGrig = (indexRow, indexColumn) => ({
+	type: DELETE_COLUMN_FROM_IMG_GRID,
 	indexRow,
 	indexColumn,
 });
@@ -242,9 +304,62 @@ export const sortImgGridRows = (oldIndex, newIndex) => ({
 	newIndex,
 });
 
-export const sortRowInImgGrid = (indexRow,oldIndex, newIndex) => ({
+export const sortRowInImgGrid = (indexRow, oldIndex, newIndex) => ({
 	type: SORT_ROW_IN_IMG_GRID,
 	oldIndex,
 	newIndex,
-	indexRow
+	indexRow,
+});
+
+export const setSelectedRowIdImgGrid = (row) => ({
+	type: SET_CHOOSEN_IMG_GRID_ROW_ID,
+	payload: row,
+});
+
+export const setUnfilledScoreCounterRadioButtonIllustration = (
+	rowIndex,
+	unfilledScoreCounter
+) => ({
+	type: SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	payload: unfilledScoreCounter,
+	rowIndex,
+});
+
+export const setUnfilledScoreCounterToImgGrid = (unfilledScoreCounter) => ({
+	type: SET_UNFILLED_SCORE_COUNTER_TO_IMG_GRID,
+	payload: unfilledScoreCounter,
+});
+
+export const incrementUnfilledScoreCounterRadioButtonIllustration = (
+	rowIndex
+) => ({
+	type: INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	rowIndex,
+});
+
+export const decrementUnfilledScoreCounterRadioButtonIllustration = (
+	rowIndex
+) => ({
+	type: DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	rowIndex,
+});
+
+export const decrementUnfilledScoreCounterFromImgGridRBOption = (
+	listImgId
+) => ({
+	type: DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_OPTION,
+	payload: listImgId,
+});
+
+export const incrementUnfilledScoreCounterFromImgGrid = () => ({
+	type: INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID,
+});
+
+export const decrementUnfilledScoreCounterFromImgGridRBTask = (
+	imgIdList,
+	optionsCounter
+) => ({
+	type: DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK,
+	payload: imgIdList,
+	optionsCounter,
 });

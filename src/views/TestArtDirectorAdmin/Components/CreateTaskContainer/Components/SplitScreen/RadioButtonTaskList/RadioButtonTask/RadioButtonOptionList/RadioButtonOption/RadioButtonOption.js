@@ -1,34 +1,74 @@
-import React, {useState, useEffect} from "react";
-import {useDispatch} from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
 	setRadioButtonTaskOption,
-	setRadioButtonTaskOptionMark,
-	removeRadioButtonTaskOption,
+	// removeRadioButtonTaskOption,
 } from "../../../../../../../../../../redux/actions";
 
-import {getIsHaveMarks} from "../../../../../../../../helpers/getIsHaveMarks";
+import { setRadioButtonTaskOptionMarkThunk } from "../../../../../../../../../../thunks/setRadioButtonTaskOptionMarkThunk";
+import { deleteRadioButtonTaskOptionThunk } from "../../../../../../../../../../thunks/deleteRadioButtonTaskOptionThunk";
+
+import { getIsHaveMarks } from "../../../../../../../../helpers/getIsHaveMarks";
 
 import TextArea from "../../../../../../../TextArea/TextArea";
 import DeleteButton from "../../../../../../../DeleteButton/DeleteButton";
 
 function RadioButtonOption({
-	option,
-	mark,
+	radioButtonOption,
 	radioButtonTaskIndex,
 	optionIndex,
 	isHaveMark,
-	optionListLength,
 	addNewOption,
 	radioButtonOptionList,
 }) {
 	const dispatch = useDispatch();
 	const [isHoveredOption, setIsHoveredOption] = useState(false);
 	const [answerScore, setAnswerScore] = useState("");
+	const [isScoreInputDisabled, setIsScoreInputDisabled] = useState(true);
+
+	const isOneGradeForAllSubTasks = useSelector(
+		(state) => state.reduxStorage.task.isOneGradeForAllSubTasks
+	);
+
+	const imgGrid = useSelector((state) => state.reduxStorage.task.data.imgGrid);
+	const wordList = useSelector(
+		(state) => state.reduxStorage.task.data.wordList
+	);
+
+	const selectedImgRow = useSelector(
+		(state) => state.radioButtonIllustrationResucer.selectedImgRow
+	);
 
 	useEffect(() => {
-		setAnswerScore(mark);
-	}, [mark]);
+		if (isOneGradeForAllSubTasks) {
+			setAnswerScore(radioButtonOption.score || "");
+		} else {
+			const scoreList = radioButtonOption.scoreList;
+
+			if (scoreList) {
+				setAnswerScore(scoreList[selectedImgRow] || "");
+			} else {
+				setAnswerScore("");
+			}
+		}
+	}, [isOneGradeForAllSubTasks, selectedImgRow, radioButtonOption]);
+
+	useEffect(() => {
+		if (imgGrid != null) {
+			if (imgGrid.length === 0) {
+				setIsScoreInputDisabled(true);
+			} else {
+				setIsScoreInputDisabled(false);
+			}
+		} else {
+			if (wordList.length === 0) {
+				setIsScoreInputDisabled(true);
+			} else {
+				setIsScoreInputDisabled(false);
+			}
+		}
+	}, [imgGrid, wordList]);
 
 	const handlerAnswerScoreOnChange = (event) => {
 		const number = event.target.validity.valid
@@ -51,36 +91,36 @@ function RadioButtonOption({
 	};
 
 	const handlerOnBlureMark = () => {
-		const isHaveMarks =
-			answerScore !== "" && getIsHaveMarks(radioButtonOptionList, optionIndex);
-
-		console.log(isHaveMarks);
+		if (isOneGradeForAllSubTasks) {
+			if (radioButtonOption.score === answerScore) return;
+		} else {
+			if (radioButtonOption.scoreList != null) {
+				if (radioButtonOption.scoreList[selectedImgRow] === answerScore) return;
+			}
+		}
 
 		dispatch(
-			setRadioButtonTaskOptionMark(
+			setRadioButtonTaskOptionMarkThunk(
 				answerScore,
 				radioButtonTaskIndex,
-				optionIndex,
-				isHaveMarks
+				optionIndex
 			)
 		);
 	};
 
 	const handlerOnClickRemoveBtn = () => {
-		if (optionListLength === 1) {
-			addNewOption();
-		}
-		const isHaveMarks =
-			optionListLength === 2
-				? true
-				: getIsHaveMarks(radioButtonOptionList, optionIndex);
+		const optionListLength = radioButtonOptionList.length;
 		dispatch(
-			removeRadioButtonTaskOption(
+			deleteRadioButtonTaskOptionThunk(
 				radioButtonTaskIndex,
 				optionIndex,
-				isHaveMarks
+				addNewOption
 			)
 		);
+
+		if (optionListLength === 1) {
+			setAnswerScore("");
+		}
 	};
 
 	return (
@@ -89,7 +129,11 @@ function RadioButtonOption({
 			onMouseEnter={() => setIsHoveredOption(true)}
 			onMouseLeave={() => setIsHoveredOption(false)}
 		>
-			<TextArea className="input" value={option} onBlur={hadlerOnBlurOption} />
+			<TextArea
+				className="input"
+				value={radioButtonOption.option}
+				onBlur={hadlerOnBlurOption}
+			/>
 			<div className="wrapper-centred--RadioButtonAnswers">
 				<input
 					type="tel"
@@ -98,6 +142,7 @@ function RadioButtonOption({
 					value={answerScore}
 					onChange={handlerAnswerScoreOnChange}
 					onBlur={handlerOnBlureMark}
+					disabled={isScoreInputDisabled}
 				/>
 			</div>
 

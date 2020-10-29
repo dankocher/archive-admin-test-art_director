@@ -12,7 +12,7 @@ import QuestionAnswer from "./QuestionAnswer/QuestionAnswer";
 function QAList() {
   const dispatch = useDispatch();
 
-  const qaList = useSelector((state) => state.task.data.questionAnswerList);
+  const qaList = useSelector((state) => state.reduxStorage.task.data.questionAnswerList);
 
   const addQAHandler = () => {
     dispatch(addQustionAnswer());

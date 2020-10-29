@@ -1,18 +1,34 @@
 import { useSelector } from "react-redux";
 
 export const useGetIsHaveMarks = (radioButtonTaskList) => {
-  const radioButtonTaskListState = useSelector(
-    (state) => state.task.data.radioButtonTaskList
-  );
-  if (radioButtonTaskList === undefined) {
-    radioButtonTaskList = radioButtonTaskListState;
-  }
+	const isOneGradeForAllSubTasks = useSelector(
+		(state) => state.reduxStorage.task.isOneGradeForAllSubTasks
+	);
+	const imgGrid = useSelector((state) => state.reduxStorage.task.data.imgGrid);
+	const radioButtonTaskListState = useSelector(
+		(state) => state.reduxStorage.task.data.radioButtonTaskList
+	);
+	if (isOneGradeForAllSubTasks) {
+		// if (radioButtonTaskList === undefined) {
+		//   radioButtonTaskList = radioButtonTaskListState;
+		// }
 
-  let isHaveMarks = true;
-  if (radioButtonTaskList === undefined) return isHaveMarks;
+		// if (radioButtonTaskList === undefined) return true;
 
-  radioButtonTaskList.forEach((element) => {
-    if (element.isHaveMarks === false) return (isHaveMarks = false);
-  });
-  return isHaveMarks;
+		// for (const radioButtonTask of radioButtonTaskList) {
+		//   if (radioButtonTask.isHaveMarks === false) return false;
+		// }
+
+		return true;
+	} else {
+		if (imgGrid != null) {
+			for (const imgRow of imgGrid) {
+				if (imgRow.unfilledScoreCounter !== 0) return false;
+			}
+
+			return true;
+		} else {
+			return true;
+		}
+	}
 };

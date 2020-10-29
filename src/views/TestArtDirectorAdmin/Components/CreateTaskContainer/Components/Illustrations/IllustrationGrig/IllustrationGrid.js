@@ -1,9 +1,11 @@
 import styles from "./IllustrationGrid.module.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { sortableContainer, sortableElement } from "react-sortable-hoc";
 
 import { sortImgGridRows } from "../../../../../../../redux/actions";
+
+import { setFirstImgRowId } from "../../../../../../../thunks/setFirstImgRowId";
 
 import IllustrationColumns from "./IllustrationColumns/IllustrationColumns";
 
@@ -11,21 +13,25 @@ const SortableContainer = sortableContainer(({ children }) => {
 	return <div className={styles.container}>{children}</div>;
 });
 
-const SortableItem = sortableElement(
-	({ imgRowList, indexRow, setModalWindow }) => {
-		return (
-			<IllustrationColumns
-				imgRowList={imgRowList}
-				indexRow={indexRow}
-				setModalWindow={setModalWindow}
-			/>
-		);
-	}
-);
+const SortableItem = sortableElement(({ imgRow, indexRow, setModalWindow }) => {
+	return (
+		<IllustrationColumns
+			imgRow={imgRow}
+			indexRow={indexRow}
+			setModalWindow={setModalWindow}
+		/>
+	);
+});
 
 function IllustrationGrid({ setModalWindow }) {
 	const dispatch = useDispatch();
-	const imgMatrix = useSelector((state) => state.task.data.imgGrid);
+	const imgGrid = useSelector((state) => state.reduxStorage.task.data.imgGrid);
+
+	useEffect(() => {
+		//tut dolshen bit thunk
+		if (imgGrid.length === 0) return;
+		dispatch(setFirstImgRowId());
+	}, [dispatch]);
 
 	const onSortEnd = ({ oldIndex, newIndex }) => {
 		dispatch(sortImgGridRows(oldIndex, newIndex));
@@ -33,13 +39,13 @@ function IllustrationGrid({ setModalWindow }) {
 
 	return (
 		<SortableContainer onSortEnd={onSortEnd} useDragHandle>
-			{imgMatrix?.map((element, index) => {
+			{imgGrid?.map((element, index) => {
 				// console.log(element);
 				return (
 					<SortableItem
 						key={`item-${index}`}
 						index={index}
-						imgRowList={element}
+						imgRow={element}
 						indexRow={index}
 						setModalWindow={setModalWindow}
 					/>

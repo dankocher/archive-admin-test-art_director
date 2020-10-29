@@ -5,16 +5,19 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { addRadioButtonTask } from "../../../../../../../redux/actions";
 
+import { addRadioButtonTaskThunk } from "../../../../../../../thunks/addRadioButtonTaskThunk";
+
 import RadioButtonTask from "./RadioButtonTask/RadioButtonTask";
 
 function RadioButtonTaskList() {
   const dispatch = useDispatch();
 
   const radioButtonTaskList = useSelector(
-    (state) => state.task.data.radioButtonTaskList
+    (state) => state.reduxStorage.task.data.radioButtonTaskList
   );
+
   const handlerAddGroupRadioButtons = () => {
-    dispatch(addRadioButtonTask());
+    dispatch(addRadioButtonTaskThunk());
   };
 
   return (

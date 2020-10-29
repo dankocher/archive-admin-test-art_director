@@ -1,7 +1,7 @@
 import "./TopContainer.scss";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useGetIsHaveMarks} from "../../../../helpers/customHooks";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useGetIsHaveMarks } from "../../../../helpers/customHooks";
 
 import {
 	setTaskDescription as setStateTaskDescription,
@@ -27,10 +27,14 @@ function TopContainer() {
 	const [localTaskDescription, setLocalTaskDescription] = useState("");
 
 	const isHaveMarks = useGetIsHaveMarks();
-	const taskNumber = useSelector((state) => state.task.task_number);
-	const taskName = useSelector((state) => state.task.name);
-	const taskDescription = useSelector((state) => state.task.description);
-	const taskType = useSelector((state) => state.task.type);
+	const taskNumber = useSelector(
+		(state) => state.reduxStorage.task.task_number
+	);
+	const taskName = useSelector((state) => state.reduxStorage.task.name);
+	const taskDescription = useSelector(
+		(state) => state.reduxStorage.task.description
+	);
+	const taskType = useSelector((state) => state.reduxStorage.task.type);
 
 	useEffect(() => {
 		setLocalTaskName(taskName);

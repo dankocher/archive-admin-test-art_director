@@ -28,16 +28,16 @@ import WelcomeScreen from "./Components/WelcomeScreen/WelcomeScreen";
 import SplitScreen from "./Components/SplitScreen/SplitScreen";
 import QAList from "./Components/QAList/QAList";
 import WordList from "./Components/SplitScreen/WordList/WordList";
-import IllustrationsAnswers from "./Components/IllustrationsAnswers/IllustrationsAnswers";
+import Illustrations from "./Components/Illustrations/Illustrations";
 
 const getPage = (taskType) => {
 	switch (taskType) {
 		case WELCOME_SCREEN:
 			return <WelcomeScreen />;
 		case ILLUSTRATION_RADIO_BUTTONS:
-			return <SplitScreen />;
+			return <SplitScreen rightSide={<Illustrations />} />;
 		case ILLUSTRATIONS_ANSWERS:
-			return <IllustrationsAnswers />;
+			return <Illustrations />;
 		case QUSETION_ANSWER:
 			return <QAList />;
 		case WORDS_RADIO_BUTTONS:
@@ -50,9 +50,9 @@ const getPage = (taskType) => {
 function CreateTaskContainer() {
 	const dispatch = useDispatch();
 
-	const task = useSelector((state) => state.task);
-	const taskType = useSelector((state) => state.task.type);
-	const testId = useSelector((state) => state._id);
+	const task = useSelector((state) => state.reduxStorage.task);
+	const taskType = useSelector((state) => state.reduxStorage.task.type);
+	const testId = useSelector((state) => state.reduxStorage._id);
 
 	useEffect(() => {
 		// console.log("delau krasivo v LOADER");

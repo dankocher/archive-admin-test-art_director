@@ -30,7 +30,9 @@ const SortableItem = sortableElement(
 );
 
 function WordList() {
-  const wordList = useSelector((state) => state.task.data.wordList);
+  const wordList = useSelector(
+    (state) => state.reduxStorage.task.data.wordList
+  );
   const dispatch = useDispatch();
 
   //   const [wordListLocal,wordListLocal]
