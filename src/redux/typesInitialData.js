@@ -27,6 +27,7 @@ export const radioButtonTask = {
 // ];
 
 export const questionAnswer = {
+	id: 0,
 	question: "",
 	description: "",
 };
@@ -44,8 +45,13 @@ export const questionAnswerData = {
 	questionAnswerList: [questionAnswer],
 };
 
+export const word = {
+	id: 0,
+	word: "",
+};
+
 export const wordsRadioButtons = {
-	wordList: [""],
+	wordList: [word],
 	radioButtonTaskList: [radioButtonTask],
 };
 

@@ -17,6 +17,7 @@ import {
 	radioButtonOption,
 	radioButtonTask,
 	questionAnswer,
+	word,
 } from "../typesInitialData";
 
 import {
@@ -429,7 +430,12 @@ function reduxStorage(state = initialState, action) {
 				task: {
 					data: {
 						questionAnswerList: {
-							$push: [questionAnswer],
+							$push: [
+								{
+									...questionAnswer,
+									id: getNextId(state.task.data.questionAnswerList),
+								},
+							],
 						},
 					},
 				},
@@ -511,7 +517,7 @@ function reduxStorage(state = initialState, action) {
 				task: {
 					data: {
 						wordList: {
-							$push: [""],
+							$push: [{ ...word, id: getNextId(state.task.data.wordList) }],
 						},
 					},
 				},
@@ -533,7 +539,7 @@ function reduxStorage(state = initialState, action) {
 					data: {
 						wordList: {
 							[action.index]: {
-								$set: action.payload,
+								word: { $set: action.payload },
 							},
 						},
 					},
