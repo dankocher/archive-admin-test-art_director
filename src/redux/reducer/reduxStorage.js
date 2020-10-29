@@ -294,7 +294,6 @@ function reduxStorage(state = initialState, action) {
 					data: {
 						radioButtonTaskList: {
 							[action.payload]: {
-								isHaveMarks: { $set: false },
 								radioButtonOptionList: {
 									$push: [
 										{
@@ -338,32 +337,12 @@ function reduxStorage(state = initialState, action) {
 					},
 				},
 			});
-		// case ADD_RADIO_BUTTON_TASK_OPTION_MARK:
-		// 	return update(state, {
-		// 		task: {
-		// 			data: {
-		// 				radioButtonTaskList: {
-		// 					[action.radioButtonTaskIndex]: {
-		// 						isHaveMarks: { $set: action.isHaveMarks },
-		// 						radioButtonOptionList: {
-		// 							[action.radioButtonTaskOptionIndex]: {
-		// 								scoreList: {
-		// 									[action.scoreKey]: { $set: action.payload },
-		// 								},
-		// 							},
-		// 						},
-		// 					},
-		// 				},
-		// 			},
-		// 		},
-		// 	});
 		case SET_RADIO_BUTTON_TASK_OPTION_SCORE:
 			return update(state, {
 				task: {
 					data: {
 						radioButtonTaskList: {
 							[action.radioButtonTaskIndex]: {
-								isHaveMarks: { $set: action.isHaveMarks },
 								radioButtonOptionList: {
 									[action.radioButtonTaskOptionIndex]: {
 										score: { $set: action.payload },
@@ -380,7 +359,6 @@ function reduxStorage(state = initialState, action) {
 					data: {
 						radioButtonTaskList: {
 							[action.radioButtonTaskIndex]: {
-								isHaveMarks: { $set: action.isHaveMarks },
 								radioButtonOptionList: {
 									[action.radioButtonTaskOptionIndex]: {
 										scoreList: {
@@ -399,7 +377,6 @@ function reduxStorage(state = initialState, action) {
 					data: {
 						radioButtonTaskList: {
 							[action.radioButtonTaskIndex]: {
-								isHaveMarks: { $set: action.isHaveMarks },
 								radioButtonOptionList: {
 									[action.radioButtonTaskOptionIndex]: {
 										// $set: { scoreList: { [action.scoreKey]: action.payload } },
@@ -423,7 +400,6 @@ function reduxStorage(state = initialState, action) {
 					data: {
 						radioButtonTaskList: {
 							[action.radioButtonTaskIndex]: {
-								isHaveMarks: { $set: action.isHaveMarks },
 								radioButtonOptionList: {
 									$splice: [[action.radioButtonTaskOptionIndex, 1]],
 								},

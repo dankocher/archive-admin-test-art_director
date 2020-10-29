@@ -19,7 +19,6 @@ export const radioButtonOption = {
 export const radioButtonTask = {
 	id: 0,
 	question: "",
-	isHaveMarks: true,
 	radioButtonOptionList: [radioButtonOption],
 };
 

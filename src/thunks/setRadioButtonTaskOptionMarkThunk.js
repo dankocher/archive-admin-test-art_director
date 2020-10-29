@@ -9,8 +9,7 @@ import { setUnfilledScoreCounterUpdateThunk } from "./setUnfilledScoreCounterUpd
 export const setRadioButtonTaskOptionMarkThunk = (
 	answerScore,
 	radioButtonTaskIndex,
-	optionIndex,
-	isHaveMarks
+	optionIndex
 ) => {
 	return (dispatch, getState) => {
 		const isOneGradeForAllSubTasks = getState().reduxStorage.task
@@ -21,8 +20,7 @@ export const setRadioButtonTaskOptionMarkThunk = (
 				setRadioButtonTaskOptionScore(
 					answerScore,
 					radioButtonTaskIndex,
-					optionIndex,
-					isHaveMarks
+					optionIndex
 				)
 			);
 		} else {
@@ -46,8 +44,7 @@ export const setRadioButtonTaskOptionMarkThunk = (
 						answerScore,
 						radioButtonTaskIndex,
 						optionIndex,
-						selectedImgRow,
-						isHaveMarks
+						selectedImgRow
 					)
 				);
 			} else {
@@ -56,8 +53,7 @@ export const setRadioButtonTaskOptionMarkThunk = (
 						answerScore,
 						radioButtonTaskIndex,
 						optionIndex,
-						selectedImgRow,
-						isHaveMarks
+						selectedImgRow
 					)
 				);
 			}

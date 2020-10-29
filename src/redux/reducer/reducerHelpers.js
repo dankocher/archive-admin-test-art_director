@@ -34,27 +34,6 @@ export const setDataOfType = (type) => {
 	}
 };
 
-// export const setRsdioButtonTaskOptionScoreToScoreList = (state, action) =>{
-// 	return update(state, {
-// 		task: {
-// 			data: {
-// 				radioButtonTaskList: {
-// 					[action.radioButtonTaskIndex]: {
-// 						isHaveMarks: { $set: action.isHaveMarks },
-// 						radioButtonOptionList: {
-// 							[action.radioButtonTaskOptionIndex]: {
-// 								scoreList: {
-// 									[action.scoreKey]: { $set: action.payload },
-// 								},
-// 							},
-// 						},
-// 					},
-// 				},
-// 			},
-// 		},
-// 	});
-// }
-
 export const deleteRadioButtonTaskOptionScoreFromScoreList = (
 	state,
 	action

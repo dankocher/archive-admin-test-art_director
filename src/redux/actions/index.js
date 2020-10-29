@@ -140,62 +140,41 @@ export const setRadioButtonTaskOption = (
 	payload: option,
 });
 
-// export const addRadioButtonTaskOptionMark = (
-// 	score,
-// 	radioButtonTaskIndex,
-// 	radioButtonTaskOptionIndex,
-// 	chosedImgRow,
-// 	isHaveMarks
-// ) => ({
-// 	type: ADD_RADIO_BUTTON_TASK_OPTION_MARK,
-// 	payload: score,
-// 	radioButtonTaskIndex,
-// 	radioButtonTaskOptionIndex,
-// 	scoreKey: chosedImgRow,
-// 	isHaveMarks,
-// });
-
 export const setRadioButtonTaskOptionScore = (
 	score,
 	radioButtonTaskIndex,
-	radioButtonTaskOptionIndex,
-	isHaveMarks
+	radioButtonTaskOptionIndex
 ) => ({
 	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE,
 	payload: score,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
-	isHaveMarks,
 });
 
 export const setRadioButtonTaskOptionScoreList = (
 	score,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
-	chosedImgRow,
-	isHaveMarks
+	chosedImgRow
 ) => ({
 	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST,
 	payload: score,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
 	scoreKey: chosedImgRow,
-	isHaveMarks,
 });
 
 export const setRadioButtonTaskOptionScoreToScoreList = (
 	score,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
-	chosedImgRow,
-	isHaveMarks
+	chosedImgRow
 ) => ({
 	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST,
 	payload: score,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
 	scoreKey: chosedImgRow,
-	isHaveMarks,
 });
 
 export const deleteRadioButtonTaskOptionScores = () => ({
@@ -203,23 +182,19 @@ export const deleteRadioButtonTaskOptionScores = () => ({
 });
 
 export const deleteRadioButtonTaskOptionScoreFromScoreList = (
-	chosedImgRow,
-	isHaveMarks
+	chosedImgRow
 ) => ({
 	type: DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST,
 	scoreKey: chosedImgRow,
-	isHaveMarks,
 });
 
 export const removeRadioButtonTaskOption = (
 	radioButtonTaskIndex,
-	radioButtonTaskOptionIndex,
-	isHaveMarks
+	radioButtonTaskOptionIndex
 ) => ({
 	type: REMOVE_RADIO_BUTTON_TASK_OPTION,
 	radioButtonTaskIndex,
 	radioButtonTaskOptionIndex,
-	isHaveMarks,
 });
 
 export const removeRadioButtonTask = (radioButtonTaskIndex) => ({

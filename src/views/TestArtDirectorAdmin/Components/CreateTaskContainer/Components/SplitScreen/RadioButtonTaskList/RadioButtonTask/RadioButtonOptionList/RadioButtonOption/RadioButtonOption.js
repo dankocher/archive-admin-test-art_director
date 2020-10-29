@@ -98,30 +98,22 @@ function RadioButtonOption({
 				if (radioButtonOption.scoreList[selectedImgRow] === answerScore) return;
 			}
 		}
-		const isHaveMarks =
-			answerScore !== "" && getIsHaveMarks(radioButtonOptionList, optionIndex);
 
 		dispatch(
 			setRadioButtonTaskOptionMarkThunk(
 				answerScore,
 				radioButtonTaskIndex,
-				optionIndex,
-				isHaveMarks
+				optionIndex
 			)
 		);
 	};
 
 	const handlerOnClickRemoveBtn = () => {
 		const optionListLength = radioButtonOptionList.length;
-		const isHaveMarks =
-			optionListLength === 2
-				? true
-				: getIsHaveMarks(radioButtonOptionList, optionIndex);
 		dispatch(
 			deleteRadioButtonTaskOptionThunk(
 				radioButtonTaskIndex,
 				optionIndex,
-				isHaveMarks,
 				addNewOption
 			)
 		);
