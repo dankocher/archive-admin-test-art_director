@@ -8,24 +8,24 @@ export const SET_TASK_TYPE = "SET_TASK_TYPE";
 export const SET_IS_TIME_CONSIDERED = "IS_TIME_CONSIDERED";
 export const SET_IS_TIME_DISPLAY_FOR_USER = "SET_IS_TIME_DISPLAY_FOR_USER";
 export const SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS =
-  "SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS";
+	"SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS";
 export const SET_IS_ANSWER_SIZE_LIMITATION = "SET_IS_ANSWER_SIZE_LIMITATION";
 export const ADD_RADIO_BUTTON_TASK = "ADD_RADIO_BUTTON_TASK";
 export const ADD_RADIO_BUTTON_OPTION = "ADD_RADIO_BUTTON_OPTION";
 export const SET_RADIO_BUTTON_TASK_QUESTION = "SET_RADIO_BUTTON_TASK_QUESTION";
 export const SET_RADIO_BUTTON_TASK_OPTION = "SET_RADIO_BUTTON_TASK_OPTION";
 export const SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST =
-  "SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST";
+	"SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST";
 export const SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST =
-  "SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST";
+	"SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST";
 export const DELETE_RADIO_BUTTON_TASK_OPTION_SCORES =
-  "DELETE_RADIO_BUTTON_TASK_OPTION_SCORES";
+	"DELETE_RADIO_BUTTON_TASK_OPTION_SCORES";
 export const DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST =
-  "DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST";
+	"DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST";
 export const SET_RADIO_BUTTON_TASK_OPTION_SCORE =
-  "SET_RADIO_BUTTON_TASK_OPTION_SCORE";
+	"SET_RADIO_BUTTON_TASK_OPTION_SCORE";
 export const REMOVE_RADIO_BUTTON_TASK_OPTION =
-  "REMOVE_RADIO_BUTTON_TASK_OPTION";
+	"REMOVE_RADIO_BUTTON_TASK_OPTION";
 export const REMOVE_RADIO_BUTTON_TASK = "REMOVE_RADIO_BUTTON_TASK";
 export const SET_IS_HAVE_MARKS = "SET_IS_HAVE_MARKS";
 export const SET_TASK_NUMBER = "SET_TASK_NUMBER";
@@ -50,92 +50,94 @@ export const SORT_IMG_GRID_ROWS = "SORT_IMG_GRID_ROWS";
 export const SORT_ROW_IN_IMG_GRID = "SORT_ROW_IN_IMG_GRID";
 export const SET_CHOOSEN_IMG_GRID_ROW_ID = "SET_CHOOSEN_IMG_GRID_ROW_ID";
 export const SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION =
-  "SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
+	"SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
+export const SET_UNFILLED_SCORE_COUNTER_TO_IMG_GRID =
+	"SET_UNFILLED_SCORE_COUNTER_TO_IMG_GRID";
 export const INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION =
-  "INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
+	"INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
 export const DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION =
-  "DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
+	"DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION";
 export const DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_OPTION =
-  "DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_OPTION";
+	"DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_OPTION";
 export const INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID =
-  "INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID";
+	"INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID";
 export const DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK =
-  "DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK";
+	"DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK";
 
 export const setInitialState = () => ({
-  type: SET_INITIAL_STATE,
+	type: SET_INITIAL_STATE,
 });
 
 export const setTestProps = (_id, name) => ({
-  type: SET_TEST_PROPS,
-  payload: { _id, name },
+	type: SET_TEST_PROPS,
+	payload: { _id, name },
 });
 
 export const setTestName = (name) => ({
-  type: SET_TEST_NAME,
-  payload: name,
+	type: SET_TEST_NAME,
+	payload: name,
 });
 
 export const setTaskName = (name) => ({
-  type: SET_TASK_NAME,
-  payload: name,
+	type: SET_TASK_NAME,
+	payload: name,
 });
 
 export const setTaskDescription = (description) => ({
-  type: SET_TASK_DESCRIPTION,
-  payload: description,
+	type: SET_TASK_DESCRIPTION,
+	payload: description,
 });
 
 export const setTaskType = (type) => ({
-  type: SET_TASK_TYPE,
-  payload: type,
+	type: SET_TASK_TYPE,
+	payload: type,
 });
 
 export const setIsTimeConsidered = () => ({
-  type: SET_IS_TIME_CONSIDERED,
+	type: SET_IS_TIME_CONSIDERED,
 });
 
 export const setIsTimeDisplayForUser = () => ({
-  type: SET_IS_TIME_DISPLAY_FOR_USER,
+	type: SET_IS_TIME_DISPLAY_FOR_USER,
 });
 
 export const setIsOneGradeForAllSubTasks = () => ({
-  type: SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
+	type: SET_IS_ONE_GRADE_FOR_ALL_SUB_TASKS,
 });
 
 export const setIsAnswerSizeLimited = () => ({
-  type: SET_IS_ANSWER_SIZE_LIMITATION,
+	type: SET_IS_ANSWER_SIZE_LIMITATION,
 });
 
 export const setTaskState = (task) => ({
-  type: SET_TASK_STATE,
-  payload: task,
+	type: SET_TASK_STATE,
+	payload: task,
 });
 
 export const addRadioButtonTask = () => ({
-  type: ADD_RADIO_BUTTON_TASK,
+	type: ADD_RADIO_BUTTON_TASK,
 });
 
 export const addRadioButtonOption = (index) => ({
-  type: ADD_RADIO_BUTTON_OPTION,
-  payload: index,
+	type: ADD_RADIO_BUTTON_OPTION,
+	payload: index,
 });
 
 export const setRadioButtonTaskQuestion = (question, index) => ({
-  type: SET_RADIO_BUTTON_TASK_QUESTION,
-  index: index,
-  payload: question,
+	type: SET_RADIO_BUTTON_TASK_QUESTION,
+	index: index,
+	payload: question,
 });
 
 export const setRadioButtonTaskOption = (
-  option,
-  radioButtonTaskIndex,
-  radioButtonTaskOptionIndex
+	option,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex
 ) => ({
-  type: SET_RADIO_BUTTON_TASK_OPTION,
-  radioButtonTaskIndex,
-  radioButtonTaskOptionIndex,
-  payload: option,
+	type: SET_RADIO_BUTTON_TASK_OPTION,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	payload: option,
 });
 
 // export const addRadioButtonTaskOptionMark = (
@@ -154,230 +156,235 @@ export const setRadioButtonTaskOption = (
 // });
 
 export const setRadioButtonTaskOptionScore = (
-  score,
-  radioButtonTaskIndex,
-  radioButtonTaskOptionIndex,
-  isHaveMarks
+	score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	isHaveMarks
 ) => ({
-  type: SET_RADIO_BUTTON_TASK_OPTION_SCORE,
-  payload: score,
-  radioButtonTaskIndex,
-  radioButtonTaskOptionIndex,
-  isHaveMarks,
+	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE,
+	payload: score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	isHaveMarks,
 });
 
 export const setRadioButtonTaskOptionScoreList = (
-  score,
-  radioButtonTaskIndex,
-  radioButtonTaskOptionIndex,
-  chosedImgRow,
-  isHaveMarks
+	score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	chosedImgRow,
+	isHaveMarks
 ) => ({
-  type: SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST,
-  payload: score,
-  radioButtonTaskIndex,
-  radioButtonTaskOptionIndex,
-  scoreKey: chosedImgRow,
-  isHaveMarks,
+	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE_LIST,
+	payload: score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	scoreKey: chosedImgRow,
+	isHaveMarks,
 });
 
 export const setRadioButtonTaskOptionScoreToScoreList = (
-  score,
-  radioButtonTaskIndex,
-  radioButtonTaskOptionIndex,
-  chosedImgRow,
-  isHaveMarks
+	score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	chosedImgRow,
+	isHaveMarks
 ) => ({
-  type: SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST,
-  payload: score,
-  radioButtonTaskIndex,
-  radioButtonTaskOptionIndex,
-  scoreKey: chosedImgRow,
-  isHaveMarks,
+	type: SET_RADIO_BUTTON_TASK_OPTION_SCORE_TO_SCORE_LIST,
+	payload: score,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	scoreKey: chosedImgRow,
+	isHaveMarks,
 });
 
 export const deleteRadioButtonTaskOptionScores = () => ({
-  type: DELETE_RADIO_BUTTON_TASK_OPTION_SCORES,
+	type: DELETE_RADIO_BUTTON_TASK_OPTION_SCORES,
 });
 
 export const deleteRadioButtonTaskOptionScoreFromScoreList = (
-  chosedImgRow,
-  isHaveMarks
+	chosedImgRow,
+	isHaveMarks
 ) => ({
-  type: DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST,
-  scoreKey: chosedImgRow,
-  isHaveMarks,
+	type: DELETE_RADIO_BUTTON_TASK_OPTION_SCORE_FROM_SCORE_LIST,
+	scoreKey: chosedImgRow,
+	isHaveMarks,
 });
 
 export const removeRadioButtonTaskOption = (
-  radioButtonTaskIndex,
-  radioButtonTaskOptionIndex,
-  isHaveMarks
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	isHaveMarks
 ) => ({
-  type: REMOVE_RADIO_BUTTON_TASK_OPTION,
-  radioButtonTaskIndex,
-  radioButtonTaskOptionIndex,
-  isHaveMarks,
+	type: REMOVE_RADIO_BUTTON_TASK_OPTION,
+	radioButtonTaskIndex,
+	radioButtonTaskOptionIndex,
+	isHaveMarks,
 });
 
 export const removeRadioButtonTask = (radioButtonTaskIndex) => ({
-  type: REMOVE_RADIO_BUTTON_TASK,
-  radioButtonTaskIndex,
+	type: REMOVE_RADIO_BUTTON_TASK,
+	radioButtonTaskIndex,
 });
 
 export const setTaskNumber = (task_number) => ({
-  type: SET_TASK_NUMBER,
-  payload: task_number,
+	type: SET_TASK_NUMBER,
+	payload: task_number,
 });
 
 export const addQustionAnswer = () => ({
-  type: ADD_QUESTION_ANSWER,
+	type: ADD_QUESTION_ANSWER,
 });
 
 export const deleteQustionAnswer = (index) => ({
-  type: DELETE_QUESTION_ANSWER,
-  index,
+	type: DELETE_QUESTION_ANSWER,
+	index,
 });
 
 export const setQAQuestion = (question, index) => ({
-  type: SET_QA_QUESTION,
-  payload: question,
-  index,
+	type: SET_QA_QUESTION,
+	payload: question,
+	index,
 });
 
 export const setQADescription = (description, index) => ({
-  type: SET_QA_DESCRIPTION,
-  payload: description,
-  index,
+	type: SET_QA_DESCRIPTION,
+	payload: description,
+	index,
 });
 
 export const setGlobalResponseLimitationFrom = (number) => ({
-  type: SET_RESPONSE_LIMITATION_FROM,
-  payload: number,
+	type: SET_RESPONSE_LIMITATION_FROM,
+	payload: number,
 });
 
 export const setGlobalResponseLimitationTo = (number) => ({
-  type: SET_RESPONSE_LIMITATION_TO,
-  payload: number,
+	type: SET_RESPONSE_LIMITATION_TO,
+	payload: number,
 });
 
 export const setWordList = (wordList) => ({
-  type: SET_WORD_LIST,
-  payload: wordList,
+	type: SET_WORD_LIST,
+	payload: wordList,
 });
 
 export const addWord = () => ({
-  type: ADD_WORD,
+	type: ADD_WORD,
 });
 
 export const deleteWord = (index) => ({
-  type: DELETE_WORD,
-  index,
+	type: DELETE_WORD,
+	index,
 });
 
 export const setWord = (word, index) => ({
-  type: SET_WORD,
-  payload: word,
-  index,
+	type: SET_WORD,
+	payload: word,
+	index,
 });
 
 export const setWelcomePageImgUrl = (imgUrl) => ({
-  type: SET_WELCOME_PAGE_IMG_URL,
-  payload: imgUrl,
+	type: SET_WELCOME_PAGE_IMG_URL,
+	payload: imgUrl,
 });
 
 export const loadRowImgToImgGrig = (file) => ({
-  type: LOAD_ROW_IMG_TO_IMG_GRID,
-  payload: file,
+	type: LOAD_ROW_IMG_TO_IMG_GRID,
+	payload: file,
 });
 
 export const loadColumnImgToImgGrig = (file, indexRow) => ({
-  type: LOAD_COLUMN_IMG_TO_IMG_GRID,
-  payload: file,
-  indexRow,
+	type: LOAD_COLUMN_IMG_TO_IMG_GRID,
+	payload: file,
+	indexRow,
 });
 
 export const setImgToImgGridSuccess = (imgUrl, indexRow, indexColumn) => ({
-  type: SET_IMG_TO_IMG_GRID_SUCCESS,
-  payload: imgUrl,
-  indexRow,
-  indexColumn,
+	type: SET_IMG_TO_IMG_GRID_SUCCESS,
+	payload: imgUrl,
+	indexRow,
+	indexColumn,
 });
 
 export const setImgToImgGridError = (indexRow, indexColumn) => ({
-  type: SET_IMG_TO_IMG_GRID_ERROR,
-  indexRow,
-  indexColumn,
+	type: SET_IMG_TO_IMG_GRID_ERROR,
+	indexRow,
+	indexColumn,
 });
 
 export const deleteRowFromImgGrig = (indexRow) => ({
-  type: DELETE_ROW_FROM_IMG_GRID,
-  indexRow,
+	type: DELETE_ROW_FROM_IMG_GRID,
+	indexRow,
 });
 
 export const deleteColumnFromImgGrig = (indexRow, indexColumn) => ({
-  type: DELETE_COLUMN_FROM_IMG_GRID,
-  indexRow,
-  indexColumn,
+	type: DELETE_COLUMN_FROM_IMG_GRID,
+	indexRow,
+	indexColumn,
 });
 
 export const sortImgGridRows = (oldIndex, newIndex) => ({
-  type: SORT_IMG_GRID_ROWS,
-  oldIndex,
-  newIndex,
+	type: SORT_IMG_GRID_ROWS,
+	oldIndex,
+	newIndex,
 });
 
 export const sortRowInImgGrid = (indexRow, oldIndex, newIndex) => ({
-  type: SORT_ROW_IN_IMG_GRID,
-  oldIndex,
-  newIndex,
-  indexRow,
+	type: SORT_ROW_IN_IMG_GRID,
+	oldIndex,
+	newIndex,
+	indexRow,
 });
 
 export const setSelectedRowIdImgGrid = (row) => ({
-  type: SET_CHOOSEN_IMG_GRID_ROW_ID,
-  payload: row,
+	type: SET_CHOOSEN_IMG_GRID_ROW_ID,
+	payload: row,
 });
 
 export const setUnfilledScoreCounterRadioButtonIllustration = (
-  rowIndex,
-  unfilledScoreCounter
+	rowIndex,
+	unfilledScoreCounter
 ) => ({
-  type: SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
-  payload: unfilledScoreCounter,
-  rowIndex,
+	type: SET_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	payload: unfilledScoreCounter,
+	rowIndex,
+});
+
+export const setUnfilledScoreCounterToImgGrid = (unfilledScoreCounter) => ({
+	type: SET_UNFILLED_SCORE_COUNTER_TO_IMG_GRID,
+	payload: unfilledScoreCounter,
 });
 
 export const incrementUnfilledScoreCounterRadioButtonIllustration = (
-  rowIndex
+	rowIndex
 ) => ({
-  type: INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
-  rowIndex,
+	type: INCREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	rowIndex,
 });
 
 export const decrementUnfilledScoreCounterRadioButtonIllustration = (
-  rowIndex
+	rowIndex
 ) => ({
-  type: DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
-  rowIndex,
+	type: DECREMENT_UNFILLED_SCORE_COUNTER_RADIOBUTTON_ILLUSTRATION,
+	rowIndex,
 });
 
 export const decrementUnfilledScoreCounterFromImgGridRBOption = (
-  listImgId
+	listImgId
 ) => ({
-  type: DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_OPTION,
-  payload: listImgId,
+	type: DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_OPTION,
+	payload: listImgId,
 });
 
 export const incrementUnfilledScoreCounterFromImgGrid = () => ({
-  type: INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID,
+	type: INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID,
 });
 
 export const decrementUnfilledScoreCounterFromImgGridRBTask = (
-  imgIdList,
-  optionsCounter
+	imgIdList,
+	optionsCounter
 ) => ({
-  type: DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK,
-  payload: imgIdList,
-  optionsCounter,
+	type: DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK,
+	payload: imgIdList,
+	optionsCounter,
 });
