@@ -1,5 +1,8 @@
 import { addRadioButtonOption } from "../redux/actions";
-import { incrementUnfilledScoreCounterFromImgGrid } from "../redux/actions";
+import {
+	incrementUnfilledScoreCounterFromImgGrid,
+	incrementEmptyScoreCounter,
+} from "../redux/actions";
 
 export const addRadioButtonOptionThunk = (index) => {
 	return (dispatch, getState) => {
@@ -9,8 +12,10 @@ export const addRadioButtonOptionThunk = (index) => {
 
 		dispatch(addRadioButtonOption(index));
 
-		if (isOneGradeForAllSubTasks) return;
-
-		dispatch(incrementUnfilledScoreCounterFromImgGrid());
+		if (isOneGradeForAllSubTasks) {
+			dispatch(incrementEmptyScoreCounter(index));
+		} else {
+			dispatch(incrementUnfilledScoreCounterFromImgGrid());
+		}
 	};
 };

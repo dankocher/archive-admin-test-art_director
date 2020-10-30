@@ -18,6 +18,7 @@ export const radioButtonOption = {
 
 export const radioButtonTask = {
 	id: 0,
+	emptyScoreCounter: 1,
 	question: "",
 	radioButtonOptionList: [radioButtonOption],
 };

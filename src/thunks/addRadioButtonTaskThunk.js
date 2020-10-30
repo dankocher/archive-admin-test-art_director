@@ -1,16 +1,18 @@
-import { addRadioButtonTask } from "../redux/actions";
-import { incrementUnfilledScoreCounterFromImgGrid } from "../redux/actions";
+import {
+	addRadioButtonTask,
+	incrementUnfilledScoreCounterFromImgGrid,
+} from "../redux/actions";
 
 export const addRadioButtonTaskThunk = () => {
-  return (dispatch, getState) => {
-    const state = getState();
-    const isOneGradeForAllSubTasks =
-      state.reduxStorage.task.isOneGradeForAllSubTasks;
+	return (dispatch, getState) => {
+		const state = getState();
+		const isOneGradeForAllSubTasks =
+			state.reduxStorage.task.isOneGradeForAllSubTasks;
 
-    dispatch(addRadioButtonTask());
+		dispatch(addRadioButtonTask());
 
-    if (isOneGradeForAllSubTasks) return;
+		if (isOneGradeForAllSubTasks) return;
 
-    dispatch(incrementUnfilledScoreCounterFromImgGrid());
-  };
+		dispatch(incrementUnfilledScoreCounterFromImgGrid());
+	};
 };

@@ -1,5 +1,8 @@
-import { removeRadioButtonTaskOption } from "../redux/actions";
-import { decrementUnfilledScoreCounterFromImgGridRBOption } from "../redux/actions";
+import {
+	removeRadioButtonTaskOption,
+	decrementEmptyScoreCounter,
+	decrementUnfilledScoreCounterFromImgGridRBOption,
+} from "../redux/actions";
 
 export const deleteRadioButtonTaskOptionThunk = (
 	radioButtonTaskIndex,
@@ -11,30 +14,34 @@ export const deleteRadioButtonTaskOptionThunk = (
 		const isOneGradeForAllSubTasks =
 			state.reduxStorage.task.isOneGradeForAllSubTasks;
 
-		const optionListLength =
+		const optionList =
 			state.reduxStorage.task.data.radioButtonTaskList[radioButtonTaskIndex]
-				.radioButtonOptionList.length;
+				.radioButtonOptionList;
 
 		dispatch(removeRadioButtonTaskOption(radioButtonTaskIndex, optionIndex));
 
-		if (optionListLength === 1) {
+		if (optionList.length === 1) {
 			addNewOption();
 		}
 
-		if (isOneGradeForAllSubTasks) return;
+		if (isOneGradeForAllSubTasks) {
+			const option = optionList[optionIndex];
+			if (option.score != null && option.score !== "") return;
+			dispatch(decrementEmptyScoreCounter(radioButtonTaskIndex));
+		} else {
+			const scoreList =
+				state.reduxStorage.task.data.radioButtonTaskList[radioButtonTaskIndex]
+					.radioButtonOptionList[optionIndex].scoreList;
 
-		const scoreList =
-			state.reduxStorage.task.data.radioButtonTaskList[radioButtonTaskIndex]
-				.radioButtonOptionList[optionIndex].scoreList;
+			// debugger;
+			let listImgId;
+			if (scoreList != null) {
+				listImgId = Object.keys(scoreList).filter(
+					(key) => scoreList[key] !== ""
+				);
+			}
 
-		// debugger;
-		let listImgId;
-		if (scoreList != null) {
-			listImgId = Object.keys(scoreList).filter((key) => scoreList[key] !== "");
+			dispatch(decrementUnfilledScoreCounterFromImgGridRBOption(listImgId));
 		}
-
-		console.log(listImgId);
-
-		dispatch(decrementUnfilledScoreCounterFromImgGridRBOption(listImgId));
 	};
 };
