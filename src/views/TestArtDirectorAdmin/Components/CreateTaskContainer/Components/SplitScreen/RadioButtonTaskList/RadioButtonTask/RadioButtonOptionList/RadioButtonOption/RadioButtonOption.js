@@ -1,18 +1,15 @@
+import styles from "./RadioButtonOption.module.scss";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-	setRadioButtonTaskOption,
-	// removeRadioButtonTaskOption,
-} from "../../../../../../../../../../redux/actions";
+import { setRadioButtonTaskOption } from "../../../../../../../../../../redux/actions";
 
 import { setRadioButtonTaskOptionMarkThunk } from "../../../../../../../../../../thunks/setRadioButtonTaskOptionMarkThunk";
 import { deleteRadioButtonTaskOptionThunk } from "../../../../../../../../../../thunks/deleteRadioButtonTaskOptionThunk";
 
-import { getIsHaveMarks } from "../../../../../../../../helpers/getIsHaveMarks";
-
 import TextArea from "../../../../../../../TextArea/TextArea";
 import DeleteButton from "../../../../../../../DeleteButton/DeleteButton";
+import DragButton from "../../../../../../../DragButton/DragButton";
 
 function RadioButtonOption({
 	radioButtonOption,
@@ -125,16 +122,20 @@ function RadioButtonOption({
 
 	return (
 		<div
-			className="container-answer--RadioButtonAnswers"
+			className={styles.container}
 			onMouseEnter={() => setIsHoveredOption(true)}
 			onMouseLeave={() => setIsHoveredOption(false)}
 		>
+			<div className={styles.container__drugBtn}>
+				<DragButton />
+			</div>
+
 			<TextArea
 				className="input"
 				value={radioButtonOption.option}
 				onBlur={hadlerOnBlurOption}
 			/>
-			<div className="wrapper-centred--RadioButtonAnswers">
+			<div className={styles.container__wrapperCentred}>
 				<input
 					type="tel"
 					pattern="^[-\d]\d?\d?"
@@ -146,10 +147,8 @@ function RadioButtonOption({
 				/>
 			</div>
 
-			<div className="wrapper-centred--RadioButtonAnswers">
-				{isHoveredOption ? (
-					<DeleteButton onClick={() => handlerOnClickRemoveBtn()} />
-				) : null}
+			<div className={styles.container__wrapperCentred}>
+				<DeleteButton onClick={() => handlerOnClickRemoveBtn()} />
 			</div>
 		</div>
 	);

@@ -268,3 +268,7 @@ export const setEmptyScoreCountersRedux = (state) => {
 	}
 	return state;
 };
+
+export const getSortedList = (list, oldIndex, newIndex) => {
+	return arrayMove(list, oldIndex, newIndex);
+};

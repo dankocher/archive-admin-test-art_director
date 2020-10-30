@@ -12,6 +12,7 @@ import {
 	decrementUnfilledScoreCounterFromImgGridRBTaskRedux,
 	setUnfilledScoreCounterToImgGridRedux,
 	setEmptyScoreCountersRedux,
+	getSortedList
 } from "./reducerHelpers";
 
 import {
@@ -74,6 +75,7 @@ import {
 	INCREMENT_EMPTY_SCORE_COUNTER,
 	DECREMENT_EMPTY_SCORE_COUNTER,
 	SET_EMPTY_SCORE_COUNTERS,
+	SET_SORTED_QA_LIST,
 } from "../actions";
 
 const initialState = {
@@ -731,6 +733,17 @@ function reduxStorage(state = initialState, action) {
 			});
 		case SET_EMPTY_SCORE_COUNTERS:
 			return setEmptyScoreCountersRedux(state);
+		case SET_SORTED_QA_LIST:
+			return update(state, {
+				task: {
+					data: {
+						questionAnswerList: {
+							$apply: (qAList) =>
+								getSortedList(qAList, action.oldIndex, action.newIndex),
+						},
+					},
+				},
+			});
 		default:
 			return state;
 	}
