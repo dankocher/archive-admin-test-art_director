@@ -4,6 +4,7 @@ import {
 	setRadioButtonTaskOptionScoreList,
 } from "../redux/actions";
 
+import { comparePreviouAndNextThunk } from "./comparePreviouAndNextThunk";
 import { setUnfilledScoreCounterUpdateThunk } from "./setUnfilledScoreCounterUpdateThunk";
 
 export const setRadioButtonTaskOptionMarkThunk = (
@@ -16,6 +17,14 @@ export const setRadioButtonTaskOptionMarkThunk = (
 			.isOneGradeForAllSubTasks;
 
 		if (isOneGradeForAllSubTasks) {
+			dispatch(
+				comparePreviouAndNextThunk(
+					answerScore,
+					radioButtonTaskIndex,
+					optionIndex
+				)
+			);
+
 			dispatch(
 				setRadioButtonTaskOptionScore(
 					answerScore,

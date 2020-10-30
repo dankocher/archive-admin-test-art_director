@@ -2,6 +2,7 @@ import {
 	setIsOneGradeForAllSubTasks,
 	setSelectedRowIdImgGrid,
 	deleteRadioButtonTaskOptionScores,
+	setEmptyScoreCounters,
 } from "../redux/actions";
 
 import { setFirstImgRowId } from "./setFirstImgRowId";
@@ -20,6 +21,7 @@ export const changeIsOneGradeForAllSubTasksThunk = () => {
 			dispatch(setUnfilledScoreCounterToImgGrigThunk());
 		} else {
 			dispatch(setSelectedRowIdImgGrid(null));
+			dispatch(setEmptyScoreCounters());
 		}
 	};
 };

@@ -11,6 +11,7 @@ import {
 	incrementUnfilledScoreCounterFromImgGridRedux,
 	decrementUnfilledScoreCounterFromImgGridRBTaskRedux,
 	setUnfilledScoreCounterToImgGridRedux,
+	setEmptyScoreCountersRedux,
 } from "./reducerHelpers";
 
 import {
@@ -70,6 +71,9 @@ import {
 	INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID,
 	DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK,
 	SET_UNFILLED_SCORE_COUNTER_TO_IMG_GRID,
+	INCREMENT_EMPTY_SCORE_COUNTER,
+	DECREMENT_EMPTY_SCORE_COUNTER,
+	SET_EMPTY_SCORE_COUNTERS,
 } from "../actions";
 
 const initialState = {
@@ -697,6 +701,36 @@ function reduxStorage(state = initialState, action) {
 			return decrementUnfilledScoreCounterFromImgGridRBTaskRedux(state, action);
 		case SET_UNFILLED_SCORE_COUNTER_TO_IMG_GRID:
 			return setUnfilledScoreCounterToImgGridRedux(state, action);
+		case INCREMENT_EMPTY_SCORE_COUNTER:
+			return update(state, {
+				task: {
+					data: {
+						radioButtonTaskList: {
+							[action.index]: {
+								emptyScoreCounter: {
+									$apply: (emptyScoreCounter) => emptyScoreCounter + 1,
+								},
+							},
+						},
+					},
+				},
+			});
+		case DECREMENT_EMPTY_SCORE_COUNTER:
+			return update(state, {
+				task: {
+					data: {
+						radioButtonTaskList: {
+							[action.index]: {
+								emptyScoreCounter: {
+									$apply: (emptyScoreCounter) => emptyScoreCounter - 1,
+								},
+							},
+						},
+					},
+				},
+			});
+		case SET_EMPTY_SCORE_COUNTERS:
+			return setEmptyScoreCountersRedux(state);
 		default:
 			return state;
 	}

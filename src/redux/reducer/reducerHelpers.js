@@ -247,3 +247,24 @@ export const setUnfilledScoreCounterToImgGridRedux = (state, action) => {
 	}
 	return state;
 };
+
+export const setEmptyScoreCountersRedux = (state) => {
+	const radioButtonTaskList = state.task.data.radioButtonTaskList;
+	for (const [index, task] of radioButtonTaskList.entries()) {
+		const optionListLength = task.radioButtonOptionList.length;
+		state = update(state, {
+			task: {
+				data: {
+					radioButtonTaskList: {
+						[index]: {
+							emptyScoreCounter: {
+								$set: optionListLength,
+							},
+						},
+					},
+				},
+			},
+		});
+	}
+	return state;
+};

@@ -63,6 +63,9 @@ export const INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID =
 	"INCREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID";
 export const DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK =
 	"DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK";
+export const INCREMENT_EMPTY_SCORE_COUNTER = "INCREMENT_EMPTY_SCORE_COUNTER";
+export const DECREMENT_EMPTY_SCORE_COUNTER = "DECREMENT_EMPTY_SCORE_COUNTER";
+export const SET_EMPTY_SCORE_COUNTERS = "SET_EMPTY_SCORE_COUNTERS";
 
 export const setInitialState = () => ({
 	type: SET_INITIAL_STATE,
@@ -362,4 +365,18 @@ export const decrementUnfilledScoreCounterFromImgGridRBTask = (
 	type: DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK,
 	payload: imgIdList,
 	optionsCounter,
+});
+
+export const incrementEmptyScoreCounter = (index) => ({
+	type: INCREMENT_EMPTY_SCORE_COUNTER,
+	index,
+});
+
+export const decrementEmptyScoreCounter = (index) => ({
+	type: DECREMENT_EMPTY_SCORE_COUNTER,
+	index,
+});
+
+export const setEmptyScoreCounters = () => ({
+	type: SET_EMPTY_SCORE_COUNTERS,
 });

@@ -16,8 +16,8 @@ import arrowIcon from "../../../utils/icons/arrow-icon";
 
 function Task({ task, id, index, number, ...props }) {
 	const [isHoveredTask, setIsHoveredTask] = useState(false);
-	const isHaveMarks = useGetIsHaveMarks(task.data?.radioButtonTaskList);
-
+	const isHaveMarks = useGetIsHaveMarks(task);
+	// console.log(isHaveMarks);
 	return (
 		<>
 			<div
