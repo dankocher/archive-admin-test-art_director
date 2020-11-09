@@ -28,7 +28,7 @@ export const useGetIsHaveMarks = (task) => {
 		radioButtonTaskList = task.data.radioButtonTaskList;
 	}
 	// debugger;
-	if (isOneGradeForAllSubTasks) {
+	if (isOneGradeForAllSubTasks == null || isOneGradeForAllSubTasks) {
 		if (radioButtonTaskList == null) return true;
 
 		for (const radioButtonTask of radioButtonTaskList) {

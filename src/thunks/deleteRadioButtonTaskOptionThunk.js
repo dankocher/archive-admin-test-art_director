@@ -24,7 +24,7 @@ export const deleteRadioButtonTaskOptionThunk = (
 			addNewOption();
 		}
 
-		if (isOneGradeForAllSubTasks) {
+		if (isOneGradeForAllSubTasks == null || isOneGradeForAllSubTasks) {
 			const option = optionList[optionIndex];
 			if (option.score != null && option.score !== "") return;
 			dispatch(decrementEmptyScoreCounter(radioButtonTaskIndex));

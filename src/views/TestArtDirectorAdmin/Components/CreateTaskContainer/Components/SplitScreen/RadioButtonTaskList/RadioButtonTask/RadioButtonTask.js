@@ -1,68 +1,61 @@
-import "./RadioButtonTask.scss";
-
-import React, { useState } from "react";
+import styles from "./RadioButtonTask.module.scss";
+import React from "react";
 import { useDispatch } from "react-redux";
 
-import {
-  setRadioButtonTaskQuestion,
-  removeRadioButtonTask,
-} from "../../../../../../../../redux/actions";
+import { sortableHandle } from "react-sortable-hoc";
+
+import { setRadioButtonTaskQuestion } from "../../../../../../../../redux/actions";
 
 import { removeRadioButtonTaskThunk } from "../../../../../../../../thunks/removeRadioButtonTaskThunk";
 
 import DeleteButton from "../../../../../DeleteButton/DeleteButton";
 import TextArea from "../../../../../TextArea/TextArea";
+import DragButton from "../../../../../DragButton/DragButton";
 import RadioButtonOptionList from "./RadioButtonOptionList/RadioButtonOptionList";
 
+const DragHandle = sortableHandle(() => <DragButton />);
+
 function RadioButtonTask({
-  question,
-  radioButtonOptionList,
-  index,
-  radioButtonTaskListLength,
-  addNewTask,
+	question,
+	radioButtonOptionList,
+	index,
+	addNewTask,
 }) {
-  const dispatch = useDispatch();
-  const [isHoveredQuestion, setIsHoveredQuestion] = useState(false);
+	const dispatch = useDispatch();
 
-  const handlerOnBlurQuestion = (text) => {
-    dispatch(setRadioButtonTaskQuestion(text, index));
-  };
+	const handlerOnBlurQuestion = (text) => {
+		dispatch(setRadioButtonTaskQuestion(text, index));
+	};
 
-  const handlerOnClickRemoveBtn = () => {
-    dispatch(removeRadioButtonTaskThunk(index, addNewTask));
-    // console.log(radioButtonTaskListLength);
-    // if (radioButtonTaskListLength === 1) {
-    //   addNewTask();
-    // }
-  };
+	const handlerOnClickRemoveBtn = () => {
+		dispatch(removeRadioButtonTaskThunk(index, addNewTask));
+	};
 
-  return (
-    <>
-      <div
-        className="container--radioButtonQuestion"
-        onMouseEnter={() => setIsHoveredQuestion(true)}
-        onMouseLeave={() => setIsHoveredQuestion(false)}
-      >
-        <div className="container-question-radioButtonQuestion">
-          <TextArea
-            className="input"
-            value={question}
-            onBlur={handlerOnBlurQuestion}
-          />
-          <div className={"trash-button--radioButtonQuestion"}>
-            {isHoveredQuestion ? (
-              <DeleteButton onClick={() => handlerOnClickRemoveBtn()} />
-            ) : null}
-          </div>
-        </div>
+	return (
+		<>
+			<div className={styles.container}>
+				<div className={styles.container__question}>
+					<div className={styles.container__question__drugBtnWrapper}>
+						<DragHandle />
+					</div>
 
-        <RadioButtonOptionList
-          radioButtonOptionList={radioButtonOptionList}
-          index={index}
-        />
-      </div>
-    </>
-  );
+					<TextArea
+						className="input"
+						value={question}
+						onBlur={handlerOnBlurQuestion}
+					/>
+					<div className={styles.container__question__trashBtnWrapper}>
+						<DeleteButton onClick={() => handlerOnClickRemoveBtn()} />
+					</div>
+				</div>
+
+				<RadioButtonOptionList
+					radioButtonOptionList={radioButtonOptionList}
+					index={index}
+				/>
+			</div>
+		</>
+	);
 }
 
 export default RadioButtonTask;

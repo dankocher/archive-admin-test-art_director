@@ -11,7 +11,7 @@ export const addRadioButtonTaskThunk = () => {
 
 		dispatch(addRadioButtonTask());
 
-		if (isOneGradeForAllSubTasks) return;
+		if (isOneGradeForAllSubTasks == null || isOneGradeForAllSubTasks) return;
 
 		dispatch(incrementUnfilledScoreCounterFromImgGrid());
 	};

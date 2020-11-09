@@ -21,7 +21,7 @@ export const setRowImgIllustrationContainer = (
 		console.log(imgName);
 		if (imgName !== "") {
 			dispatch(setImgToImgGridSuccess(imgName, rowIndex, columnIndex));
-			if (isOneGradeForAllSubTasks) return;
+			if (isOneGradeForAllSubTasks == null || isOneGradeForAllSubTasks) return;
 			dispatch(
 				setUnfilledScoreCounterToRadioButtonIllustrationThunk(
 					imgRowId,

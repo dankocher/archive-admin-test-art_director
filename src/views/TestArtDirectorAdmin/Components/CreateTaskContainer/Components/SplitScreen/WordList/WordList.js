@@ -18,7 +18,6 @@ const SortableContainer = sortableContainer(({ children }) => {
 
 const SortableItem = sortableElement(
 	({ localIndex, value, deleteGlobalWordHendle }) => {
-		// console.log({ localIndex, value, deleteGlobalWordHendle });
 		return (
 			<Word
 				index={localIndex}
@@ -34,8 +33,6 @@ function WordList() {
 		(state) => state.reduxStorage.task.data.wordList
 	);
 	const dispatch = useDispatch();
-
-	//   const [wordListLocal,wordListLocal]
 
 	const addWordHendle = () => {
 		dispatch(addWord());

@@ -42,7 +42,7 @@ function IllustrationColumns({ imgRow, indexRow, setModalWindow }) {
   return (
     <div
       className={`${styles.grid} ${
-        isOneGradeForAllSubTasks
+        isOneGradeForAllSubTasks == null || isOneGradeForAllSubTasks
           ? ""
           : getIsRowSlected()
           ? styles.selected
@@ -53,7 +53,7 @@ function IllustrationColumns({ imgRow, indexRow, setModalWindow }) {
     >
       <div
         className={styles.grid__sort_container}
-        onClick={isOneGradeForAllSubTasks ? null : choosingImgRow}
+        onClick={isOneGradeForAllSubTasks == null || isOneGradeForAllSubTasks ? null : choosingImgRow}
       >
         <div>
           <span className="subTasks-numbers-font">{indexRow + 1}</span>

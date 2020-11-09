@@ -2,6 +2,8 @@ import styles from "./RadioButtonOption.module.scss";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { sortableHandle } from "react-sortable-hoc";
+
 import { setRadioButtonTaskOption } from "../../../../../../../../../../redux/actions";
 
 import { setRadioButtonTaskOptionMarkThunk } from "../../../../../../../../../../thunks/setRadioButtonTaskOptionMarkThunk";
@@ -10,6 +12,8 @@ import { deleteRadioButtonTaskOptionThunk } from "../../../../../../../../../../
 import TextArea from "../../../../../../../TextArea/TextArea";
 import DeleteButton from "../../../../../../../DeleteButton/DeleteButton";
 import DragButton from "../../../../../../../DragButton/DragButton";
+
+const DragHandle = sortableHandle(() => <DragButton />);
 
 function RadioButtonOption({
 	radioButtonOption,
@@ -20,7 +24,6 @@ function RadioButtonOption({
 	radioButtonOptionList,
 }) {
 	const dispatch = useDispatch();
-	const [isHoveredOption, setIsHoveredOption] = useState(false);
 	const [answerScore, setAnswerScore] = useState("");
 	const [isScoreInputDisabled, setIsScoreInputDisabled] = useState(true);
 
@@ -38,7 +41,7 @@ function RadioButtonOption({
 	);
 
 	useEffect(() => {
-		if (isOneGradeForAllSubTasks) {
+		if (isOneGradeForAllSubTasks == null || isOneGradeForAllSubTasks) {
 			setAnswerScore(radioButtonOption.score || "");
 		} else {
 			const scoreList = radioButtonOption.scoreList;
@@ -88,7 +91,7 @@ function RadioButtonOption({
 	};
 
 	const handlerOnBlureMark = () => {
-		if (isOneGradeForAllSubTasks) {
+		if (isOneGradeForAllSubTasks == null || isOneGradeForAllSubTasks) {
 			if (radioButtonOption.score === answerScore) return;
 		} else {
 			if (radioButtonOption.scoreList != null) {
@@ -121,13 +124,9 @@ function RadioButtonOption({
 	};
 
 	return (
-		<div
-			className={styles.container}
-			onMouseEnter={() => setIsHoveredOption(true)}
-			onMouseLeave={() => setIsHoveredOption(false)}
-		>
+		<div className={styles.container}>
 			<div className={styles.container__drugBtn}>
-				<DragButton />
+				<DragHandle />
 			</div>
 
 			<TextArea

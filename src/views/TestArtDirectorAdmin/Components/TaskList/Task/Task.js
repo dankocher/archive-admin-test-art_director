@@ -1,6 +1,7 @@
-import "./Task.scss";
+import styles from "./Task.module.scss";
 import React, { useState } from "react";
 
+import { sortableHandle } from "react-sortable-hoc";
 import { useGetIsHaveMarks } from "../../../helpers/customHooks";
 
 import { Link } from "react-router-dom";
@@ -14,53 +15,51 @@ import DeleteButton from "../../DeleteButton/DeleteButton";
 import DragButton from "../../DragButton/DragButton";
 import arrowIcon from "../../../utils/icons/arrow-icon";
 
+const DragHandle = sortableHandle(() => <DragButton />);
+
 function Task({ task, id, index, number, ...props }) {
-	const [isHoveredTask, setIsHoveredTask] = useState(false);
 	const isHaveMarks = useGetIsHaveMarks(task);
 	// console.log(isHaveMarks);
 	return (
 		<>
-			<div
-				onMouseEnter={() => setIsHoveredTask(true)}
-				onMouseLeave={() => setIsHoveredTask(false)}
-				className="task-container"
-			>
-				<div className="task-number--task">
-					{isHoveredTask ? (
-						<DragButton />
-					) : isWelcomeScreen(task.type) ? (
+			<div className={styles.container}>
+				<div className={styles.container__counter}>
+					<DragHandle />
+					{isWelcomeScreen(task.type) ? (
 						<span></span>
 					) : (
 						<span className="task-numbers-font">{number}</span>
 					)}
 				</div>
-				<Link className={"link--task"} to={`/${id}`}>
-					<div className="link-container--task">
-						<div className="task-name--task">
+				<Link className={styles.container__link} to={`/${id}`}>
+					<div className={styles.linkContainer}>
+						<div className={styles.linkContainer__description}>
 							<h3 className="bold-big-font">{task.name}</h3>
-							<div className="small-grey-font">
-								<span className="taskType-text--task">
+							<div className={` ${styles.smallGreyFont}`}>
+								<span className={styles.linkContainer__description__typeText}>
 									{taskTypeEnum[task.type]}
 								</span>
-								<span className="taskType-number--task">25</span>
+								<span className={styles.linkContainer__description__typeNumber}>
+									25
+								</span>
 							</div>
 						</div>
-						<div className="notAllMarks--task small-grey-font">
+						<div
+							className={`${styles.linkContainer__centredWrapper} ${styles.smallGreyFont}`}
+						>
 							{isHaveMarks === undefined || isHaveMarks ? null : (
 								<span>Не все оценки расставлены</span>
 							)}
 						</div>
-						<div className="arrow-button-task">
-							<button className="hidden-button">
+						<div className={styles.linkContainer__centredWrapper}>
+							<div>
 								<i>{arrowIcon}</i>
-							</button>
+							</div>
 						</div>
 					</div>
 				</Link>
-				<div className="option-buttons-task">
-					{isHoveredTask ? (
-						<DeleteButton onClick={() => props.handlerDeleteSelectedTask(id)} />
-					) : null}
+				<div className={styles.container__deleteBtn}>
+					<DeleteButton onClick={() => props.handlerDeleteSelectedTask(id)} />
 				</div>
 			</div>
 		</>

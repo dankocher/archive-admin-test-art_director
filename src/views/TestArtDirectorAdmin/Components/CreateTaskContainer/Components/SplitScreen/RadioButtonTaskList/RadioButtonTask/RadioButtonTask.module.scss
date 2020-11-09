@@ -1,0 +1,37 @@
+.container {
+	&__question {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr 3.2rem;
+		margin-bottom: 1.6rem;
+
+		&__drugBtnWrapper {
+			position: absolute;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			left: -2rem;
+		}
+
+		textarea {
+			width: 100%;
+			min-height: 4.8rem;
+		}
+
+		&__trashBtnWrapper {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+		}
+
+		button {
+			visibility: hidden;
+		}
+
+		&:hover {
+			button {
+				visibility: visible;
+			}
+		}
+	}
+}
