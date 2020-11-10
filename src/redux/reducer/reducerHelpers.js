@@ -131,7 +131,8 @@ export const getSortedImgGridRows = (state, action) => {
 };
 
 export const getSortedRowInImgGrid = (state, action) => {
-	const imgRow = state.task.data.imgGrid[action.indexRow];
+	const imgRow = state.task.data.imgGrid[action.indexRow].imgColumnList;
+	console.log(imgRow);
 	return arrayMove(imgRow, action.oldIndex, action.newIndex);
 };
 
@@ -267,4 +268,13 @@ export const setEmptyScoreCountersRedux = (state) => {
 		});
 	}
 	return state;
+};
+
+export const getSortedList = (list, oldIndex, newIndex) => {
+	return arrayMove(list, oldIndex, newIndex);
+};
+
+export const getIsOneGradeForAllSubTasks = (action) => {
+	if (action.payload === ILLUSTRATION_RADIO_BUTTONS) return false;
+	else return undefined;
 };

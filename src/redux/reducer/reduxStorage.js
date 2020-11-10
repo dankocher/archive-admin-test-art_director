@@ -12,6 +12,8 @@ import {
 	decrementUnfilledScoreCounterFromImgGridRBTaskRedux,
 	setUnfilledScoreCounterToImgGridRedux,
 	setEmptyScoreCountersRedux,
+	getSortedList,
+	getIsOneGradeForAllSubTasks,
 } from "./reducerHelpers";
 
 import {
@@ -74,6 +76,9 @@ import {
 	INCREMENT_EMPTY_SCORE_COUNTER,
 	DECREMENT_EMPTY_SCORE_COUNTER,
 	SET_EMPTY_SCORE_COUNTERS,
+	SET_SORTED_QA_LIST,
+	SET_RADIO_BUTTOB_OPTION_LIST,
+	SET_RADIO_BUTTOB_TASK_LIST,
 } from "../actions";
 
 const initialState = {
@@ -238,6 +243,9 @@ function reduxStorage(state = initialState, action) {
 				task: {
 					type: {
 						$set: action.payload,
+					},
+					isOneGradeForAllSubTasks: {
+						$set: getIsOneGradeForAllSubTasks(action),
 					},
 					data: {
 						$set: data,
@@ -645,7 +653,9 @@ function reduxStorage(state = initialState, action) {
 					data: {
 						imgGrid: {
 							[action.indexRow]: {
-								$set: getSortedRowInImgGrid(state, action),
+								imgColumnList: {
+									$set: getSortedRowInImgGrid(state, action),
+								},
 							},
 						},
 					},
@@ -731,6 +741,41 @@ function reduxStorage(state = initialState, action) {
 			});
 		case SET_EMPTY_SCORE_COUNTERS:
 			return setEmptyScoreCountersRedux(state);
+		case SET_SORTED_QA_LIST:
+			return update(state, {
+				task: {
+					data: {
+						questionAnswerList: {
+							$apply: (qAList) =>
+								getSortedList(qAList, action.oldIndex, action.newIndex),
+						},
+					},
+				},
+			});
+		case SET_RADIO_BUTTOB_OPTION_LIST:
+			return update(state, {
+				task: {
+					data: {
+						radioButtonTaskList: {
+							[action.index]: {
+								radioButtonOptionList: {
+									$set: action.payload,
+								},
+							},
+						},
+					},
+				},
+			});
+		case SET_RADIO_BUTTOB_TASK_LIST:
+			return update(state, {
+				task: {
+					data: {
+						radioButtonTaskList: {
+							$set: action.payload,
+						},
+					},
+				},
+			});
 		default:
 			return state;
 	}

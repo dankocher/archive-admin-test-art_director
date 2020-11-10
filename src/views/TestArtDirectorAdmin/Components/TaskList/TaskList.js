@@ -1,9 +1,12 @@
 import "./TaskList.scss";
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import arrayMove from "array-move";
+
 import { useHistory } from "react-router-dom";
+
+import { sortableContainer, sortableElement } from "react-sortable-hoc";
 
 import { isWelcomeScreen } from "../../helpers/taskTypes/taskTypeEnum";
 import {
@@ -11,6 +14,7 @@ import {
 	getNewTaskFromServer,
 	deleteTaskById,
 	saveTaskListHeader,
+	saveSortedTaskList,
 } from "../../helpers/workWithApi";
 
 import { setTestProps, setTestName } from "../../../../redux/actions";
@@ -21,6 +25,24 @@ import editIcon from "../../utils/icons/edit-icon";
 
 const _ID = "5f5f6162de1af368a21e299a";
 const MAX_HEADER_LENGTH = 240;
+
+const SortableContainer = sortableContainer(({ children }) => {
+	return <div className="taskList-border--tasks">{children}</div>;
+});
+
+const SortableItem = sortableElement(
+	({ number, id, localIndex, task, handlerDeleteSelectedTask }) => {
+		return (
+			<Task
+				number={number}
+				id={id}
+				index={localIndex}
+				task={task}
+				handlerDeleteSelectedTask={handlerDeleteSelectedTask}
+			/>
+		);
+	}
+);
 
 function TaskList() {
 	const history = useHistory();
@@ -81,6 +103,15 @@ function TaskList() {
 		}
 		setHeader(text);
 	};
+	const onSortEnd = ({ oldIndex, newIndex }) => {
+		const newTaskList = arrayMove(taskList, oldIndex, newIndex);
+
+		const listOfTaskId = newTaskList.map((task) => task._id);
+
+		saveSortedTaskList(listOfTaskId).then((res) => {
+			if (res.ok) setTaskList(res.tasks);
+		});
+	};
 
 	return (
 		<>
@@ -105,20 +136,21 @@ function TaskList() {
 				)}
 			</div>
 			<div className={"wrapper-shadow--tasks"}>
-				<div className="taskList-border--tasks">
+				<SortableContainer onSortEnd={onSortEnd} useDragHandle>
 					{taskList.map((element, key) => {
 						return (
-							<Task
+							<SortableItem
 								key={key}
 								number={element.task_number}
 								id={element._id}
 								index={key}
+								localIndex={key}
 								task={element}
 								handlerDeleteSelectedTask={handlerDeleteSelectedTask}
 							/>
 						);
 					})}
-				</div>
+				</SortableContainer>
 				<div className="add-task--tasks">
 					<button
 						onClick={handleOpenNewTask}

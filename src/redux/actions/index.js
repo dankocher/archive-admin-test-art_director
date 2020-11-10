@@ -66,6 +66,9 @@ export const DECREMENT_UNFILLED_SCORE_COUNTER_FROM_IMG_GRID_RB_TASK =
 export const INCREMENT_EMPTY_SCORE_COUNTER = "INCREMENT_EMPTY_SCORE_COUNTER";
 export const DECREMENT_EMPTY_SCORE_COUNTER = "DECREMENT_EMPTY_SCORE_COUNTER";
 export const SET_EMPTY_SCORE_COUNTERS = "SET_EMPTY_SCORE_COUNTERS";
+export const SET_SORTED_QA_LIST = "SET_SORTED_QA_LIST";
+export const SET_RADIO_BUTTOB_OPTION_LIST = "SET_RADIO_BUTTOB_OPTION_LIST";
+export const SET_RADIO_BUTTOB_TASK_LIST = "SET_RADIO_BUTTOB_TASK_LIST";
 
 export const setInitialState = () => ({
 	type: SET_INITIAL_STATE,
@@ -379,4 +382,21 @@ export const decrementEmptyScoreCounter = (index) => ({
 
 export const setEmptyScoreCounters = () => ({
 	type: SET_EMPTY_SCORE_COUNTERS,
+});
+
+export const setSortedQAList = (oldIndex, newIndex) => ({
+	type: SET_SORTED_QA_LIST,
+	oldIndex,
+	newIndex,
+});
+
+export const setRadionButtonOptionList = (radionButtonOptionList, index) => ({
+	type: SET_RADIO_BUTTOB_OPTION_LIST,
+	payload: radionButtonOptionList,
+	index,
+});
+
+export const setRadionButtonTaskList = (radionButtonTaskList, index) => ({
+	type: SET_RADIO_BUTTOB_TASK_LIST,
+	payload: radionButtonTaskList,
 });

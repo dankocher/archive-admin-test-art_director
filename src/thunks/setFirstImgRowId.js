@@ -5,7 +5,7 @@ export const setFirstImgRowId = () => {
 		const isOneGradeForAllSubTasks = getState().reduxStorage.task
 			.isOneGradeForAllSubTasks;
 
-		if (isOneGradeForAllSubTasks) return;
+		if (isOneGradeForAllSubTasks == null || isOneGradeForAllSubTasks) return;
 		const imgGrid = getState().reduxStorage.task.data.imgGrid;
 
 		if (imgGrid.length === 0) return;

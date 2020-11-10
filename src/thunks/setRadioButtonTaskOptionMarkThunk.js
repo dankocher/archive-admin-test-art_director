@@ -16,7 +16,7 @@ export const setRadioButtonTaskOptionMarkThunk = (
 		const isOneGradeForAllSubTasks = getState().reduxStorage.task
 			.isOneGradeForAllSubTasks;
 
-		if (isOneGradeForAllSubTasks) {
+		if (isOneGradeForAllSubTasks == null || isOneGradeForAllSubTasks) {
 			dispatch(
 				comparePreviouAndNextThunk(
 					answerScore,

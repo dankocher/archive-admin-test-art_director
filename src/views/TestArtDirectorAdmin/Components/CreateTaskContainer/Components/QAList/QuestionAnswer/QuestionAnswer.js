@@ -2,6 +2,8 @@ import styles from "./QuestionAnswer.module.scss";
 import React from "react";
 import { useDispatch } from "react-redux";
 
+import { sortableHandle } from "react-sortable-hoc";
+
 import {
 	setQAQuestion,
 	setQADescription,
@@ -9,9 +11,9 @@ import {
 
 import TextArea from "../../../../TextArea/TextArea";
 import DeleteButton from "../../../../DeleteButton/DeleteButton";
-import DrugButton from "../../../../DragButton/DragButton";
+import DragButton from "../../../../DragButton/DragButton";
 
-// export const DragHandle = sortableHandle(() => a);
+const DragHandle = sortableHandle(() => <DragButton />);
 
 function QuestionAnswer({ index, deleteQAHandler, question, description }) {
 	const dispatch = useDispatch();
@@ -46,7 +48,7 @@ function QuestionAnswer({ index, deleteQAHandler, question, description }) {
 				<DeleteButton onClick={() => deleteQAHandler(index)} />
 			</div>
 			<div className={styles.container__textareaGrid__container_drugBtn}>
-				<DrugButton />
+				<DragHandle />
 			</div>
 		</div>
 	);
