@@ -1,7 +1,8 @@
 import "./TaskList.scss";
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import arrayMove from "array-move";
 
 import { useHistory } from "react-router-dom";
 
@@ -13,6 +14,7 @@ import {
 	getNewTaskFromServer,
 	deleteTaskById,
 	saveTaskListHeader,
+	saveSortedTaskList,
 } from "../../helpers/workWithApi";
 
 import { setTestProps, setTestName } from "../../../../redux/actions";
@@ -102,8 +104,13 @@ function TaskList() {
 		setHeader(text);
 	};
 	const onSortEnd = ({ oldIndex, newIndex }) => {
-		// dispatch(setWordList(arrayMove(wordList, oldIndex, newIndex)));
-		console.log("ZAKONCHILI");
+		const newTaskList = arrayMove(taskList, oldIndex, newIndex);
+
+		const listOfTaskId = newTaskList.map((task) => task._id);
+
+		saveSortedTaskList(listOfTaskId).then((res) => {
+			if (res.ok) setTaskList(res.tasks);
+		});
 	};
 
 	return (

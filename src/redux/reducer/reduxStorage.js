@@ -653,7 +653,9 @@ function reduxStorage(state = initialState, action) {
 					data: {
 						imgGrid: {
 							[action.indexRow]: {
-								$set: getSortedRowInImgGrid(state, action),
+								imgColumnList: {
+									$set: getSortedRowInImgGrid(state, action),
+								},
 							},
 						},
 					},

@@ -128,3 +128,14 @@ export const deleteImgFromServer = async (imgName) => {
 	}
 	return res;
 };
+
+export const saveSortedTaskList = async (tastIdList) => {
+	const res = await ajax(api.td_sort_tasks, {
+		tasks: tastIdList,
+	});
+	if (!res.ok) {
+		console.log("Bad response");
+		return;
+	}
+	return res;
+};
